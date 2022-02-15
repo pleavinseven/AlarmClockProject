@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+
+        android:title="General Settings"/>
+
+
+    <SwitchPreference
+
+        android:title="Dark theme"
+        android:summary="set dark theme"
+        android:key="sp_dark_mode"
+        android:defaultValue="true"/>
+
+    <Preference
+
+        android:title="Set Ringtone"
+        android:summary="$current_ringtone"/>
+
+    <Preference
+
+        android:title="Accessibility Preference"
+        android:summary="think of a good summary"/>
+
+
+
+</PreferenceScreen>
