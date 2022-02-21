@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.pleavinseven.alarmclockproject.HomeFragment"
+        android:name="com.pleavinseven.alarmclockproject.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/newAlarmFragment"
-        android:name="com.pleavinseven.alarmclockproject.NewAlarmFragment"
+        android:name="com.pleavinseven.alarmclockproject.fragments.SetNewAlarmFragment"
         android:label="NewAlarmFragment" >
         <action
             android:id="@+id/action_newAlarmFragment_to_homeFragment"

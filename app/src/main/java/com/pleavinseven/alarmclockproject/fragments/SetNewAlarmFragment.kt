@@ -1,21 +1,22 @@
-package com.pleavinseven.alarmclockproject
+package com.pleavinseven.alarmclockproject.fragments
 
-import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.fragment.app.Fragment
-import com.pleavinseven.alarmclockproject.databinding.FragmentNewAlarmBinding
+import androidx.navigation.Navigation
+import com.pleavinseven.alarmclockproject.Alarm
+import com.pleavinseven.alarmclockproject.databinding.FragmentSetNewAlarmBinding
 import com.pleavinseven.alarmclockproject.util.TimePickerUtil
 import java.util.*
 
 
-class NewAlarmFragment : Fragment() {
+class SetNewAlarmFragment : Fragment() {
 
     val timePickerUtil = TimePickerUtil()
-    lateinit var binding: FragmentNewAlarmBinding
+    lateinit var binding: FragmentSetNewAlarmBinding
 
 
     override fun onCreateView(
@@ -23,7 +24,7 @@ class NewAlarmFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentNewAlarmBinding.inflate(inflater, container, false)
+        binding = FragmentSetNewAlarmBinding.inflate(inflater, container, false)
 
         binding.fragmentCreateAlarmRecurring.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
@@ -35,6 +36,7 @@ class NewAlarmFragment : Fragment() {
 
         binding.fragmentBtnSetAlarm.setOnClickListener(View.OnClickListener { _ ->
             scheduleAlarm()
+            Navigation.findNavController(requireView()).navigate(com.pleavinseven.alarmclockproject.R.id.action_newAlarmFragment_to_homeFragment)
 
         })
         return binding.root
@@ -43,7 +45,7 @@ class NewAlarmFragment : Fragment() {
 
     }
 
-    fun scheduleAlarm() {
+    private fun scheduleAlarm() {
         val alarmId = Random().nextInt(Integer.MAX_VALUE);
         val timePicker = binding.fragmentCreateAlarmTimePicker
 
