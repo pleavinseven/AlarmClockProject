@@ -10,17 +10,27 @@ import com.pleavinseven.alarmclockproject.receiver.AlarmReceiver
 import java.util.*
 
 
-class Alarm(
-    val alarmId: Int, val hour: Int, val minute: Int, val title: String, var started: Boolean, val recurring: Boolean) {
+class AlarmManager(
+    val alarmId: Int,
+    val hour: Int,
+    val minute: Int,
+    val title: String,
+    var started: Boolean,
+    val recurring: Boolean
+) {
 
     fun schedule(context: Context) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java)
-        intent.putExtra("recurring",recurring)
-        intent.putExtra( "title",title)
+        intent.putExtra("recurring", recurring)
+        intent.putExtra("title", title)
         val alarmPendingIntent = PendingIntent.getBroadcast(
             context,
-            alarmId, intent, if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT } else { PendingIntent.FLAG_UPDATE_CURRENT }
+            alarmId, intent, if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+            } else {
+                PendingIntent.FLAG_UPDATE_CURRENT
+            }
         )
         val calendar: Calendar = Calendar.getInstance()
         calendar.timeInMillis = System.currentTimeMillis()
@@ -32,14 +42,19 @@ class Alarm(
             calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + 1)
         }
         if (!recurring) {
-            Toast.makeText(context, "One Time Alarm $title set for $hour:$minute", Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                context,
+                "One Time Alarm $title set for $hour:$minute",
+                Toast.LENGTH_LONG
+            ).show()
             alarmManager.setExact(
                 AlarmManager.RTC_WAKEUP,
                 calendar.timeInMillis,
                 alarmPendingIntent
             )
         } else {
-            Toast.makeText(context, "Alarm $title set daily at $hour:$minute", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Alarm $title set daily at $hour:$minute", Toast.LENGTH_LONG)
+                .show()
             val runDaily = (24 * 60 * 60 * 1000).toLong()
             alarmManager.setRepeating(
                 AlarmManager.RTC_WAKEUP,
