@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.pleavinseven.alarmclockproject.Alarm
+import com.pleavinseven.alarmclockproject.AlarmManager
 import com.pleavinseven.alarmclockproject.databinding.FragmentSetNewAlarmBinding
 import com.pleavinseven.alarmclockproject.util.TimePickerUtil
 import java.util.*
@@ -49,7 +49,7 @@ class SetNewAlarmFragment : Fragment() {
         val alarmId = Random().nextInt(Integer.MAX_VALUE);
         val timePicker = binding.fragmentCreateAlarmTimePicker
 
-        val alarm = Alarm(
+        val alarm = AlarmManager(
                 alarmId,
         timePickerUtil.getTimePickerHour(timePicker),
         timePickerUtil.getTimePickerMinute(timePicker),
