@@ -17,6 +17,8 @@
             android:name=".service.AlarmService"
             android:exported="false" />
 
+        <activity android:name=".AlarmRingActivity"/>
+
         <activity
             android:name=".settings.SettingsActivity"
             android:exported="false"
