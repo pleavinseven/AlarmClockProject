@@ -11,10 +11,10 @@ import java.util.*
 
 
 class AlarmManager(
-    val alarmId: Int,
-    val hour: Int,
-    val minute: Int,
-    val title: String,
+    private val alarmId: Int,
+    private val hour: Int,
+    private val minute: Int,
+    private val title: String,
     var started: Boolean,
     val recurring: Boolean
 ) {
@@ -41,10 +41,16 @@ class AlarmManager(
         if (calendar.timeInMillis <= System.currentTimeMillis()) {
             calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + 1)
         }
+
+        val toastTime = if( minute < 10){
+            "$hour:0$minute"
+        } else{
+            "$hour:$minute"
+        }
         if (!recurring) {
             Toast.makeText(
                 context,
-                "One Time Alarm $title set for $hour:$minute",
+                "One Time Alarm $title set for $toastTime",
                 Toast.LENGTH_LONG
             ).show()
             alarmManager.setExact(
@@ -53,7 +59,7 @@ class AlarmManager(
                 alarmPendingIntent
             )
         } else {
-            Toast.makeText(context, "Alarm $title set daily at $hour:$minute", Toast.LENGTH_LONG)
+            Toast.makeText(context, "Alarm $title set daily at $toastTime", Toast.LENGTH_LONG)
                 .show()
             val runDaily = (24 * 60 * 60 * 1000).toLong()
             alarmManager.setRepeating(
