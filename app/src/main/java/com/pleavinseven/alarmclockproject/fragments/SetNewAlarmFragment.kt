@@ -15,14 +15,14 @@ import java.util.*
 
 class SetNewAlarmFragment : Fragment() {
 
-    val timePickerUtil = TimePickerUtil()
+    private val timePickerUtil = TimePickerUtil()
     lateinit var binding: FragmentSetNewAlarmBinding
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = FragmentSetNewAlarmBinding.inflate(inflater, container, false)
 
@@ -36,26 +36,26 @@ class SetNewAlarmFragment : Fragment() {
 
         binding.fragmentBtnSetAlarm.setOnClickListener(View.OnClickListener { _ ->
             scheduleAlarm()
-            Navigation.findNavController(requireView()).navigate(com.pleavinseven.alarmclockproject.R.id.action_newAlarmFragment_to_homeFragment)
+            Navigation.findNavController(requireView())
+                .navigate(com.pleavinseven.alarmclockproject.R.id.action_newAlarmFragment_to_homeFragment)
 
         })
         return binding.root
 
 
-
     }
 
     private fun scheduleAlarm() {
-        val alarmId = Random().nextInt(Integer.MAX_VALUE);
+        val alarmId = Random().nextInt(Integer.MAX_VALUE)
         val timePicker = binding.fragmentCreateAlarmTimePicker
 
         val alarm = AlarmManager(
-                alarmId,
-        timePickerUtil.getTimePickerHour(timePicker),
-        timePickerUtil.getTimePickerMinute(timePicker),
-        binding.fragmentCreateAlarmTitle.text.toString(),
-        true,
-        binding.fragmentCreateAlarmRecurring.isChecked
+            alarmId,
+            timePickerUtil.getTimePickerHour(timePicker),
+            timePickerUtil.getTimePickerMinute(timePicker),
+            binding.fragmentCreateAlarmTitle.text.toString(),
+            true,
+            binding.fragmentCreateAlarmRecurring.isChecked
         )
 
 
