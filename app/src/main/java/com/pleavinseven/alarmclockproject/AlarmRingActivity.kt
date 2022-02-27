@@ -7,7 +7,6 @@ import android.os.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.pleavinseven.alarmclockproject.databinding.ActivityAlarmRingBinding
 import java.util.*
 

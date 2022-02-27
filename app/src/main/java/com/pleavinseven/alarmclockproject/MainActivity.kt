@@ -1,15 +1,13 @@
 package com.pleavinseven.alarmclockproject
 
-import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.pleavinseven.alarmclockproject.databinding.ActivityMainBinding
 import com.pleavinseven.alarmclockproject.settings.SettingsActivity
-import java.util.*
+
 
 
 class MainActivity : AppCompatActivity() {
