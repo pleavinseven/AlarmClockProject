@@ -10,7 +10,7 @@ import androidx.room.*
 interface AlarmDao {
 
     @Insert()
-    fun addAlarm(alarm: Alarm)
+    suspend fun addAlarm(alarm: Alarm)
 
     @Query("SELECT * FROM alarm_table ORDER BY  id ASC")
     fun readAlarmData(): LiveData<List<Alarm>>
@@ -18,6 +18,6 @@ interface AlarmDao {
     @Update
     fun updateAlarm(alarm: Alarm)
 
-    @Delete
+    @Query("DELETE FROM alarm_table")
     fun deleteAlarm(alarm: Alarm)
 }
