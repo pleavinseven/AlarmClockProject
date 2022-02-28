@@ -14,7 +14,7 @@
         android:paddingEnd="8dp">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tv_alarm_time"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -22,7 +22,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tv_repeat_days"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -31,7 +31,7 @@
     </LinearLayout>
 
     <Switch
-        android:id="@+id/switch4"
+        android:id="@+id/switch_alarm"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1" />
