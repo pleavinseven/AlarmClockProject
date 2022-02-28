@@ -1,6 +1,8 @@
-package com.pleavinseven.alarmclockproject.data
+package com.pleavinseven.alarmclockproject.data.repository
 
 import androidx.lifecycle.LiveData
+import com.pleavinseven.alarmclockproject.data.database.Alarm
+import com.pleavinseven.alarmclockproject.data.database.AlarmDao
 
 class AlarmRepository(private val alarmDao: AlarmDao) {
 
@@ -12,10 +14,6 @@ class AlarmRepository(private val alarmDao: AlarmDao) {
 
     fun updateAlarm(alarm: Alarm) {
         alarmDao.updateAlarm(alarm)
-    }
-
-    fun deleteAlarm(alarm: Alarm) {
-        alarmDao.deleteAlarm(alarm)
     }
 
 
