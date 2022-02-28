@@ -1,7 +1,8 @@
-package com.pleavinseven.alarmclockproject.data
+package com.pleavinseven.alarmclockproject.data.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.pleavinseven.alarmclockproject.data.database.Alarm
 
 
 // TEST: TODO: update
@@ -17,7 +18,4 @@ interface AlarmDao {
 
     @Update
     fun updateAlarm(alarm: Alarm)
-
-    @Query("DELETE FROM alarm_table")
-    fun deleteAlarm(alarm: Alarm)
 }
