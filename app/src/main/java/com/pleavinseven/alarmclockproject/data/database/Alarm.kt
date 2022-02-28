@@ -1,4 +1,4 @@
-package com.pleavinseven.alarmclockproject.data
+package com.pleavinseven.alarmclockproject.data.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

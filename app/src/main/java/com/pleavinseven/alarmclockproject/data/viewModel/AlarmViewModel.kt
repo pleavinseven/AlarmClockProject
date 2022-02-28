@@ -1,15 +1,18 @@
-package com.pleavinseven.alarmclockproject.data
+package com.pleavinseven.alarmclockproject.data.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.pleavinseven.alarmclockproject.data.database.Alarm
+import com.pleavinseven.alarmclockproject.data.database.AlarmsDatabase
+import com.pleavinseven.alarmclockproject.data.repository.AlarmRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class AlarmViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val readAlarmData: LiveData<List<Alarm>>
+    val readAlarmData: LiveData<List<Alarm>>
     private val repository: AlarmRepository
 
     init {

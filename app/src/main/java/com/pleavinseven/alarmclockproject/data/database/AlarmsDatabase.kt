@@ -1,4 +1,4 @@
-package com.pleavinseven.alarmclockproject.data
+package com.pleavinseven.alarmclockproject.data.database
 
 import android.content.Context
 import androidx.room.Database

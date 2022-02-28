@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.pleavinseven.alarmclockproject.AlarmManager
+import com.pleavinseven.alarmclockproject.data.database.Alarm
+import com.pleavinseven.alarmclockproject.data.viewModel.AlarmViewModel
 import com.pleavinseven.alarmclockproject.databinding.FragmentSetNewAlarmBinding
 import com.pleavinseven.alarmclockproject.util.TimePickerUtil
 import java.util.*
@@ -17,6 +20,7 @@ class SetNewAlarmFragment : Fragment() {
 
     private val timePickerUtil = TimePickerUtil()
     lateinit var binding: FragmentSetNewAlarmBinding
+    private lateinit var alarmViewModel: AlarmViewModel
 
 
     override fun onCreateView(
@@ -34,6 +38,9 @@ class SetNewAlarmFragment : Fragment() {
             }
         })
 
+        alarmViewModel = ViewModelProvider(this).get(AlarmViewModel::class.java)
+
+
         binding.fragmentBtnSetAlarm.setOnClickListener(View.OnClickListener { _ ->
             scheduleAlarm()
             Navigation.findNavController(requireView())
@@ -45,20 +52,28 @@ class SetNewAlarmFragment : Fragment() {
 
     }
 
+    private fun insertToDatabase(hour:Int, minute: Int, repeat: Boolean) {
+        val alarm = Alarm(0, hour, minute, repeat)
+        alarmViewModel.addAlarm(alarm)
+    }
+
     private fun scheduleAlarm() {
         val alarmId = Random().nextInt(Integer.MAX_VALUE)
         val timePicker = binding.fragmentCreateAlarmTimePicker
+        val hour = timePickerUtil.getTimePickerHour(timePicker)
+        val minute = timePickerUtil.getTimePickerMinute(timePicker)
+        val repeat = binding.fragmentCreateAlarmRecurring.isChecked
 
-        val alarm = AlarmManager(
+        val alarmManager = AlarmManager(
             alarmId,
-            timePickerUtil.getTimePickerHour(timePicker),
-            timePickerUtil.getTimePickerMinute(timePicker),
+            hour,
+            minute,
             binding.fragmentCreateAlarmTitle.text.toString(),
             true,
             binding.fragmentCreateAlarmRecurring.isChecked
         )
 
-
-        alarm.schedule(requireContext())
+        insertToDatabase(hour, minute, repeat)
+        alarmManager.schedule(requireContext())
     }
 }
