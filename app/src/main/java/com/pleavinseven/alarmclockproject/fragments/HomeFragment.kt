@@ -1,6 +1,7 @@
 package com.pleavinseven.alarmclockproject.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,7 @@ class HomeFragment : Fragment() {
     private lateinit var alarmViewModel: AlarmViewModel
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,9 +33,16 @@ class HomeFragment : Fragment() {
         val recyclerView = binding.recyclerView
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        adapter.onItemClick = { alarm ->
+            //  todo function edit alarm
+            Log.d("TAG", "clicked")
+        }
 
-
-
+        //ViewModel
+        alarmViewModel = ViewModelProvider(this).get(AlarmViewModel::class.java)
+        alarmViewModel.readAlarmData.observe(viewLifecycleOwner, Observer { alarm ->
+            adapter.setData(alarm)
+        })
 
         binding.btnAddAlarm.setOnClickListener{
             Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment_to_newAlarmFragment)

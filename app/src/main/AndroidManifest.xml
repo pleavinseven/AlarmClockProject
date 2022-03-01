@@ -13,10 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AlarmClockProject">
 
-        <service
-            android:name=".service.AlarmService"
-            android:exported="false" />
-
         <activity android:name=".AlarmRingActivity"/>
 
         <activity

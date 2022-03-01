@@ -10,6 +10,7 @@ import com.pleavinseven.alarmclockproject.data.repository.AlarmRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+
 class AlarmViewModel(application: Application) : AndroidViewModel(application) {
 
     val readAlarmData: LiveData<List<Alarm>>
@@ -26,5 +27,4 @@ class AlarmViewModel(application: Application) : AndroidViewModel(application) {
             repository.addAlarm(alarm)
         }
     }
-
 }
