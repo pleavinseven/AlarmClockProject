@@ -2,7 +2,7 @@ package com.pleavinseven.alarmclockproject.data.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.pleavinseven.alarmclockproject.data.database.Alarm
+import com.pleavinseven.alarmclockproject.data.model.Alarm
 
 
 // TEST: TODO: update

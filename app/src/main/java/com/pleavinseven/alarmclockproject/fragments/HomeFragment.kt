@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pleavinseven.alarmclockproject.R
-import com.pleavinseven.alarmclockproject.data.viewModel.AlarmViewModel
+import com.pleavinseven.alarmclockproject.data.viewmodel.AlarmViewModel
 import com.pleavinseven.alarmclockproject.databinding.FragmentHomeBinding
 
 
@@ -19,7 +19,6 @@ class HomeFragment : Fragment() {
 
     lateinit var binding: FragmentHomeBinding
     private lateinit var alarmViewModel: AlarmViewModel
-
 
 
     override fun onCreateView(
@@ -34,8 +33,7 @@ class HomeFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         adapter.onItemClick = { alarm ->
-            //  todo function edit alarm
-            Log.d("TAG", "clicked")
+
         }
 
         //ViewModel
@@ -44,8 +42,9 @@ class HomeFragment : Fragment() {
             adapter.setData(alarm)
         })
 
-        binding.btnAddAlarm.setOnClickListener{
-            Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment_to_newAlarmFragment)
+        binding.btnAddAlarm.setOnClickListener {
+            Navigation.findNavController(requireView())
+                .navigate(R.id.action_homeFragment_to_newAlarmFragment)
         }
         return binding.root
     }

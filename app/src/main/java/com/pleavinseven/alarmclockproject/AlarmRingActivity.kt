@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.annotation.RequiresApi
 import com.pleavinseven.alarmclockproject.databinding.ActivityAlarmRingBinding
+import com.pleavinseven.alarmclockproject.alarmmanager.AlarmManager
 import java.util.*
 
 class AlarmRingActivity : AppCompatActivity() {
@@ -38,8 +39,6 @@ class AlarmRingActivity : AppCompatActivity() {
         // TODO: set vibrate pattern options?
 
 
-
-
         binding.btnCancelAlarm.setOnClickListener {
             ring.stop()
             vibe.cancel()
@@ -47,7 +46,7 @@ class AlarmRingActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.btnSnoozeAlarm.setOnClickListener{
+        binding.btnSnoozeAlarm.setOnClickListener {
             val alarmId = Random().nextInt(Integer.MAX_VALUE)
             val calendar: Calendar = Calendar.getInstance()
             val snoozeMins = 10
@@ -69,6 +68,4 @@ class AlarmRingActivity : AppCompatActivity() {
             alarm.schedule(this)
         }
     }
-
-
 }

@@ -1,10 +1,10 @@
-package com.pleavinseven.alarmclockproject.data.viewModel
+package com.pleavinseven.alarmclockproject.data.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.pleavinseven.alarmclockproject.data.database.Alarm
+import com.pleavinseven.alarmclockproject.data.model.Alarm
 import com.pleavinseven.alarmclockproject.data.database.AlarmsDatabase
 import com.pleavinseven.alarmclockproject.data.repository.AlarmRepository
 import kotlinx.coroutines.Dispatchers

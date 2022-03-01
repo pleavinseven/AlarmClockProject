@@ -8,9 +8,9 @@ import android.widget.CompoundButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import com.pleavinseven.alarmclockproject.AlarmManager
-import com.pleavinseven.alarmclockproject.data.database.Alarm
-import com.pleavinseven.alarmclockproject.data.viewModel.AlarmViewModel
+import com.pleavinseven.alarmclockproject.alarmmanager.AlarmManager
+import com.pleavinseven.alarmclockproject.data.model.Alarm
+import com.pleavinseven.alarmclockproject.data.viewmodel.AlarmViewModel
 import com.pleavinseven.alarmclockproject.databinding.FragmentSetNewAlarmBinding
 import com.pleavinseven.alarmclockproject.util.TimePickerUtil
 import java.util.*
@@ -52,7 +52,7 @@ class SetNewAlarmFragment : Fragment() {
 
     }
 
-    private fun insertToDatabase(hour:Int, minute: Int, repeat: Boolean) {
+    private fun insertToDatabase(hour: Int, minute: Int, repeat: Boolean) {
         val alarm = Alarm(0, hour, minute, repeat)
         alarmViewModel.addAlarm(alarm)
     }

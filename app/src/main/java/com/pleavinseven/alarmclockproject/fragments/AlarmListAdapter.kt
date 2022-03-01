@@ -5,8 +5,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pleavinseven.alarmclockproject.R
-import com.pleavinseven.alarmclockproject.data.database.Alarm
-import com.pleavinseven.alarmclockproject.databinding.FragmentHomeBinding
+import com.pleavinseven.alarmclockproject.data.model.Alarm
 import com.pleavinseven.alarmclockproject.databinding.LayoutAlarmBinding
 
 class AlarmListAdapter() :
@@ -16,9 +15,9 @@ class AlarmListAdapter() :
     private var alarmList = ArrayList<Alarm>()
 
 
-    inner class MyViewHolder(binding: LayoutAlarmBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class MyViewHolder(binding: LayoutAlarmBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
-            itemView.setOnClickListener{
+            itemView.setOnClickListener {
                 onItemClick?.invoke(alarmList[adapterPosition])
             }
         }
@@ -32,13 +31,13 @@ class AlarmListAdapter() :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val currentItem = alarmList[position]
-        var minute = currentItem.minute
+        val minute = currentItem.minute
         holder.itemView.findViewById<TextView>(R.id.tv_alarm_time).text =
-            if(minute >= 10){
-            "${currentItem.hour}:${currentItem.minute}"
-        }else{
-            "${currentItem.hour}:0${currentItem.minute}"
-        }
+            if (minute >= 10) {
+                "${currentItem.hour}:${currentItem.minute}"
+            } else {
+                "${currentItem.hour}:0${currentItem.minute}"
+            }
 
         //holder.itemView.findViewById<TextView>(R.id.tv_repeat_days)
     }
@@ -47,7 +46,7 @@ class AlarmListAdapter() :
         return alarmList.size
     }
 
-    fun setData(alarm: List<Alarm>){
+    fun setData(alarm: List<Alarm>) {
         alarmList.clear()
         alarmList.addAll(alarm)
         notifyDataSetChanged()

@@ -1,7 +1,7 @@
 package com.pleavinseven.alarmclockproject.data.repository
 
 import androidx.lifecycle.LiveData
-import com.pleavinseven.alarmclockproject.data.database.Alarm
+import com.pleavinseven.alarmclockproject.data.model.Alarm
 import com.pleavinseven.alarmclockproject.data.database.AlarmDao
 
 class AlarmRepository(private val alarmDao: AlarmDao) {

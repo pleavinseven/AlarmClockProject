@@ -1,4 +1,4 @@
-package com.pleavinseven.alarmclockproject
+package com.pleavinseven.alarmclockproject.alarmmanager
 
 import android.app.AlarmManager
 import android.app.PendingIntent
@@ -42,9 +42,9 @@ class AlarmManager(
             calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + 1)
         }
 
-        val toastTime = if( minute < 10){
+        val toastTime = if (minute < 10) {
             "$hour:0$minute"
-        } else{
+        } else {
             "$hour:$minute"
         }
         if (!recurring) {
