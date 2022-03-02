@@ -32,5 +32,8 @@
         <action
             android:id="@+id/action_updateFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <argument
+            android:name="currentAlarm"
+            app:argType="com.pleavinseven.alarmclockproject.data.model.Alarm" />
     </fragment>
 </navigation>
