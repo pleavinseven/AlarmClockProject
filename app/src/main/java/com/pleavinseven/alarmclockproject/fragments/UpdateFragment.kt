@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavArgs
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
@@ -31,18 +33,18 @@ class UpdateFragment : Fragment() {
     ): View? {
         binding = FragmentUpdateBinding.inflate(inflater, container, false)
 
+        alarmViewModel = ViewModelProvider(this).get(AlarmViewModel::class.java)
 
         binding.fragmentBtnUpdateAlarm.setOnClickListener {
             updateAlarm()
             Navigation.findNavController(requireView())
                 .navigate(R.id.action_updateFragment_to_homeFragment)
-
         }
         return binding.root
     }
 
     private fun updateDatabase(id: Int, hour: Int, minute: Int, repeat: Boolean) {
-        val alarm = Alarm(0, hour, minute, repeat)
+        val alarm = Alarm(id, hour, minute, repeat)
         alarmViewModel.update(alarm)
     }
 

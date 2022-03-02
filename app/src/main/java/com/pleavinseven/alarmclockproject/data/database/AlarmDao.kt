@@ -17,5 +17,5 @@ interface AlarmDao {
     fun readAlarmData(): LiveData<List<Alarm>>
 
     @Update
-    fun updateAlarm(alarm: Alarm)
+    suspend fun updateAlarm(alarm: Alarm)
 }

@@ -12,7 +12,7 @@ class AlarmRepository(private val alarmDao: AlarmDao) {
         alarmDao.addAlarm(alarm)
     }
 
-    fun updateAlarm(alarm: Alarm) {
+    suspend fun updateAlarm(alarm: Alarm) {
         alarmDao.updateAlarm(alarm)
     }
 
