@@ -28,9 +28,16 @@ class AlarmViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun update(alarm: Alarm){
+    fun update(alarm: Alarm) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateAlarm(alarm)
         }
     }
+
+    fun delete(alarm: Alarm) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteAlarm(alarm)
+        }
+    }
+
 }
