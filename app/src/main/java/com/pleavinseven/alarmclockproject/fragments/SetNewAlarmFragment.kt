@@ -45,7 +45,6 @@ class SetNewAlarmFragment : Fragment() {
             scheduleAlarm()
             Navigation.findNavController(requireView())
                 .navigate(com.pleavinseven.alarmclockproject.R.id.action_newAlarmFragment_to_homeFragment)
-
         })
         return binding.root
 

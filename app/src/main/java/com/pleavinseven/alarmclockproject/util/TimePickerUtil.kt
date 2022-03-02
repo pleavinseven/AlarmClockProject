@@ -6,18 +6,18 @@ import android.widget.TimePicker
 class TimePickerUtil {
 
     fun getTimePickerHour(timePicker: TimePicker): Int {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return timePicker.getHour();
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            timePicker.hour;
         } else {
-            return timePicker.getCurrentHour();
+            timePicker.currentHour;
         }
     }
 
-    public fun getTimePickerMinute(timePicker: TimePicker): Int {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return timePicker.getMinute();
+    fun getTimePickerMinute(timePicker: TimePicker): Int {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            timePicker.minute;
         } else {
-            return timePicker.getCurrentMinute();
+            timePicker.currentMinute;
         }
     }
 }
