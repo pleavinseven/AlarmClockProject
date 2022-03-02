@@ -32,9 +32,6 @@ class HomeFragment : Fragment() {
         val recyclerView = binding.recyclerView
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter.onItemClick = { alarm ->
-
-        }
 
         //ViewModel
         alarmViewModel = ViewModelProvider(this).get(AlarmViewModel::class.java)
