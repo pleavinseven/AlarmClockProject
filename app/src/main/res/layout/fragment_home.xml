@@ -8,10 +8,10 @@
     tools:context=".fragments.HomeFragment">
 
     <TextView
-        android:id="@+id/tv_next_alarm"
+        android:id="@+id/tv_next_alarm_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="52dp"
         android:text="11:11"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,7 @@
         android:id="@+id/btn_add_alarm"
         android:layout_width="57dp"
         android:layout_height="57dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="36dp"
         android:background="@drawable/round_button"
         android:text="+"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -35,12 +35,23 @@
         android:layout_width="411dp"
         android:layout_height="446dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_add_alarm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_next_alarm" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_next_alarm_time" />
+
+    <TextView
+        android:id="@+id/tv_next_alarm_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:text="Next Alarm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

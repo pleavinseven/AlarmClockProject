@@ -1,39 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/btn_set_alarm1"
+    android:id="@+id/btn_alarm_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/tv_alarm_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp">
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="126dp"
+        android:text="11:11"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintBottom_toTopOf="@+id/tv_repeat_days"
+        app:layout_constraintEnd_toStartOf="@+id/switch_alarm"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
-        <TextView
-            android:id="@+id/tv_alarm_time"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="11:11"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+    <TextView
+        android:id="@+id/tv_repeat_days"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:paddingBottom="2dp"
+        android:text="Once"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_alarm_time" />
 
-        <TextView
-            android:id="@+id/tv_repeat_days"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingBottom="2dp"
-            android:text="Once" />
-    </LinearLayout>
 
     <Switch
         android:id="@+id/switch_alarm"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
-</LinearLayout>
+        android:layout_width="70dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 
