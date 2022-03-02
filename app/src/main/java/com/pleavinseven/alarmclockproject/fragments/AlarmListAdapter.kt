@@ -3,6 +3,7 @@ package com.pleavinseven.alarmclockproject.fragments
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.pleavinseven.alarmclockproject.R
 import com.pleavinseven.alarmclockproject.data.model.Alarm
@@ -16,11 +17,6 @@ class AlarmListAdapter() :
 
 
     inner class MyViewHolder(binding: LayoutAlarmBinding) : RecyclerView.ViewHolder(binding.root) {
-        init {
-            itemView.setOnClickListener {
-                onItemClick?.invoke(alarmList[adapterPosition])
-            }
-        }
     }
 
 
@@ -38,6 +34,11 @@ class AlarmListAdapter() :
             } else {
                 "${currentItem.hour}:0${currentItem.minute}"
             }
+
+        holder.itemView.setOnClickListener{
+            val action = HomeFragmentDirections.actionHomeFragmentToUpdateFragment(currentItem)
+            holder.itemView.findNavController().navigate(action)
+        }
 
         //holder.itemView.findViewById<TextView>(R.id.tv_repeat_days)
     }
