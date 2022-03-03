@@ -14,7 +14,6 @@ class AlarmManager(
     private val alarmId: Int,
     private val hour: Int,
     private val minute: Int,
-    private val title: String,
     var started: Boolean,
     val recurring: Boolean
 ) {
@@ -23,7 +22,6 @@ class AlarmManager(
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java)
         intent.putExtra("recurring", recurring)
-        intent.putExtra("title", title)
         val alarmPendingIntent = PendingIntent.getBroadcast(
             context,
             alarmId, intent, if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -50,7 +48,7 @@ class AlarmManager(
         if (!recurring) {
             Toast.makeText(
                 context,
-                "One Time Alarm $title set for $toastTime",
+                "One Time Alarm set for $toastTime",
                 Toast.LENGTH_LONG
             ).show()
             alarmManager.setExact(
@@ -59,7 +57,7 @@ class AlarmManager(
                 alarmPendingIntent
             )
         } else {
-            Toast.makeText(context, "Alarm $title set daily at $toastTime", Toast.LENGTH_LONG)
+            Toast.makeText(context, "Alarm set daily for $toastTime", Toast.LENGTH_LONG)
                 .show()
             val runDaily = (24 * 60 * 60 * 1000).toLong()
             alarmManager.setRepeating(

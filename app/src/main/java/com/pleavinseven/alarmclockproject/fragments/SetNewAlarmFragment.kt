@@ -67,7 +67,6 @@ class SetNewAlarmFragment : Fragment() {
             alarmId,
             hour,
             minute,
-            binding.fragmentCreateAlarmTitle.text.toString(),
             true,
             binding.fragmentCreateAlarmRecurring.isChecked
         )

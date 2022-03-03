@@ -59,7 +59,6 @@ class UpdateFragment : Fragment() {
             id,
             hour,
             minute,
-            binding.fragmentUpdateAlarmTitle.text.toString(),
             true,
             binding.fragmentUpdateAlarmRecurring.isChecked
         )

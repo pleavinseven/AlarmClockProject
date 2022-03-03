@@ -56,7 +56,6 @@ class AlarmRingActivity : AppCompatActivity() {
                 alarmId,
                 calendar.get(Calendar.HOUR_OF_DAY),
                 calendar.get(Calendar.MINUTE),
-                "Snooze",
                 started = true,
                 recurring = false
             )
