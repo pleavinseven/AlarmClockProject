@@ -1,22 +1,33 @@
-package com.pleavinseven.alarmclockproject.fragments
+package com.pleavinseven.alarmclockproject.data.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.webkit.WebChromeClient
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.pleavinseven.alarmclockproject.R
 import com.pleavinseven.alarmclockproject.data.model.Alarm
 import com.pleavinseven.alarmclockproject.databinding.LayoutAlarmBinding
+import com.pleavinseven.alarmclockproject.fragments.HomeFragment
+import com.pleavinseven.alarmclockproject.fragments.HomeFragmentDirections
 
 class AlarmListAdapter() :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var onItemClick: ((Alarm) -> Unit)? = null
+    class MyViewHolder(binding: LayoutAlarmBinding) : RecyclerView.ViewHolder(binding.root)
+
     private var alarmList = ArrayList<Alarm>()
 
 
-    inner class MyViewHolder(binding: LayoutAlarmBinding) : RecyclerView.ViewHolder(binding.root) {
+    private var onItemClickListener: OnItemClickListener? = null
+
+    interface OnItemClickListener{
+        fun onLongClick(alarm: Alarm)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener){
+        onItemClickListener = listener
     }
 
 
@@ -35,12 +46,12 @@ class AlarmListAdapter() :
                 "${currentItem.hour}:0${currentItem.minute}"
             }
 
-        holder.itemView.setOnClickListener{
-            val action = HomeFragmentDirections.actionHomeFragmentToUpdateFragment(currentItem)
-            holder.itemView.findNavController().navigate(action)
+        holder.itemView.setOnLongClickListener {
+            if(onItemClickListener != null){
+                onItemClickListener?.onLongClick(currentItem)
+            }
+            true
         }
-
-        //holder.itemView.findViewById<TextView>(R.id.tv_repeat_days)
     }
 
     override fun getItemCount(): Int {
@@ -52,5 +63,4 @@ class AlarmListAdapter() :
         alarmList.addAll(alarm)
         notifyDataSetChanged()
     }
-
 }

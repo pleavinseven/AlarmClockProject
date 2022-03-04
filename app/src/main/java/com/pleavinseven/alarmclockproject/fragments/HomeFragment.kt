@@ -1,16 +1,19 @@
 package com.pleavinseven.alarmclockproject.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pleavinseven.alarmclockproject.R
+import com.pleavinseven.alarmclockproject.data.adapter.AlarmListAdapter
+import com.pleavinseven.alarmclockproject.data.model.Alarm
 import com.pleavinseven.alarmclockproject.data.viewmodel.AlarmViewModel
 import com.pleavinseven.alarmclockproject.databinding.FragmentHomeBinding
 
@@ -43,6 +46,27 @@ class HomeFragment : Fragment() {
             Navigation.findNavController(requireView())
                 .navigate(R.id.action_homeFragment_to_newAlarmFragment)
         }
+
+        //test click listener
+        adapter.setOnItemClickListener(object : AlarmListAdapter.OnItemClickListener {
+            override fun onLongClick(alarm: Alarm) {
+                val deleteBuilder = AlertDialog.Builder(requireContext())
+                deleteBuilder.setPositiveButton("Delete") { _, _ ->
+                    alarmViewModel.delete(alarm)
+                    Toast.makeText(context, "Alarm Deleted", Toast.LENGTH_SHORT)
+                        .show()
+                }
+                deleteBuilder.setNegativeButton("Cancel") { _, _ ->
+
+                }
+                deleteBuilder.setTitle("Delete Alarm?")
+                deleteBuilder.create().show()
+            }
+        })
+
+
         return binding.root
     }
 }
+
+
