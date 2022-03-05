@@ -49,27 +49,18 @@
                 android:timePickerMode="spinner" />
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/fragment_create_alarm_title"
-            android:layout_width="310dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="28dp"
-            android:hint="Alarm Title"
-            android:minHeight="48dp"
+        <CheckBox
+            android:id="@+id/fragment_create_alarm_recurring"
+            android:layout_width="144dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="264dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:checked="false"
+            android:text="Recurring Alarm"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_create_alarm_timePickerLayout" />
-
-        <CheckBox
-            android:id="@+id/fragment_create_alarm_recurring"
-            android:layout_width="310dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="16dp"
-            android:checked="false"
-            android:text="Recurring Alarm"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_create_alarm_title" />
 
         <Button
             android:id="@+id/fragment_btn_set_alarm"
