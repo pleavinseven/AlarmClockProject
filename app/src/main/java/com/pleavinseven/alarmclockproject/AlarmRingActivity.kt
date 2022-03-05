@@ -1,9 +1,11 @@
 package com.pleavinseven.alarmclockproject
 
+import android.app.KeyguardManager
 import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.*
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.annotation.RequiresApi
@@ -21,6 +23,8 @@ class AlarmRingActivity : AppCompatActivity() {
         binding = ActivityAlarmRingBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.title = ""
+
+        wakeScreen()
 
 
         val ring = MediaPlayer.create(this, R.raw.finch)
@@ -65,6 +69,40 @@ class AlarmRingActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             alarm.schedule(this)
+        }
+    }
+
+    fun wakeScreen() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+
+            setTurnScreenOn(true)
+            setShowWhenLocked(true)
+
+            (getSystemService(KeyguardManager::class.java) as KeyguardManager).requestDismissKeyguard(
+                this,
+                object : KeyguardManager.KeyguardDismissCallback() {
+                    override fun onDismissCancelled() {
+
+                    }
+
+                    override fun onDismissError() {
+
+                    }
+
+                    override fun onDismissSucceeded() {
+
+                    }
+                }
+            )
+        } else {
+            window.addFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+                        or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                        or WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
+                        or WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                        or WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
+            )
         }
     }
 }

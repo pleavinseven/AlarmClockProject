@@ -6,7 +6,6 @@ import android.content.Intent
 import com.pleavinseven.alarmclockproject.AlarmRingActivity
 
 
-
 class AlarmReceiver: BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
