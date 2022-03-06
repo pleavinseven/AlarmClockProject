@@ -23,7 +23,6 @@ class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeBinding
     private lateinit var alarmViewModel: AlarmViewModel
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,8 +46,13 @@ class HomeFragment : Fragment() {
                 .navigate(R.id.action_homeFragment_to_newAlarmFragment)
         }
 
-        //test click listener
         adapter.setOnItemClickListener(object : AlarmListAdapter.OnItemClickListener {
+
+            override fun onClick(alarm: Alarm) {
+                Navigation.findNavController(requireView())
+                    .navigate(R.id.action_homeFragment_to_updateFragment)
+            }
+
             override fun onLongClick(alarm: Alarm) {
                 val deleteBuilder = AlertDialog.Builder(requireContext())
                 deleteBuilder.setPositiveButton("Delete") { _, _ ->
@@ -63,7 +67,6 @@ class HomeFragment : Fragment() {
                 deleteBuilder.create().show()
             }
         })
-
 
         return binding.root
     }

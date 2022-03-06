@@ -23,6 +23,7 @@ class AlarmListAdapter() :
     private var onItemClickListener: OnItemClickListener? = null
 
     interface OnItemClickListener{
+        fun onClick(alarm: Alarm)
         fun onLongClick(alarm: Alarm)
     }
 
@@ -45,6 +46,12 @@ class AlarmListAdapter() :
             } else {
                 "${currentItem.hour}:0${currentItem.minute}"
             }
+
+        holder.itemView.setOnClickListener{
+            if(onItemClickListener != null){
+                onItemClickListener?.onClick(currentItem)
+            }
+        }
 
         holder.itemView.setOnLongClickListener {
             if(onItemClickListener != null){
