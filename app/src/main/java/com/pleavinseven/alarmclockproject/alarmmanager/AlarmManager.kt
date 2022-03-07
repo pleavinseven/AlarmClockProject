@@ -69,4 +69,19 @@ class AlarmManager(
         }
         started = true
     }
+
+    fun cancel(context: Context){
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(context, AlarmReceiver::class.java)
+        val alarmPendingIntent = PendingIntent.getBroadcast(
+            context,
+            alarmId, intent, if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+            } else {
+                PendingIntent.FLAG_UPDATE_CURRENT
+            }
+        )
+        alarmManager.cancel(alarmPendingIntent)
+        started = false
+    }
 }

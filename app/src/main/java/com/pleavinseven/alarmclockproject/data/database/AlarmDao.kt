@@ -5,8 +5,6 @@ import androidx.room.*
 import com.pleavinseven.alarmclockproject.data.model.Alarm
 
 
-// TEST: TODO: update
-
 @Dao
 interface AlarmDao {
 

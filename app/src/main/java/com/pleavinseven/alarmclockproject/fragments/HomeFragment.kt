@@ -50,7 +50,7 @@ class HomeFragment : Fragment() {
 
             override fun onClick(alarm: Alarm) {
                 Navigation.findNavController(requireView())
-                    .navigate(R.id.action_homeFragment_to_updateFragment)
+                    .navigate(HomeFragmentDirections.actionHomeFragmentToUpdateFragment(alarm))
             }
 
             override fun onLongClick(alarm: Alarm) {

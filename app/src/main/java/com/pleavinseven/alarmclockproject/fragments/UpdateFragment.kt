@@ -1,23 +1,20 @@
 package com.pleavinseven.alarmclockproject.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavArgs
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.pleavinseven.alarmclockproject.R
 import com.pleavinseven.alarmclockproject.alarmmanager.AlarmManager
 import com.pleavinseven.alarmclockproject.data.model.Alarm
 import com.pleavinseven.alarmclockproject.data.viewmodel.AlarmViewModel
-import com.pleavinseven.alarmclockproject.databinding.FragmentSetNewAlarmBinding
 import com.pleavinseven.alarmclockproject.databinding.FragmentUpdateBinding
 import com.pleavinseven.alarmclockproject.util.TimePickerUtil
-import java.util.*
 
 
 class UpdateFragment : Fragment() {
@@ -33,7 +30,7 @@ class UpdateFragment : Fragment() {
     ): View? {
         binding = FragmentUpdateBinding.inflate(inflater, container, false)
 
-        alarmViewModel = ViewModelProvider(this).get(AlarmViewModel::class.java)
+        alarmViewModel = ViewModelProvider(this)[AlarmViewModel::class.java]
 
         binding.fragmentBtnUpdateAlarm.setOnClickListener {
             updateAlarm()
@@ -64,6 +61,7 @@ class UpdateFragment : Fragment() {
         )
 
         updateDatabase(id, hour, minute, repeat)
+        alarmManager.cancel(requireContext())
         alarmManager.schedule(requireContext())
     }
 
