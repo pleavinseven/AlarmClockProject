@@ -2,15 +2,11 @@ package com.pleavinseven.alarmclockproject.data.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.webkit.WebChromeClient
 import android.widget.TextView
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.pleavinseven.alarmclockproject.R
 import com.pleavinseven.alarmclockproject.data.model.Alarm
 import com.pleavinseven.alarmclockproject.databinding.LayoutAlarmBinding
-import com.pleavinseven.alarmclockproject.fragments.HomeFragment
-import com.pleavinseven.alarmclockproject.fragments.HomeFragmentDirections
 
 class AlarmListAdapter() :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -22,12 +18,12 @@ class AlarmListAdapter() :
 
     private var onItemClickListener: OnItemClickListener? = null
 
-    interface OnItemClickListener{
+    interface OnItemClickListener {
         fun onClick(alarm: Alarm)
         fun onLongClick(alarm: Alarm)
     }
 
-    fun setOnItemClickListener(listener: OnItemClickListener){
+    fun setOnItemClickListener(listener: OnItemClickListener) {
         onItemClickListener = listener
     }
 
@@ -47,14 +43,14 @@ class AlarmListAdapter() :
                 "${currentItem.hour}:0${currentItem.minute}"
             }
 
-        holder.itemView.setOnClickListener{
-            if(onItemClickListener != null){
+        holder.itemView.setOnClickListener {
+            if (onItemClickListener != null) {
                 onItemClickListener?.onClick(currentItem)
             }
         }
 
         holder.itemView.setOnLongClickListener {
-            if(onItemClickListener != null){
+            if (onItemClickListener != null) {
                 onItemClickListener?.onLongClick(currentItem)
             }
             true
