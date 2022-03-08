@@ -38,7 +38,7 @@ class SetNewAlarmFragment : Fragment() {
             }
         })
 
-        alarmViewModel = ViewModelProvider(this).get(AlarmViewModel::class.java)
+        alarmViewModel = ViewModelProvider(this)[AlarmViewModel::class.java]
 
 
         binding.fragmentBtnSetAlarm.setOnClickListener(View.OnClickListener { _ ->

@@ -40,7 +40,6 @@ class AlarmRingActivity : AppCompatActivity() {
             }
 
         vibe.vibrate(VibrationEffect.createWaveform(longArrayOf(200, 1000, 500, 500), 0))
-        // TODO: set vibrate pattern options?
 
 
         binding.btnCancelAlarm.setOnClickListener {

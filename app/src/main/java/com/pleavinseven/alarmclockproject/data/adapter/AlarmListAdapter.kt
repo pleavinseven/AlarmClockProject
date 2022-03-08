@@ -35,12 +35,22 @@ class AlarmListAdapter() :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val currentItem = alarmList[position]
-        val minute = currentItem.minute
+        val recurring = currentItem.repeat
+
+        //set time text
         holder.itemView.findViewById<TextView>(R.id.tv_alarm_time).text =
-            if (minute >= 10) {
+            if (currentItem.minute >= 10) {
                 "${currentItem.hour}:${currentItem.minute}"
             } else {
                 "${currentItem.hour}:0${currentItem.minute}"
+            }
+
+        //set repeat text
+        holder.itemView.findViewById<TextView>(R.id.tv_repeat_days).text =
+            if(recurring){
+                "Daily"
+            }else{
+                "Once"
             }
 
         holder.itemView.setOnClickListener {
@@ -55,6 +65,8 @@ class AlarmListAdapter() :
             }
             true
         }
+
+
     }
 
     override fun getItemCount(): Int {
