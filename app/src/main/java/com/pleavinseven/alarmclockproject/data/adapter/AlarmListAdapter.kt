@@ -2,9 +2,11 @@ package com.pleavinseven.alarmclockproject.data.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Switch
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pleavinseven.alarmclockproject.R
+import com.pleavinseven.alarmclockproject.alarmmanager.AlarmManager
 import com.pleavinseven.alarmclockproject.data.model.Alarm
 import com.pleavinseven.alarmclockproject.databinding.LayoutAlarmBinding
 
@@ -21,6 +23,8 @@ class AlarmListAdapter() :
     interface OnItemClickListener {
         fun onClick(alarm: Alarm)
         fun onLongClick(alarm: Alarm)
+        fun setSwitchOn(alarm: Alarm)
+        fun setSwitchOff(alarm: Alarm)
     }
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
@@ -36,14 +40,20 @@ class AlarmListAdapter() :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val currentItem = alarmList[position]
         val recurring = currentItem.repeat
+        val switch = holder.itemView.findViewById<Switch>(R.id.switch_alarm)
 
         //set time text
         holder.itemView.findViewById<TextView>(R.id.tv_alarm_time).text =
-            if (currentItem.minute >= 10) {
-                "${currentItem.hour}:${currentItem.minute}"
-            } else {
+            if (currentItem.minute <= 9 && currentItem.hour <= 9) {
+                "0${currentItem.hour}:0${currentItem.minute}"
+            } else if (currentItem.minute <= 9){
                 "${currentItem.hour}:0${currentItem.minute}"
+            } else if (currentItem.hour <= 9){
+                "0${currentItem.hour}:${currentItem.minute}"
+            } else {
+                "${currentItem.hour}:${currentItem.minute}"
             }
+
 
         //set repeat text
         holder.itemView.findViewById<TextView>(R.id.tv_repeat_days).text =
@@ -65,6 +75,19 @@ class AlarmListAdapter() :
             }
             true
         }
+
+        switch.setOnCheckedChangeListener { _, isChecked ->
+            if (onItemClickListener != null) {
+                if (isChecked){
+                    onItemClickListener?.setSwitchOn(currentItem)
+                } else{
+                    onItemClickListener?.setSwitchOff(currentItem)
+                }
+
+            }
+        }
+
+
 
 
     }
