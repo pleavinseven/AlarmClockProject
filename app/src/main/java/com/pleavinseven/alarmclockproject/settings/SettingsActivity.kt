@@ -4,14 +4,21 @@ import android.app.UiModeManager
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
+import android.content.res.Configuration
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.pleavinseven.alarmclockproject.R
 import com.pleavinseven.alarmclockproject.databinding.ActivitySettingsBinding
+
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -45,6 +52,20 @@ class SettingsActivity : AppCompatActivity() {
 
 class SettingsFragment: PreferenceFragmentCompat(){
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+
+        when(resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK){
+            Configuration.UI_MODE_NIGHT_YES -> container!!.setBackgroundResource(R.drawable.alarm_app_dark_background)
+            Configuration.UI_MODE_NIGHT_NO -> container!!.setBackgroundResource(R.drawable.alarm_app_light_background)
+        }
+
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
     private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -57,6 +78,7 @@ class SettingsFragment: PreferenceFragmentCompat(){
             if(spDarkMode.isChecked){
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 saveNightModeState(true)
+
             }else{
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 saveNightModeState(true)
