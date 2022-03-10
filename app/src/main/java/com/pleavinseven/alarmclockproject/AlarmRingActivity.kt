@@ -3,19 +3,33 @@ package com.pleavinseven.alarmclockproject
 import android.app.KeyguardManager
 import android.content.Context
 import android.content.Intent
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.media.MediaPlayer
 import android.os.*
+import android.util.Log
 import android.view.WindowManager
+import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.annotation.RequiresApi
+import androidx.preference.Preference
 import com.pleavinseven.alarmclockproject.databinding.ActivityAlarmRingBinding
 import com.pleavinseven.alarmclockproject.alarmmanager.AlarmManager
+import com.pleavinseven.alarmclockproject.data.model.Alarm
 import java.util.*
+import kotlin.math.abs
+import kotlin.math.sqrt
 
-class AlarmRingActivity : AppCompatActivity() {
+class AlarmRingActivity   : AppCompatActivity() {
 
     lateinit var binding: ActivityAlarmRingBinding
+    private lateinit var sensorManager: SensorManager
+    private lateinit var accelerometer: Sensor
+    private lateinit var sensorEventListener: SensorEventListener
+    var accelerometerPreviousVal = 0.0
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,12 +38,13 @@ class AlarmRingActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.title = ""
 
+
         wakeScreen()
-
-
         val ring = MediaPlayer.create(this, R.raw.finch)
         ring.isLooping = true
+
         ring.start()
+
         val vibe =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 val vibratorManager =
@@ -41,12 +56,39 @@ class AlarmRingActivity : AppCompatActivity() {
 
         vibe.vibrate(VibrationEffect.createWaveform(longArrayOf(200, 1000, 500, 500), 0))
 
+        // accelerometer
+        sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
+        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+        var n = 0
+        sensorEventListener = object : SensorEventListener{
+            override fun onSensorChanged(event: SensorEvent?) {
+                val x: Float = event!!.values[0]
+                val y: Float = event.values[1]
+                val z: Float = event.values[2]
+
+                val accelerometerCurrentVal = sqrt((x * x + y * y + z * z).toDouble())
+
+                var changeInAcceleration = abs(accelerometerCurrentVal - accelerometerPreviousVal)
+                accelerometerPreviousVal = accelerometerCurrentVal
+
+                // shake phone to turn off alarm
+                if (changeInAcceleration > 10f) {
+                    n += 1
+                    if(n > 200)
+                        turnOffAlarm(ring, vibe)
+                }
+
+            }
+
+            override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+                true
+            }
+
+        }
+
 
         binding.btnCancelAlarm.setOnClickListener {
-            ring.stop()
-            vibe.cancel()
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            turnOffAlarm(ring, vibe)
         }
 
         binding.btnSnoozeAlarm.setOnClickListener {
@@ -63,15 +105,22 @@ class AlarmRingActivity : AppCompatActivity() {
                 recurring = false
             )
             Toast.makeText(this, "Alarm snoozed for $snoozeMins minutes", Toast.LENGTH_SHORT).show()
-            ring.stop()
-            vibe.cancel()
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            turnOffAlarm(ring, vibe)
             alarm.schedule(this)
         }
     }
 
-    fun wakeScreen() {
+    override fun onResume() {
+        super.onResume()
+        sensorManager.registerListener(sensorEventListener, accelerometer, SensorManager.SENSOR_DELAY_NORMAL)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        sensorManager.unregisterListener(sensorEventListener)
+    }
+
+    private fun wakeScreen() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
             window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
@@ -103,5 +152,12 @@ class AlarmRingActivity : AppCompatActivity() {
                         or WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
             )
         }
+    }
+
+    private fun turnOffAlarm(ring: MediaPlayer, vibe:Vibrator){
+        ring.stop()
+        vibe.cancel()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 }
