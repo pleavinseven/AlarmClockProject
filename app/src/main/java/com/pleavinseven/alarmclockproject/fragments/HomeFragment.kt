@@ -1,13 +1,12 @@
 package com.pleavinseven.alarmclockproject.fragments
 
-import android.os.Build
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -19,7 +18,6 @@ import com.pleavinseven.alarmclockproject.data.adapter.AlarmListAdapter
 import com.pleavinseven.alarmclockproject.data.model.Alarm
 import com.pleavinseven.alarmclockproject.data.viewmodel.AlarmViewModel
 import com.pleavinseven.alarmclockproject.databinding.FragmentHomeBinding
-import java.time.LocalTime
 
 
 class HomeFragment : Fragment() {
@@ -32,6 +30,11 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        when(resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK){
+            Configuration.UI_MODE_NIGHT_YES -> container!!.setBackgroundResource(R.drawable.alarm_app_dark_background)
+            Configuration.UI_MODE_NIGHT_NO -> container!!.setBackgroundResource(R.drawable.alarm_app_light_background)
+        }
 
         // RecyclerView
         val adapter = AlarmListAdapter()
