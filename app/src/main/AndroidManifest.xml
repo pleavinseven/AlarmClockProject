@@ -15,7 +15,8 @@
         android:theme="@style/Theme.AppCompat.DayNight">
 
         <activity android:name=".AlarmRingActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
 
         <activity
             android:name=".settings.SettingsActivity"
