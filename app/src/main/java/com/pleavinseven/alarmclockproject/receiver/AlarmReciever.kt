@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import com.pleavinseven.alarmclockproject.AlarmRingActivity
+import com.pleavinseven.alarmclockproject.fragments.ShakeAlarmRingFragment
 
 
 class AlarmReceiver: BroadcastReceiver() {
