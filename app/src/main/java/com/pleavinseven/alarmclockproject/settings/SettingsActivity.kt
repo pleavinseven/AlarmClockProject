@@ -10,8 +10,6 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceFragmentCompat
@@ -45,9 +43,6 @@ class SettingsActivity : AppCompatActivity() {
             else -> false
         }
     }
-
-
-
 }
 
 class SettingsFragment: PreferenceFragmentCompat(){
@@ -79,7 +74,7 @@ class SettingsFragment: PreferenceFragmentCompat(){
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 saveNightModeState(true)
 
-            }else{
+            }else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 saveNightModeState(true)
             }

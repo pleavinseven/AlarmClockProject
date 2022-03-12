@@ -1,36 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory
-
-        android:title="General Settings"/>
-
+    <PreferenceCategory android:title="General Settings" />
 
     <SwitchPreference
-
-        android:title="Dark theme"
-        android:summary="set dark theme"
+        android:defaultValue="true"
         android:key="sp_dark_mode"
-        android:defaultValue="true"/>
+        android:summary="set dark theme"
+        android:title="Dark theme" />
 
     <PreferenceCategory android:title="Alarm Settings">
 
     </PreferenceCategory>
     <Preference
         android:title="Set Ringtone"
-        android:summary="$current_ringtone"/>
+        android:summary="%s"/>
 
     <ListPreference
         android:defaultValue="true"
         android:entries="@array/snooze_entries"
         android:entryValues="@array/snooze_values"
         android:key="lp_snooze"
-        android:title="Snooze Length"
-        android:summary="set snooze length"/>
+        android:summary="%s"
+        android:title="Snooze Length" />
     <SwitchPreference
         android:defaultValue="true"
         android:key="sp_vibrate_on_off"
-        android:title="Vibrate on Alarm" />
+        android:title="Vibrate on alarm" />
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="sp_shake"
+        android:summary="Shake Phone to cancel alarm"
+        android:title="Shake to Wake" />
+    <SeekBarPreference
+        android:defaultValue="60"
+        android:title="Alarm Volume" />
 
 
 </PreferenceScreen>

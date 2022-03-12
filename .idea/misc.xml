@@ -26,10 +26,12 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.3375" />
         <entry key="app/src/main/res/layout/fragment_alarm.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/fragment_alarm_ring.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.3411458333333333" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.28888888888888886" />
         <entry key="app/src/main/res/layout/fragment_new_alarm.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_set_new_alarm.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/fragment_shake_alarm_ring.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_update.xml" value="0.10803324099722991" />
         <entry key="app/src/main/res/layout/layout_alarm.xml" value="0.375" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
