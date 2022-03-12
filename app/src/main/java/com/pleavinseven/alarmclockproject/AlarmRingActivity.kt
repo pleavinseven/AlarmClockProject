@@ -1,6 +1,5 @@
 package com.pleavinseven.alarmclockproject
 
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.*
 import androidx.annotation.RequiresApi
@@ -9,7 +8,6 @@ import androidx.preference.PreferenceManager
 import com.pleavinseven.alarmclockproject.databinding.ActivityAlarmRingBinding
 import com.pleavinseven.alarmclockproject.fragments.AlarmRingFragment
 import com.pleavinseven.alarmclockproject.fragments.ShakeAlarmRingFragment
-import java.util.*
 
 class AlarmRingActivity : AppCompatActivity() {
 
@@ -37,5 +35,9 @@ class AlarmRingActivity : AppCompatActivity() {
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
+    }
+
+    override fun onBackPressed() {
+        // back not allowed
     }
 }
