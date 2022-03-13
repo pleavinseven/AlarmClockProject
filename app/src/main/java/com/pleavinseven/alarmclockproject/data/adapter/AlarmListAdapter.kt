@@ -46,9 +46,9 @@ class AlarmListAdapter() :
         holder.itemView.findViewById<TextView>(R.id.tv_alarm_time).text =
             if (currentItem.minute <= 9 && currentItem.hour <= 9) {
                 "0${currentItem.hour}:0${currentItem.minute}"
-            } else if (currentItem.minute <= 9){
+            } else if (currentItem.minute <= 9) {
                 "${currentItem.hour}:0${currentItem.minute}"
-            } else if (currentItem.hour <= 9){
+            } else if (currentItem.hour <= 9) {
                 "0${currentItem.hour}:${currentItem.minute}"
             } else {
                 "${currentItem.hour}:${currentItem.minute}"
@@ -57,9 +57,9 @@ class AlarmListAdapter() :
 
         //set repeat text
         holder.itemView.findViewById<TextView>(R.id.tv_repeat_days).text =
-            if(recurring){
+            if (recurring) {
                 "Daily"
-            }else{
+            } else {
                 "Once"
             }
 
@@ -78,18 +78,13 @@ class AlarmListAdapter() :
 
         switch.setOnCheckedChangeListener { _, isChecked ->
             if (onItemClickListener != null) {
-                if (isChecked){
+                if (isChecked) {
                     onItemClickListener?.setSwitchOn(currentItem)
-                } else{
+                } else {
                     onItemClickListener?.setSwitchOff(currentItem)
                 }
-
             }
         }
-
-
-
-
     }
 
     override fun getItemCount(): Int {
