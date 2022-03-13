@@ -3,16 +3,31 @@ package com.pleavinseven.alarmclockproject.receiver
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import com.pleavinseven.alarmclockproject.AlarmRingActivity
-import com.pleavinseven.alarmclockproject.fragments.ShakeAlarmRingFragment
+import com.pleavinseven.alarmclockproject.service.AlarmRingService
+import com.pleavinseven.alarmclockproject.service.RescheduleAlarmRingService
 
 
-class AlarmReceiver: BroadcastReceiver() {
+class AlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        val intent = Intent(context, AlarmRingActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        context!!.startActivity(intent)
+
+        if (intent != null) {
+            if (Intent.ACTION_BOOT_COMPLETED == intent.action) {
+                startRescheduleAlarmRingService(context)
+            } else {
+                startAlarmRingService(context)
+            }
+        }
+    }
+
+    private fun startAlarmRingService(context: Context?) {
+        val intent = Intent(context, AlarmRingService::class.java)
+        context!!.startService(intent)
+    }
+
+    private fun startRescheduleAlarmRingService(context: Context?) {
+        val intent = Intent(context, RescheduleAlarmRingService::class.java)
+        context!!.startService(intent)
     }
 
 
