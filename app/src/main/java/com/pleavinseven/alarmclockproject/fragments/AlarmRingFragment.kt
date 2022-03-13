@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
-import android.media.MediaPlayer
 import android.os.*
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,13 +14,11 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.preference.PreferenceManager
-import com.pleavinseven.alarmclockproject.MainActivity
 import com.pleavinseven.alarmclockproject.R
 import com.pleavinseven.alarmclockproject.alarmmanager.AlarmManager
 import com.pleavinseven.alarmclockproject.databinding.FragmentAlarmRingBinding
-import com.pleavinseven.alarmclockproject.databinding.FragmentUpdateBinding
+import com.pleavinseven.alarmclockproject.service.AlarmRingService
 import java.util.*
 
 
@@ -34,22 +31,15 @@ class AlarmRingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentAlarmRingBinding.inflate(inflater, container, false)
 
         val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
-        when(resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK){
+        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_YES -> container!!.setBackgroundResource(R.drawable.alarm_ring_dark_background)
             Configuration.UI_MODE_NIGHT_NO -> container!!.setBackgroundResource(R.drawable.alarm_ring_light_background)
         }
-
-
-        wakeScreen()
-        val ring = MediaPlayer.create(requireContext(), R.raw.finch)
-        ring.isLooping = true
-
-        ring.start()
 
         val vibe =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -65,13 +55,15 @@ class AlarmRingFragment : Fragment() {
             vibe.vibrate(VibrationEffect.createWaveform(longArrayOf(200, 1000, 500, 500), 0))
         }
 
+        wakeScreen()
+
         binding.btnCancelAlarm.setOnClickListener {
-            turnOffAlarm(ring, vibe)
+            turnOffAlarm(vibe)
         }
 
         binding.btnSnoozeAlarm.setOnClickListener {
             snoozeAlarm(prefs)
-            turnOffAlarm(ring, vibe)
+            turnOffAlarm(vibe)
         }
 
         return binding.root
@@ -87,17 +79,11 @@ class AlarmRingFragment : Fragment() {
             (activity?.getSystemService(KeyguardManager::class.java) as KeyguardManager).requestDismissKeyguard(
                 requireActivity(),
                 object : KeyguardManager.KeyguardDismissCallback() {
-                    override fun onDismissCancelled() {
+                    override fun onDismissCancelled() {}
 
-                    }
+                    override fun onDismissError() {}
 
-                    override fun onDismissError() {
-
-                    }
-
-                    override fun onDismissSucceeded() {
-
-                    }
+                    override fun onDismissSucceeded() {}
                 }
             )
         } else {
@@ -111,15 +97,13 @@ class AlarmRingFragment : Fragment() {
         }
     }
 
-    fun turnOffAlarm(ring: MediaPlayer, vibe: Vibrator) {
-        ring.stop()
-        if (vibeOn)
-            vibe.cancel()
-        val intent = Intent(requireContext(), MainActivity::class.java)
-        startActivity(intent)
+    private fun turnOffAlarm(vibe: Vibrator) {
+        vibe.cancel()
+        val intent = Intent(requireContext(), AlarmRingService::class.java)
+        requireContext().stopService(intent)
     }
 
-    fun snoozeAlarm(prefs: SharedPreferences) {
+    private fun snoozeAlarm(prefs: SharedPreferences) {
         val alarmId = Random().nextInt(Integer.MAX_VALUE)
         val calendar: Calendar = Calendar.getInstance()
         val snoozeMins = prefs.getString("lp_snooze", "-1")!!.toInt()
@@ -130,7 +114,7 @@ class AlarmRingFragment : Fragment() {
             calendar.get(Calendar.HOUR_OF_DAY),
             calendar.get(Calendar.MINUTE),
             started = true,
-            recurring = false
+            recurring = false,
         )
         Toast.makeText(
             requireContext(),

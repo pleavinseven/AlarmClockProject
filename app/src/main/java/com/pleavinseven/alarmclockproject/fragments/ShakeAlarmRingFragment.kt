@@ -27,6 +27,7 @@ import com.pleavinseven.alarmclockproject.alarmmanager.AlarmManager
 import com.pleavinseven.alarmclockproject.databinding.ActivityAlarmRingBinding
 import com.pleavinseven.alarmclockproject.databinding.FragmentShakeAlarmRingBinding
 import com.pleavinseven.alarmclockproject.databinding.FragmentUpdateBinding
+import com.pleavinseven.alarmclockproject.service.AlarmRingService
 import java.util.*
 import kotlin.math.abs
 import kotlin.math.sqrt
@@ -45,7 +46,7 @@ class ShakeAlarmRingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentShakeAlarmRingBinding.inflate(inflater, container, false)
 
         val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
@@ -56,11 +57,6 @@ class ShakeAlarmRingFragment : Fragment() {
         }
 
         wakeScreen()
-
-        val ring = MediaPlayer.create(requireContext(), R.raw.finch)
-        ring.isLooping = true
-
-        ring.start()
 
         val vibe =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -107,19 +103,17 @@ class ShakeAlarmRingFragment : Fragment() {
                         ).show()
 
                         binding.btnCancelAlarm.setOnClickListener {
-                            turnOffAlarm(ring, vibe)
+                            turnOffAlarm(vibe)
                         }
 
                         binding.btnSnoozeAlarm.setOnClickListener {
                             snoozeAlarm(prefs)
-                            turnOffAlarm(ring, vibe)
+                            turnOffAlarm(vibe)
                         }
                     }
                 }
             }
         }
-
-
 
         return binding.root
     }
@@ -157,12 +151,10 @@ class ShakeAlarmRingFragment : Fragment() {
         }
     }
 
-    fun turnOffAlarm(ring: MediaPlayer, vibe: Vibrator) {
-        ring.stop()
-        if (vibeOn)
-            vibe.cancel()
-        val intent = Intent(requireContext(), MainActivity::class.java)
-        startActivity(intent)
+    fun turnOffAlarm(vibe: Vibrator) {
+        vibe.cancel()
+        val intent = Intent(requireContext(), AlarmRingService::class.java)
+        requireContext().stopService(intent)
     }
 
     fun snoozeAlarm(prefs: SharedPreferences){
@@ -176,7 +168,7 @@ class ShakeAlarmRingFragment : Fragment() {
             calendar.get(Calendar.HOUR_OF_DAY),
             calendar.get(Calendar.MINUTE),
             started = true,
-            recurring = false
+            recurring = false,
         )
         Toast.makeText(
             requireContext(),
@@ -185,5 +177,4 @@ class ShakeAlarmRingFragment : Fragment() {
         ).show()
         alarm.schedule(requireContext())
     }
-
 }
