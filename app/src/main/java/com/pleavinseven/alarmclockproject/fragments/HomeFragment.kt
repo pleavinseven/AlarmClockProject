@@ -1,12 +1,15 @@
 package com.pleavinseven.alarmclockproject.fragments
 
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -18,6 +21,8 @@ import com.pleavinseven.alarmclockproject.data.adapter.AlarmListAdapter
 import com.pleavinseven.alarmclockproject.data.model.Alarm
 import com.pleavinseven.alarmclockproject.data.viewmodel.AlarmViewModel
 import com.pleavinseven.alarmclockproject.databinding.FragmentHomeBinding
+import java.time.Duration
+import java.time.Instant
 
 
 class HomeFragment : Fragment() {
@@ -25,13 +30,14 @@ class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeBinding
     private lateinit var alarmViewModel: AlarmViewModel
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        when(resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK){
+        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_YES -> container!!.setBackgroundResource(R.drawable.alarm_app_dark_background)
             Configuration.UI_MODE_NIGHT_NO -> container!!.setBackgroundResource(R.drawable.alarm_app_light_background)
         }
@@ -43,10 +49,12 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         //ViewModel
-        alarmViewModel = ViewModelProvider(this).get(AlarmViewModel::class.java)
+        alarmViewModel = ViewModelProvider(this)[AlarmViewModel::class.java]
         alarmViewModel.readAlarmData.observe(viewLifecycleOwner, Observer { alarm ->
             adapter.setData(alarm)
+            setTvNextAlarm(adapter, alarm)
         })
+
 
         binding.btnAddAlarm.setOnClickListener {
             Navigation.findNavController(requireView())
@@ -75,17 +83,13 @@ class HomeFragment : Fragment() {
             }
 
             override fun setSwitchOn(alarm: Alarm) {
-                val toastTime = if (alarm.minute > 9){
-                    "${alarm.hour}:${alarm.minute}"
-                }else{
-                    "${alarm.hour}:0${alarm.minute}"
-                }
+                val toastTime = formatTime(alarm)
                 val alarmManager = AlarmManager(
                     alarm.id,
                     alarm.hour,
                     alarm.minute,
                     true,
-                    alarm.repeat
+                    alarm.repeat,
                 )
                 alarmManager.cancel(requireContext())
                 Toast.makeText(context, "Alarm set for $toastTime", Toast.LENGTH_SHORT).show()
@@ -97,7 +101,7 @@ class HomeFragment : Fragment() {
                     alarm.hour,
                     alarm.minute,
                     true,
-                    alarm.repeat
+                    alarm.repeat,
                 )
                 alarmManager.cancel(requireContext())
                 Toast.makeText(context, "Alarm cancelled", Toast.LENGTH_SHORT).show()
@@ -105,6 +109,41 @@ class HomeFragment : Fragment() {
         })
 
         return binding.root
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun setTvNextAlarm(adapter: AlarmListAdapter, alarm: List<Alarm>){
+        // format alarm time to today's date
+        var tvNextAlarm = 1441 // minutes in a day
+        adapter.setData(alarm)
+        val regex = Regex("\\d{2}:\\d{2}")
+        val currentTime = Instant.now()
+        val tomorrow = currentTime.plusMillis(86_400_000)
+        for(alarms in adapter.alarmList){
+            var stringTime = currentTime.toString().replace(regex, formatTime(alarms))
+            var alarmTime = Instant.parse(stringTime)
+            var duration = Duration.between(currentTime, alarmTime)
+            // if alarm has passed, set alarm time to tomorrow's date
+            if(duration.isNegative){
+                stringTime = tomorrow.toString().replace(regex, formatTime(alarms))
+                alarmTime = Instant.parse(stringTime)
+                duration = Duration.between(currentTime, alarmTime)
+            }
+            if (duration.toMinutes() < tvNextAlarm) {
+                tvNextAlarm = duration.toMinutes().toInt()
+                binding.tvNextAlarmTime.text = formatTime(alarms)
+            } else {
+                continue
+            }
+        }
+    }
+
+    fun formatTime(alarm: Alarm): String{
+        return if (alarm.minute > 9) {
+            "${alarm.hour}:${alarm.minute}"
+        } else {
+            "${alarm.hour}:0${alarm.minute}"
+        }
     }
 }
 
