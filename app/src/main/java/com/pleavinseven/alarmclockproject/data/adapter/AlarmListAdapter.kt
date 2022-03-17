@@ -6,7 +6,6 @@ import android.widget.Switch
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pleavinseven.alarmclockproject.R
-import com.pleavinseven.alarmclockproject.alarmmanager.AlarmManager
 import com.pleavinseven.alarmclockproject.data.model.Alarm
 import com.pleavinseven.alarmclockproject.databinding.LayoutAlarmBinding
 
@@ -15,7 +14,7 @@ class AlarmListAdapter() :
 
     class MyViewHolder(binding: LayoutAlarmBinding) : RecyclerView.ViewHolder(binding.root)
 
-    private var alarmList = ArrayList<Alarm>()
+    var alarmList = ArrayList<Alarm>()
 
 
     private var onItemClickListener: OnItemClickListener? = null
