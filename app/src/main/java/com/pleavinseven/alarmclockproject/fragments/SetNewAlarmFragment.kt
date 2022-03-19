@@ -51,8 +51,8 @@ class SetNewAlarmFragment : Fragment() {
 
     }
 
-    private fun insertToDatabase(hour: Int, minute: Int, repeat: Boolean) {
-        val alarm = Alarm(0, hour, minute, repeat)
+    private fun insertToDatabase(hour: Int, minute: Int, started: Boolean, repeat: Boolean) {
+        val alarm = Alarm(0, hour, minute, started, repeat)
         alarmViewModel.addAlarm(alarm)
     }
 
@@ -61,6 +61,7 @@ class SetNewAlarmFragment : Fragment() {
         val timePicker = binding.fragmentCreateAlarmTimePicker
         val hour = timePickerUtil.getTimePickerHour(timePicker)
         val minute = timePickerUtil.getTimePickerMinute(timePicker)
+        val started = true
         val repeat = binding.fragmentCreateAlarmRecurring.isChecked
 
         val alarmManager = AlarmManager(
@@ -71,7 +72,7 @@ class SetNewAlarmFragment : Fragment() {
             binding.fragmentCreateAlarmRecurring.isChecked
         )
 
-        insertToDatabase(hour, minute, repeat)
+        insertToDatabase(hour, minute, started, repeat)
         alarmManager.schedule(requireContext())
     }
 }

@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.pleavinseven.alarmclockproject.data.model.Alarm
 
 
-@Database(entities = [Alarm::class], version = 1)
+@Database(entities = [Alarm::class], version = 2)
 abstract class AlarmsDatabase : RoomDatabase() {
 
     abstract fun alarmDao(): AlarmDao
@@ -22,7 +22,7 @@ abstract class AlarmsDatabase : RoomDatabase() {
                     context.applicationContext,
                     AlarmsDatabase::class.java,
                     "alarm_database"
-                ).build()
+                ).fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 return instance
             }
