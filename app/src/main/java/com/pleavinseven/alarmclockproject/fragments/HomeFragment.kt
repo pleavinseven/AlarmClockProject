@@ -139,10 +139,14 @@ class HomeFragment : Fragment() {
     }
 
     fun formatTime(alarm: Alarm): String{
-        return if (alarm.minute > 9) {
-            "${alarm.hour}:${alarm.minute}"
-        } else {
+        return if (alarm.minute <= 9 && alarm.hour <= 9) {
+            "0${alarm.hour}:0${alarm.minute}"
+        } else if (alarm.minute <= 9) {
             "${alarm.hour}:0${alarm.minute}"
+        } else if (alarm.hour <= 9) {
+            "0${alarm.hour}:${alarm.minute}"
+        } else {
+            "${alarm.hour}:${alarm.minute}"
         }
     }
 }

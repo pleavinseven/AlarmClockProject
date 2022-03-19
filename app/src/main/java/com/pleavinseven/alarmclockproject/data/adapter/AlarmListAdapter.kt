@@ -42,16 +42,7 @@ class AlarmListAdapter() :
         val switch = holder.itemView.findViewById<Switch>(R.id.switch_alarm)
 
         //set time text
-        holder.itemView.findViewById<TextView>(R.id.tv_alarm_time).text =
-            if (currentItem.minute <= 9 && currentItem.hour <= 9) {
-                "0${currentItem.hour}:0${currentItem.minute}"
-            } else if (currentItem.minute <= 9) {
-                "${currentItem.hour}:0${currentItem.minute}"
-            } else if (currentItem.hour <= 9) {
-                "0${currentItem.hour}:${currentItem.minute}"
-            } else {
-                "${currentItem.hour}:${currentItem.minute}"
-            }
+        holder.itemView.findViewById<TextView>(R.id.tv_alarm_time).text = formatTime(currentItem)
 
 
         //set repeat text
@@ -94,5 +85,17 @@ class AlarmListAdapter() :
         alarmList.clear()
         alarmList.addAll(alarm)
         notifyDataSetChanged()
+    }
+
+    private fun formatTime(currentItem: Alarm): String{
+        return if (currentItem.minute <= 9 && currentItem.hour <= 9) {
+            "0${currentItem.hour}:0${currentItem.minute}"
+        } else if (currentItem.minute <= 9) {
+            "${currentItem.hour}:0${currentItem.minute}"
+        } else if (currentItem.hour <= 9) {
+            "0${currentItem.hour}:${currentItem.minute}"
+        } else {
+            "${currentItem.hour}:${currentItem.minute}"
+        }
     }
 }

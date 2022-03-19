@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.widget.Toast
+import com.pleavinseven.alarmclockproject.data.model.Alarm
 import com.pleavinseven.alarmclockproject.receiver.AlarmReceiver
 import java.util.*
 
@@ -40,11 +41,7 @@ class AlarmManager(
             calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + 1)
         }
 
-        val toastTime = if (minute < 10) {
-            "$hour:0$minute"
-        } else {
-            "$hour:$minute"
-        }
+        val toastTime = formatTime()
         if (!recurring) {
             Toast.makeText(
                 context,
@@ -83,5 +80,17 @@ class AlarmManager(
         )
         alarmManager.cancel(alarmPendingIntent)
         started = false
+    }
+
+    private fun formatTime(): String{
+        return if (minute <= 9 && hour <= 9) {
+            "0$hour:0$minute"
+        } else if (minute <= 9) {
+            "$hour:0$minute"
+        } else if (hour <= 9) {
+            "0$hour:$minute"
+        } else {
+            "$hour:$minute"
+        }
     }
 }
