@@ -9,6 +9,14 @@
         android:summary="@string/summary_dark_theme"
         android:title="@string/title_dark_theme" />
 
+    <ListPreference
+        android:defaultValue="true"
+        android:entries="@array/language_entries"
+        android:entryValues="@array/language_values"
+        android:key="lp_language"
+        android:summary="%s"
+        android:title="@string/language_select" />
+
     <PreferenceCategory android:title="@string/title_alarm_settings">
 
     </PreferenceCategory>
