@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Shake\'n\'Wake</string>
+
+    // home screen
+
+    <string name="toast_alarm_set2">"ზე "</string>
+
+
+    // set new alarm screen
+
+    // update alarm screen
+
+    // alarm ring screen
+
+    <string name="cancel_alarm">"გაუქმება "</string>
+    <string name="snooze_alarm">"თვლემა "</string>
+
+    // settings screen
+
+    <string name="title_general_settings">"ზოგადი პარამეტრები "</string>
+    <string name="title_dark_theme">"მუქი ფონი "</string>
+    <string name="summary_dark_theme">"მუქი ფონის დაყენება "</string>
+    <string name="language_select">"ენა "</string>
+
+    <string name="title_alarm_settings">მაღვიძარას პარამეტრები</string>
+    <string name="set_ringtone">"მელოდის შეცვლა "</string>
+    <string name="snooze_length">თვლემის ხანგრძლივობა</string>
+    <string name="vibrate_on">"ვიბრაცია "</string>
+    <string name="shake_to_wake">"მობილურის შენჯღრევა "</string>
+    <string name="alarm_volume">"მაღვიძარას ხმა "</string>
+
+    // notification text
+
+    <string name="notification_title">მაღვიძარა</string>
+    <string name="notification_content">მაღვიძარას გასახსნელად, დააჭირე აქ</string>
+    <string name="next_alarm">"მომდევნო მაღვიძარა "</string>
+    <string name="daily_alarm">ყოველდღე</string>
+    <string name="once_alarm">"ერთხელ "</string>
+    <string name="title_delete">"მაღვიძარას წაშლა? "</string>
+    <string name="delete_builder_delete">"წაშლა "</string>
+    <string name="delete_builder_alarm_deleted">"მაღვიძარა წაშლილია "</string>
+    <string name="toast_alarm_set">"მაღვიძარა დაყენებულია "</string>
+    <string name="toast_alarm_cancelled">"მაღვიძარა გაუქმებულია "</string>
+    <string name="set_new_alarm">"ახალი მაღვიძარას დაყენება "</string>
+    <string name="alarm_time">"მაღვიძარას დრო "</string>
+    <string name="recurring">ყოველდღე</string>
+    <string name="set_alarm">"დააყენე მაღვიძარა "</string>
+    <string name="update_alarm">"შენახვა "</string>
+
+</resources>
