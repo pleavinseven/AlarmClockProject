@@ -46,8 +46,8 @@ class AlarmRingService : Service() {
         var builder = Notification.Builder(this, "my channel")
         val notification = builder.setOngoing(true)
             .setSmallIcon(R.drawable.chaffinch_logo)
-            .setContentTitle("Alarm")
-            .setContentText("this is where the notification text goes")
+            .setContentTitle(applicationContext.getString(R.string.notification_title))
+            .setContentText(applicationContext.getString(R.string.notification_content))
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
             .build()
@@ -78,7 +78,7 @@ class AlarmRingService : Service() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "My Channel"
             val descriptionText = "short description"
-            val importance = NotificationManager.IMPORTANCE_LOW
+            val importance = NotificationManager.IMPORTANCE_HIGH
             val channelId = "my channel"
             val channel = NotificationChannel(channelId, name, importance).apply {
                 description = descriptionText

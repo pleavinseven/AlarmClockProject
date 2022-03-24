@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">Shake\'n\'Wake</string>
+
+    // home screen
+
+    <string name="next_alarm">Nächster Wecker</string>
+    <string name="daily_alarm">Täglich</string>
+    <string name="once_alarm">Einmal</string>
+    <string name="title_delete">Wecker Löschen?</string>
+    <string name="delete_builder_delete">Löschen</string>
+    <string name="delete_builder_alarm_deleted">Wecker Gelöscht</string>
+    <string name="toast_alarm_set">Alarm auf</string>
+    <string name="toast_alarm_set2">gestellt</string>
+    <string name="toast_alarm_cancelled">Wecker aufgehoben</string>
+
+    // set new alarm screen
+
+    <string name="set_new_alarm">Neuen Wecker Stellen</string>
+    <string name="alarm_time">Weckzeit</string>
+    <string name="recurring">Wiederholen</string>
+    <string name="set_alarm">Wecker Stellen</string>
+
+    // update alarm screen
+
+    <string name="update_alarm">Wecker ändern</string>
+
+    // alarm ring screen
+
+    <string name="cancel_alarm">Beenden</string>
+    <string name="snooze_alarm">Schlummern</string>
+
+    // settings screen
+
+    <string name="title_general_settings">Allgemeine Einstellungen</string>
+    <string name="title_dark_theme">Dunkles Theme</string>
+    <string name="summary_dark_theme">dunkles theme setzen</string>
+    <string name="language_select">Sprache</string>
+
+    <string name="title_alarm_settings">Wecker Einstellungen</string>
+    <string name="set_ringtone">Klingelton Setzen</string>
+    <string name="snooze_length">Schlummerndauer</string>
+    <string name="vibrate_on">Vibrieren bei Weckerklingeln</string>
+    <string name="shake_to_wake">Telefon schütteln, um den Alarm abzubrechen</string>
+    <string name="alarm_volume">Wecker Lautstarke</string>
+
+    // notification text
+
+    <string name="notification_title">Wecker</string>
+    <string name="notification_content">Klicken Sie hier, um den Alarm zu öffnen </string>
+
+</resources>

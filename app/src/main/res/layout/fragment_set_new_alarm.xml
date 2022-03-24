@@ -15,7 +15,7 @@
             android:id="@+id/fragment_create_alarm_set_alarm_heading"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Set New Alarm"
+            android:text="@string/set_new_alarm"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0.4"
-                android:text="Alarm Time"
+                android:text="@string/alarm_time"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -57,7 +57,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:checked="false"
-            android:text="Recurring Alarm"
+            android:text="@string/recurring"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_create_alarm_timePickerLayout" />
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="16dp"
-            android:text="Set Alarm"
+            android:text="@string/set_alarm"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"

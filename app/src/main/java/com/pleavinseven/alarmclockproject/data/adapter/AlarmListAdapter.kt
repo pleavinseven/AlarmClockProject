@@ -1,5 +1,6 @@
 package com.pleavinseven.alarmclockproject.data.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Switch
@@ -47,11 +48,11 @@ class AlarmListAdapter() :
 
         //set repeat text
         holder.itemView.findViewById<TextView>(R.id.tv_repeat_days).text =
-            if (recurring) {
-                "Daily"
-            } else {
-                "Once"
-            }
+            if (recurring)
+                holder.itemView.context.getString(R.string.daily_alarm)
+            else
+                holder.itemView.context.getString(R.string.once_alarm)
+
 
         holder.itemView.setOnClickListener {
             if (onItemClickListener != null) {

@@ -1,5 +1,52 @@
 <resources>
     <string name="app_name">Shake\'n\'Wake</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    // home screen
+
+    <string name="next_alarm">Next Alarm</string>
+    <string name="daily_alarm">Daily</string>
+    <string name="once_alarm">Once</string>
+    <string name="title_delete">Delete Alarm?</string>
+    <string name="delete_builder_delete">Delete</string>
+    <string name="delete_builder_alarm_deleted">Alarm Deleted</string>
+    <string name="toast_alarm_set">Alarm set for</string>
+    <string name="toast_alarm_set2"></string>
+    <string name="toast_alarm_cancelled">Alarm cancelled</string>
+
+
+    // set new alarm screen
+
+    <string name="set_new_alarm">Set New Alarm</string>
+    <string name="alarm_time">Alarm Time</string>
+    <string name="recurring">Recurring</string>
+    <string name="set_alarm">Set Alarm</string>
+
+    // update alarm screen
+
+    <string name="update_alarm">Update Alarm</string>
+
+    // alarm ring screen
+
+    <string name="cancel_alarm">Cancel</string>
+    <string name="snooze_alarm">Snooze</string>
+
+    // settings screen
+
+    <string name="title_general_settings">General Settings</string>
+    <string name="title_dark_theme">Dark Theme</string>
+    <string name="summary_dark_theme">set dark theme</string>
+    <string name="language_select">Language</string>
+
+    <string name="title_alarm_settings">Alarm Settings</string>
+    <string name="set_ringtone">Set Ringtone</string>
+    <string name="snooze_length">Snooze Length</string>
+    <string name="vibrate_on">Vibrate on Alarm Ring</string>
+    <string name="shake_to_wake">shake phone to cancel alarm</string>
+    <string name="alarm_volume">Alarm Volume</string>
+
+    // notification text
+
+    <string name="notification_title">Alarm</string>
+    <string name="notification_content">Click here to open alarm </string>
+
 </resources>

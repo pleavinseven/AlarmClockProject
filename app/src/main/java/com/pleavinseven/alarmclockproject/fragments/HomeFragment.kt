@@ -70,15 +70,15 @@ class HomeFragment : Fragment() {
 
             override fun onLongClick(alarm: Alarm) {
                 val deleteBuilder = AlertDialog.Builder(requireContext())
-                deleteBuilder.setPositiveButton("Delete") { _, _ ->
+                deleteBuilder.setPositiveButton(R.string.delete_builder_delete) { _, _ ->
                     alarmViewModel.delete(alarm)
-                    Toast.makeText(context, "Alarm Deleted", Toast.LENGTH_SHORT)
+                    Toast.makeText(context, R.string.delete_builder_alarm_deleted, Toast.LENGTH_SHORT)
                         .show()
                 }
-                deleteBuilder.setNegativeButton("Cancel") { _, _ ->
+                deleteBuilder.setNegativeButton(R.string.cancel_alarm) { _, _ ->
                     // do nothing
                 }
-                deleteBuilder.setTitle("Delete Alarm?")
+                deleteBuilder.setTitle(R.string.title_delete)
                 deleteBuilder.create().show()
             }
 
@@ -92,7 +92,7 @@ class HomeFragment : Fragment() {
                     alarm.repeat,
                 )
                 alarmManager.cancel(requireContext())
-                Toast.makeText(context, "Alarm set for $toastTime", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "${R.string.toast_alarm_set} $toastTime ${R.string.toast_alarm_set2}", Toast.LENGTH_SHORT).show()
             }
 
             override fun setSwitchOff(alarm: Alarm) {
@@ -104,7 +104,7 @@ class HomeFragment : Fragment() {
                     alarm.repeat,
                 )
                 alarmManager.cancel(requireContext())
-                Toast.makeText(context, "Alarm cancelled", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.toast_alarm_cancelled, Toast.LENGTH_SHORT).show()
             }
         })
 
