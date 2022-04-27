@@ -72,20 +72,26 @@ class SettingsFragment: PreferenceFragmentCompat(){
         spDarkMode!!.setOnPreferenceClickListener {
             if(spDarkMode.isChecked){
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                saveNightModeState(true)
+                saveNightModeState()
 
             }else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                saveNightModeState(true)
+                saveNightModeState()
             }
             true
         }
 
     }
 
-    private fun saveNightModeState(night: Boolean) {
+    private fun saveNightModeState() {
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
-        editor.putBoolean("isNight", night)
+        editor.putBoolean("isNight", true)
+        editor.apply()
+    }
+
+    private fun setSwitch(switch: SwitchPreference, isChecked: Boolean){
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+        editor.putBoolean(switch.key, isChecked)
         editor.apply()
     }
 }
