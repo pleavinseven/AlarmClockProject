@@ -37,10 +37,11 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_YES -> container!!.setBackgroundResource(R.drawable.alarm_app_dark_background)
-            Configuration.UI_MODE_NIGHT_NO -> container!!.setBackgroundResource(R.drawable.alarm_app_light_background)
-        }
+//        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+//            Configuration.UI_MODE_NIGHT_YES -> container!!.setBackgroundResource(R.drawable.alarm_app_dark_background)
+//            Configuration.UI_MODE_NIGHT_NO -> container!!.setBackgroundResource(R.drawable.alarm_app_light_background)
+//        }
+
 
         // RecyclerView
         val adapter = AlarmListAdapter()
@@ -72,7 +73,11 @@ class HomeFragment : Fragment() {
                 val deleteBuilder = AlertDialog.Builder(requireContext())
                 deleteBuilder.setPositiveButton(R.string.delete_builder_delete) { _, _ ->
                     alarmViewModel.delete(alarm)
-                    Toast.makeText(context, R.string.delete_builder_alarm_deleted, Toast.LENGTH_SHORT)
+                    Toast.makeText(
+                        context,
+                        R.string.delete_builder_alarm_deleted,
+                        Toast.LENGTH_SHORT
+                    )
                         .show()
                 }
                 deleteBuilder.setNegativeButton(R.string.cancel_alarm) { _, _ ->
@@ -92,7 +97,11 @@ class HomeFragment : Fragment() {
                     alarm.repeat,
                 )
                 alarmManager.cancel(requireContext())
-                Toast.makeText(context, "${R.string.toast_alarm_set} $toastTime ${R.string.toast_alarm_set2}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    "${R.string.toast_alarm_set} $toastTime ${R.string.toast_alarm_set2}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
             override fun setSwitchOff(alarm: Alarm) {
@@ -112,19 +121,19 @@ class HomeFragment : Fragment() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun setTvNextAlarm(adapter: AlarmListAdapter, alarm: List<Alarm>){
+    fun setTvNextAlarm(adapter: AlarmListAdapter, alarm: List<Alarm>) {
         // format alarm time to today's date
         var tvNextAlarm = 1441 // minutes in a day
         adapter.setData(alarm)
         val regex = Regex("\\d{2}:\\d{2}")
         val currentTime = Instant.now()
-        val tomorrow = currentTime.plusMillis(86_400_000)
-        for(alarms in adapter.alarmList){
+        val tomorrow = currentTime.plusMillis(86_400_000) // + 24 hours
+        for (alarms in adapter.alarmList) {
             var stringTime = currentTime.toString().replace(regex, formatTime(alarms))
             var alarmTime = Instant.parse(stringTime)
             var duration = Duration.between(currentTime, alarmTime)
-            // if alarm has passed, set alarm time to tomorrow's date
-            if(duration.isNegative){
+            // if alarm has passed or is current time, set alarm time to tomorrow's date
+            if (duration.isNegative or duration.isZero) {
                 stringTime = tomorrow.toString().replace(regex, formatTime(alarms))
                 alarmTime = Instant.parse(stringTime)
                 duration = Duration.between(currentTime, alarmTime)
@@ -138,7 +147,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun formatTime(alarm: Alarm): String{
+    fun formatTime(alarm: Alarm): String {
         return if (alarm.minute <= 9 && alarm.hour <= 9) {
             "0${alarm.hour}:0${alarm.minute}"
         } else if (alarm.minute <= 9) {
