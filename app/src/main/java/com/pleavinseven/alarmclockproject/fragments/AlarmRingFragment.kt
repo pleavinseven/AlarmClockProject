@@ -4,7 +4,6 @@ import android.app.KeyguardManager
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.res.Configuration
 import android.os.*
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,7 +14,6 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
-import com.pleavinseven.alarmclockproject.R
 import com.pleavinseven.alarmclockproject.alarmmanager.AlarmManager
 import com.pleavinseven.alarmclockproject.databinding.FragmentAlarmRingBinding
 import com.pleavinseven.alarmclockproject.service.AlarmRingService
@@ -36,10 +34,10 @@ class AlarmRingFragment : Fragment() {
 
         val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
-        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_YES -> container!!.setBackgroundResource(R.drawable.alarm_ring_dark_background)
-            Configuration.UI_MODE_NIGHT_NO -> container!!.setBackgroundResource(R.drawable.alarm_ring_light_background)
-        }
+//        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+//            Configuration.UI_MODE_NIGHT_YES -> container!!.setBackgroundResource(R.drawable.alarm_ring_dark_background)
+//            Configuration.UI_MODE_NIGHT_NO -> container!!.setBackgroundResource(R.drawable.alarm_ring_light_background)
+//        }
 
         val vibe =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {

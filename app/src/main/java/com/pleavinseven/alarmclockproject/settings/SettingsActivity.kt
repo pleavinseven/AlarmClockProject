@@ -4,7 +4,6 @@ import android.app.UiModeManager
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -35,7 +34,7 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
+        return when (item.itemId) {
             R.id.action_settings -> {
                 startActivity(Intent(this, SettingsActivity::class.java))
                 true
@@ -45,7 +44,7 @@ class SettingsActivity : AppCompatActivity() {
     }
 }
 
-class SettingsFragment: PreferenceFragmentCompat(){
+class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,10 +52,10 @@ class SettingsFragment: PreferenceFragmentCompat(){
         savedInstanceState: Bundle?
     ): View {
 
-        when(resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK){
-            Configuration.UI_MODE_NIGHT_YES -> container!!.setBackgroundResource(R.drawable.alarm_app_dark_background)
-            Configuration.UI_MODE_NIGHT_NO -> container!!.setBackgroundResource(R.drawable.alarm_app_light_background)
-        }
+//        when(resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK){
+//            Configuration.UI_MODE_NIGHT_YES -> container!!.setBackgroundResource(R.drawable.alarm_app_dark_background)
+//            Configuration.UI_MODE_NIGHT_NO -> container!!.setBackgroundResource(R.drawable.alarm_app_light_background)
+//        }
 
         return super.onCreateView(inflater, container, savedInstanceState)
     }
@@ -70,11 +69,11 @@ class SettingsFragment: PreferenceFragmentCompat(){
 
         val spDarkMode = findPreference<SwitchPreference>("sp_dark_mode")
         spDarkMode!!.setOnPreferenceClickListener {
-            if(spDarkMode.isChecked){
+            if (spDarkMode.isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 saveNightModeState()
 
-            }else {
+            } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 saveNightModeState()
             }
@@ -89,7 +88,7 @@ class SettingsFragment: PreferenceFragmentCompat(){
         editor.apply()
     }
 
-    private fun setSwitch(switch: SwitchPreference, isChecked: Boolean){
+    private fun setSwitch(switch: SwitchPreference, isChecked: Boolean) {
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
         editor.putBoolean(switch.key, isChecked)
         editor.apply()
