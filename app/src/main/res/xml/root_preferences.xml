@@ -9,7 +9,7 @@
         android:title="@string/title_dark_theme" />
 
     <ListPreference
-        android:defaultValue="true"
+        android:defaultValue="English"
         android:entries="@array/language_entries"
         android:entryValues="@array/language_values"
         android:key="lp_language"
@@ -19,12 +19,12 @@
     <PreferenceCategory android:title="@string/title_alarm_settings">
 
     </PreferenceCategory>
-    <Preference
-        android:title="@string/set_ringtone"
-        android:summary="%s"/>
+<!--    <Preference-->
+<!--        android:title="@string/set_ringtone"-->
+<!--        android:summary="%s"/>-->
 
     <ListPreference
-        android:defaultValue="true"
+        android:defaultValue="5 mins"
         android:entries="@array/snooze_entries"
         android:entryValues="@array/snooze_values"
         android:key="lp_snooze"
@@ -39,9 +39,9 @@
         android:key="sp_shake"
         android:summary="@string/shake_to_wake"
         android:title="Shake to Wake" />
-    <SeekBarPreference
-        android:defaultValue="60"
-        android:title="@string/alarm_volume" />
+<!--    <SeekBarPreference-->
+<!--        android:defaultValue="60"-->
+<!--        android:title="@string/alarm_volume" />-->
 
 
 </PreferenceScreen>
