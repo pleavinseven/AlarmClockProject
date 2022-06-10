@@ -1,9 +1,7 @@
 package com.pleavinseven.alarmclockproject.fragments
 
-import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -37,12 +35,6 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-//        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-//            Configuration.UI_MODE_NIGHT_YES -> container!!.setBackgroundResource(R.drawable.alarm_app_dark_background)
-//            Configuration.UI_MODE_NIGHT_NO -> container!!.setBackgroundResource(R.drawable.alarm_app_light_background)
-//        }
-
-
         // RecyclerView
         val adapter = AlarmListAdapter()
         val recyclerView = binding.recyclerView
@@ -64,11 +56,13 @@ class HomeFragment : Fragment() {
 
         adapter.setOnItemClickListener(object : AlarmListAdapter.OnItemClickListener {
 
+            // shirt click updates alarm
             override fun onClick(alarm: Alarm) {
                 Navigation.findNavController(requireView())
                     .navigate(HomeFragmentDirections.actionHomeFragmentToUpdateFragment(alarm))
             }
 
+            // hold/ long click to delete alarm
             override fun onLongClick(alarm: Alarm) {
                 val deleteBuilder = AlertDialog.Builder(requireContext())
                 deleteBuilder.setPositiveButton(R.string.delete_builder_delete) { _, _ ->
@@ -148,6 +142,7 @@ class HomeFragment : Fragment() {
     }
 
     fun formatTime(alarm: Alarm): String {
+        // make sure time is formatted to 24 hour clock correctly.
         return if (alarm.minute <= 9 && alarm.hour <= 9) {
             "0${alarm.hour}:0${alarm.minute}"
         } else if (alarm.minute <= 9) {

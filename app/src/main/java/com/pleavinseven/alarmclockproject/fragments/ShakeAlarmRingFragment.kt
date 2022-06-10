@@ -44,11 +44,6 @@ class ShakeAlarmRingFragment : Fragment() {
 
         val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
-//        when(resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK){
-//            Configuration.UI_MODE_NIGHT_YES -> container!!.setBackgroundResource(R.drawable.alarm_ring_dark_background)
-//            Configuration.UI_MODE_NIGHT_NO -> container!!.setBackgroundResource(R.drawable.alarm_ring_light_background)
-//        }
-
         wakeScreen()
 
         val vibe =
@@ -63,6 +58,24 @@ class ShakeAlarmRingFragment : Fragment() {
         if (prefs.getBoolean("sp_vibrate_on_off", true)) {
             vibeOn = true
             vibe.vibrate(VibrationEffect.createWaveform(longArrayOf(200, 1000, 500, 500), 0))
+        }
+
+        //TODO; test if these are turned off afterwards
+
+        binding.btnCancelAlarm.setOnClickListener {
+            Toast.makeText(
+                requireContext(),
+                "cancel disabled until shook",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+
+        binding.btnSnoozeAlarm.setOnClickListener {
+            Toast.makeText(
+                requireContext(),
+                "snooze disabled until shook",
+                Toast.LENGTH_LONG
+            ).show()
         }
 
         // accelerometer
@@ -123,17 +136,11 @@ class ShakeAlarmRingFragment : Fragment() {
             (activity?.getSystemService(KeyguardManager::class.java) as KeyguardManager).requestDismissKeyguard(
                 requireActivity(),
                 object : KeyguardManager.KeyguardDismissCallback() {
-                    override fun onDismissCancelled() {
+                    override fun onDismissCancelled() {}
 
-                    }
+                    override fun onDismissError() {}
 
-                    override fun onDismissError() {
-
-                    }
-
-                    override fun onDismissSucceeded() {
-
-                    }
+                    override fun onDismissSucceeded() {}
                 }
             )
         } else {
