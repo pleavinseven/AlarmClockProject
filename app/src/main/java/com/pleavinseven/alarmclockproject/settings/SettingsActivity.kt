@@ -1,16 +1,14 @@
 package com.pleavinseven.alarmclockproject.settings
 
-import android.app.UiModeManager
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.pleavinseven.alarmclockproject.R
@@ -20,7 +18,6 @@ import com.pleavinseven.alarmclockproject.databinding.ActivitySettingsBinding
 class SettingsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
-    private lateinit var uiModeManager: UiModeManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +28,24 @@ class SettingsActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.settings_container, SettingsFragment())
             .commit()
+        val window = this.window
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        val nightModeFlags: Int = this.resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK
+        when (nightModeFlags) {
+            Configuration.UI_MODE_NIGHT_YES -> {
+                window.statusBarColor = ContextCompat.getColor(this, android.R.color.black)
+            }
+            Configuration.UI_MODE_NIGHT_NO -> {
+                window.statusBarColor = ContextCompat.getColor(this, android.R.color.white)
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            }
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> {
+                window.statusBarColor = ContextCompat.getColor(this, android.R.color.white)
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -52,10 +67,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
         savedInstanceState: Bundle?
     ): View {
 
-//        when(resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK){
-//            Configuration.UI_MODE_NIGHT_YES -> container!!.setBackgroundResource(R.drawable.alarm_app_dark_background)
-//            Configuration.UI_MODE_NIGHT_NO -> container!!.setBackgroundResource(R.drawable.alarm_app_light_background)
-//        }
 
         return super.onCreateView(inflater, container, savedInstanceState)
     }
@@ -67,6 +78,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         sharedPreferences = context?.getSharedPreferences("nightModePrefs", Context.MODE_PRIVATE)!!
 
+        // dark mode on off switch
         val spDarkMode = findPreference<SwitchPreference>("sp_dark_mode")
         spDarkMode!!.setOnPreferenceClickListener {
             if (spDarkMode.isChecked) {
