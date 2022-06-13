@@ -21,6 +21,7 @@ import androidx.preference.PreferenceManager
 import com.pleavinseven.alarmclockproject.alarmmanager.AlarmManager
 import com.pleavinseven.alarmclockproject.databinding.FragmentShakeAlarmRingBinding
 import com.pleavinseven.alarmclockproject.service.AlarmRingService
+import com.pleavinseven.alarmclockproject.R.id.alarm_bubble
 import java.util.*
 import kotlin.math.abs
 import kotlin.math.sqrt
@@ -45,6 +46,7 @@ class ShakeAlarmRingFragment : Fragment() {
         val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
         wakeScreen()
+        setBubble(true)
 
         val vibe =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -179,5 +181,13 @@ class ShakeAlarmRingFragment : Fragment() {
             Toast.LENGTH_SHORT
         ).show()
         alarm.schedule(requireContext())
+    }
+
+    private fun setBubble(
+        isLeftVisible: Boolean,
+    ) {
+        alarm_bubble.apply {
+            binding.alarmBubble.visibility = if (isLeftVisible) View.VISIBLE else View.GONE
+        }
     }
 }
