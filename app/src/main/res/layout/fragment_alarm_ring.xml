@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="52dp"
         android:text="@string/snooze_alarm"
+        android:background="@drawable/rounded_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -23,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="44dp"
         android:text="@string/cancel_alarm"
+        android:background="@drawable/rounded_button"
         app:layout_constraintBottom_toTopOf="@+id/btn_snooze_alarm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

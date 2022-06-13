@@ -1,0 +1,15 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<selector xmlns:android = "http://schemas.android.com/apk/res/android">
+    <item android:state_pressed = "false">
+        <shape android:shape = "rectangle">
+            <corners android:radius="16dip" />
+            <gradient android:angle="-90" android:startColor="@color/teal_700" android:endColor="#3E8177"  />
+        </shape>
+    </item>
+    <item android:state_pressed = "true">
+        <shape android:shape = "rectangle">
+            <corners android:radius="16dip" />
+            <solid android:color = "#689a92"/>
+        </shape>
+    </item>
+</selector>

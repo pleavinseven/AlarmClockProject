@@ -10,7 +10,7 @@
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/alarm_bubble"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="400dp"
         app:lottie_autoPlay="true"
         app:lottie_fileName="loading-bubble.json"
         app:lottie_loop="true"
@@ -20,13 +20,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/btn_snooze_alarm" />
 
-
     <Button
         android:id="@+id/btn_snooze_alarm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="52dp"
         android:text="@string/snooze_alarm"
+        android:background="@drawable/rounded_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -37,15 +37,19 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="44dp"
         android:text="@string/cancel_alarm"
+        android:background="@drawable/rounded_button"
         app:layout_constraintBottom_toTopOf="@+id/btn_snooze_alarm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/current_time"
-        android:layout_width="101dp"
-        android:layout_height="48dp"
+        android:layout_width="162dp"
+        android:layout_height="96dp"
         android:text="this"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="@+id/alarm_bubble"
         app:layout_constraintEnd_toEndOf="@+id/alarm_bubble"
         app:layout_constraintStart_toStartOf="parent"
