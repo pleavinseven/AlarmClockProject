@@ -48,5 +48,7 @@
 
     <string name="notification_title">Alarm</string>
     <string name="notification_content">Click here to open alarm </string>
+    <string name="add_new_alarm">Add new alarm</string>
+    <string name="_11_11">11:11</string>
 
 </resources>

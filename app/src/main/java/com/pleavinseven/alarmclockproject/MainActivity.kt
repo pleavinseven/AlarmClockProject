@@ -1,7 +1,10 @@
 package com.pleavinseven.alarmclockproject
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.Configuration
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -15,34 +18,54 @@ import com.pleavinseven.alarmclockproject.settings.SettingsActivity
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.title = ""
-        // set status bar to dark/ light
-        val window = this.window
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        val decor = window.decorView
+        decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
+
+
+        // set action bar colour
+        val actionBar = supportActionBar
+        actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#018786")))
+        actionBar?.title = ""
+        actionBar?.elevation = 0F
+
+        // set status and nav bar to dark/ light
+        backGroundColour()
+        navBarColour()
+    }
+
+    private fun backGroundColour() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = Color.parseColor("#018786")
+        window.setBackgroundDrawableResource(R.drawable.gradient_background)
+//        window.navigationBarColor = ContextCompat.getColor(this, R.color.teal_700)
+    }
+
+    fun navBarColour() {
+        WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
+        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
         val nightModeFlags: Int = this.resources.configuration.uiMode and
                 Configuration.UI_MODE_NIGHT_MASK
         when (nightModeFlags) {
             Configuration.UI_MODE_NIGHT_YES -> {
-                window.statusBarColor = ContextCompat.getColor(this, android.R.color.black)
+                window.navigationBarColor = ContextCompat.getColor(this, R.color.black)
             }
             Configuration.UI_MODE_NIGHT_NO -> {
-                window.statusBarColor = ContextCompat.getColor(this, android.R.color.white)
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                window.navigationBarColor =
+                    ContextCompat.getColor(this, android.R.color.white)
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
             }
             Configuration.UI_MODE_NIGHT_UNDEFINED -> {
-                window.statusBarColor = ContextCompat.getColor(this, android.R.color.white)
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                window.navigationBarColor =
+                    ContextCompat.getColor(this, android.R.color.white)
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
             }
         }
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -51,7 +74,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
+        return when (item.itemId) {
             R.id.action_settings -> {
                 startActivity(Intent(this, SettingsActivity::class.java))
                 true

@@ -4,7 +4,8 @@
 
     <item
         android:id="@+id/action_settings"
-        android:title="Settings"
+        android:name="windowContentOverlay"
         android:icon="@drawable/ic_settings_foreground"
-        app:showAsAction="ifRoom"/>
+        android:title="Settings"
+        app:showAsAction="ifRoom" />
 </menu>

@@ -44,7 +44,7 @@ class SetNewAlarmFragment : Fragment() {
         binding.fragmentBtnSetAlarm.setOnClickListener(View.OnClickListener { _ ->
             scheduleAlarm()
             Navigation.findNavController(requireView())
-                .navigate(com.pleavinseven.alarmclockproject.R.id.action_newAlarmFragment_to_homeFragment)
+                .navigate(SetNewAlarmFragmentDirections.actionNewAlarmFragmentToHomeFragment())
         })
         return binding.root
 
