@@ -1,5 +1,6 @@
 package com.pleavinseven.alarmclockproject.fragments
 
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -47,6 +48,11 @@ class HomeFragment : Fragment() {
             adapter.setData(alarm)
             setTvNextAlarm(adapter, alarm)
         })
+
+        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_YES -> container!!.setBackgroundResource(R.drawable.dark_gradient_background)
+            Configuration.UI_MODE_NIGHT_NO -> container!!.setBackgroundResource(R.drawable.gradient_background)
+        }
 
 
         binding.btnAddAlarm.setOnClickListener {

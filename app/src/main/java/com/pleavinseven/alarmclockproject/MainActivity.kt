@@ -1,6 +1,5 @@
 package com.pleavinseven.alarmclockproject
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
@@ -28,25 +27,26 @@ class MainActivity : AppCompatActivity() {
         decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
 
 
-        // set action bar colour
+        // set action bar, status bar and nav to fit theme
+        actionBarColour()
+        backGroundColour()
+        navBarColour()
+    }
+
+    private fun actionBarColour() {
         val actionBar = supportActionBar
         actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#018786")))
         actionBar?.title = ""
         actionBar?.elevation = 0F
-
-        // set status and nav bar to dark/ light
-        backGroundColour()
-        navBarColour()
     }
 
     private fun backGroundColour() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = Color.parseColor("#018786")
         window.setBackgroundDrawableResource(R.drawable.gradient_background)
-//        window.navigationBarColor = ContextCompat.getColor(this, R.color.teal_700)
     }
 
-    fun navBarColour() {
+    private fun navBarColour() {
         WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
         View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
         val nightModeFlags: Int = this.resources.configuration.uiMode and
