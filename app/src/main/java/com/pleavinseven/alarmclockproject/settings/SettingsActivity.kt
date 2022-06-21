@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
@@ -23,27 +25,59 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.title = ""
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportFragmentManager.beginTransaction()
             .replace(R.id.settings_container, SettingsFragment())
             .commit()
-        val window = this.window
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+
+        // set action bar, status bar and nav to fit theme
+        backGroundColour()
+        navBarColour()
+    }
+
+    private fun backGroundColour() {
+        val actionBar = supportActionBar
+        actionBar?.title = ""
+        actionBar?.elevation = 0F
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         val nightModeFlags: Int = this.resources.configuration.uiMode and
                 Configuration.UI_MODE_NIGHT_MASK
         when (nightModeFlags) {
             Configuration.UI_MODE_NIGHT_YES -> {
-                window.statusBarColor = ContextCompat.getColor(this, android.R.color.black)
-            }
+                window.setBackgroundDrawableResource(R.drawable.dark_gradient_background)
+                window.statusBarColor = Color.parseColor("#017372")
+                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#017372")))}
             Configuration.UI_MODE_NIGHT_NO -> {
-                window.statusBarColor = ContextCompat.getColor(this, android.R.color.white)
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                window.setBackgroundDrawableResource(R.drawable.gradient_background)
+                window.statusBarColor = Color.parseColor("#279998")
+                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#279998")))
             }
             Configuration.UI_MODE_NIGHT_UNDEFINED -> {
-                window.statusBarColor = ContextCompat.getColor(this, android.R.color.white)
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                window.setBackgroundDrawableResource(R.drawable.gradient_background)
+                window.statusBarColor = Color.parseColor("#279998")
+                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#279998")))
+            }
+        }
+    }
+
+    private fun navBarColour() {
+        WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
+        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+        val nightModeFlags: Int = this.resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK
+        when (nightModeFlags) {
+            Configuration.UI_MODE_NIGHT_YES -> {
+                window.navigationBarColor = ContextCompat.getColor(this, R.color.black)
+            }
+            Configuration.UI_MODE_NIGHT_NO -> {
+                window.navigationBarColor =
+                    ContextCompat.getColor(this, android.R.color.white)
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+            }
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> {
+                window.navigationBarColor =
+                    ContextCompat.getColor(this, android.R.color.white)
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
             }
         }
     }
@@ -100,9 +134,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
         editor.apply()
     }
 
-    private fun setSwitch(switch: SwitchPreference, isChecked: Boolean) {
-        val editor: SharedPreferences.Editor = sharedPreferences.edit()
-        editor.putBoolean(switch.key, isChecked)
-        editor.apply()
-    }
+//    private fun setSwitch(switch: SwitchPreference, isChecked: Boolean) {
+//        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+//        editor.putBoolean(switch.key, isChecked)
+//        editor.apply()
+//    }
 }
