@@ -62,24 +62,6 @@ class ShakeAlarmRingFragment : Fragment() {
             vibe.vibrate(VibrationEffect.createWaveform(longArrayOf(200, 1000, 500, 500), 0))
         }
 
-        //TODO; test if these are turned off afterwards
-
-        binding.btnCancelAlarm.setOnClickListener {
-            Toast.makeText(
-                requireContext(),
-                "cancel disabled until shook",
-                Toast.LENGTH_LONG
-            ).show()
-        }
-
-        binding.btnSnoozeAlarm.setOnClickListener {
-            Toast.makeText(
-                requireContext(),
-                "snooze disabled until shook",
-                Toast.LENGTH_LONG
-            ).show()
-        }
-
         // accelerometer
         sensorManager =
             activity?.getSystemService(AppCompatActivity.SENSOR_SERVICE) as SensorManager
@@ -105,21 +87,7 @@ class ShakeAlarmRingFragment : Fragment() {
                 if (changeInAcceleration > 10f) {
                     n += 1
                     if (n > 200) {
-                        // TODO: make a pop up
-                        Toast.makeText(
-                            requireContext(),
-                            "buttons now work",
-                            Toast.LENGTH_LONG
-                        ).show()
-
-                        binding.btnCancelAlarm.setOnClickListener {
-                            turnOffAlarm(vibe)
-                        }
-
-                        binding.btnSnoozeAlarm.setOnClickListener {
-                            snoozeAlarm(prefs)
-                            turnOffAlarm(vibe)
-                        }
+                        turnOffAlarm(vibe)
                     }
                 }
             }

@@ -32,52 +32,34 @@ class SettingsActivity : AppCompatActivity() {
 
         // set action bar, status bar and nav to fit theme
         backGroundColour()
-        navBarColour()
     }
 
     private fun backGroundColour() {
         val actionBar = supportActionBar
         actionBar?.title = ""
         actionBar?.elevation = 0F
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        val nightModeFlags: Int = this.resources.configuration.uiMode and
-                Configuration.UI_MODE_NIGHT_MASK
-        when (nightModeFlags) {
-            Configuration.UI_MODE_NIGHT_YES -> {
-                window.setBackgroundDrawableResource(R.drawable.dark_gradient_background)
-                window.statusBarColor = Color.parseColor("#017372")
-                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#017372")))}
-            Configuration.UI_MODE_NIGHT_NO -> {
-                window.setBackgroundDrawableResource(R.drawable.gradient_background)
-                window.statusBarColor = Color.parseColor("#279998")
-                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#279998")))
-            }
-            Configuration.UI_MODE_NIGHT_UNDEFINED -> {
-                window.setBackgroundDrawableResource(R.drawable.gradient_background)
-                window.statusBarColor = Color.parseColor("#279998")
-                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#279998")))
-            }
-        }
-    }
-
-    private fun navBarColour() {
         WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
         View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
         val nightModeFlags: Int = this.resources.configuration.uiMode and
                 Configuration.UI_MODE_NIGHT_MASK
         when (nightModeFlags) {
             Configuration.UI_MODE_NIGHT_YES -> {
-                window.navigationBarColor = ContextCompat.getColor(this, R.color.black)
+                window.setBackgroundDrawableResource(R.drawable.dark_gradient_background)
+                window.statusBarColor = Color.parseColor("#133936")
+                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#133936")))
+                window.navigationBarColor = Color.parseColor("#715c54")
             }
             Configuration.UI_MODE_NIGHT_NO -> {
-                window.navigationBarColor =
-                    ContextCompat.getColor(this, android.R.color.white)
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                window.setBackgroundDrawableResource(R.drawable.gradient_background)
+                window.statusBarColor = Color.parseColor("#248e8a")
+                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#248e8a")))
+                window.navigationBarColor = Color.parseColor("#e3b6a2")
             }
             Configuration.UI_MODE_NIGHT_UNDEFINED -> {
-                window.navigationBarColor =
-                    ContextCompat.getColor(this, android.R.color.white)
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                window.setBackgroundDrawableResource(R.drawable.gradient_background)
+                window.statusBarColor = Color.parseColor("#248e8a")
+                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#248e8a")))
+                window.navigationBarColor = Color.parseColor("#e3b6a2")
             }
         }
     }

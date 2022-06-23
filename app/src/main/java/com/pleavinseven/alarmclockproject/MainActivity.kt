@@ -23,9 +23,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val decor = window.decorView
-        decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
-
 
         // set action bar, status bar and nav to fit theme
         actionBarColour()
@@ -47,23 +44,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navBarColour() {
+        val actionBar = supportActionBar
+        actionBar?.title = ""
+        actionBar?.elevation = 0F
         WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
         View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
         val nightModeFlags: Int = this.resources.configuration.uiMode and
                 Configuration.UI_MODE_NIGHT_MASK
         when (nightModeFlags) {
             Configuration.UI_MODE_NIGHT_YES -> {
-                window.navigationBarColor = ContextCompat.getColor(this, R.color.black)
+                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#023331")))
+                window.statusBarColor = Color.parseColor("#023331")
+                window.navigationBarColor = Color.parseColor("#795f56")
             }
             Configuration.UI_MODE_NIGHT_NO -> {
-                window.navigationBarColor =
-                    ContextCompat.getColor(this, android.R.color.white)
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                window.navigationBarColor = Color.parseColor("#F3b9a4")
             }
             Configuration.UI_MODE_NIGHT_UNDEFINED -> {
-                window.navigationBarColor =
-                    ContextCompat.getColor(this, android.R.color.white)
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                window.navigationBarColor = Color.parseColor("#F3b9a4")
             }
         }
     }
@@ -82,6 +80,4 @@ class MainActivity : AppCompatActivity() {
             else -> false
         }
     }
-
-
 }
