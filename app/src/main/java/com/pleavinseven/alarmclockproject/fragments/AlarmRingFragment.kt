@@ -14,9 +14,12 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
+import com.pleavinseven.alarmclockproject.R
 import com.pleavinseven.alarmclockproject.alarmmanager.AlarmManager
 import com.pleavinseven.alarmclockproject.databinding.FragmentAlarmRingBinding
 import com.pleavinseven.alarmclockproject.service.AlarmRingService
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -25,7 +28,6 @@ class AlarmRingFragment : Fragment() {
     lateinit var binding: FragmentAlarmRingBinding
     var vibeOn = false
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,6 +51,8 @@ class AlarmRingFragment : Fragment() {
         }
 
         wakeScreen()
+        setBubble(true)
+        setCurrentTimeText()
 
         binding.btnCancelAlarm.setOnClickListener {
             turnOffAlarm(vibe)
@@ -115,5 +119,20 @@ class AlarmRingFragment : Fragment() {
             Toast.LENGTH_SHORT
         ).show()
         alarm.schedule(requireContext())
+    }
+
+    private fun setBubble(
+        isLeftVisible: Boolean,
+    ) {
+        R.id.alarm_bubble.apply {
+            binding.alarmBubble.visibility = if (isLeftVisible) View.VISIBLE else View.GONE
+        }
+    }
+
+    fun setCurrentTimeText(){
+        val current = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("HH:mm")
+        val formattedTime = current.format(formatter)
+        binding.currentTime.text = formattedTime
     }
 }

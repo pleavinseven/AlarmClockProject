@@ -21,7 +21,6 @@ class AlarmRingActivity : AppCompatActivity() {
     private val fragmentManager = supportFragmentManager
 
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAlarmRingBinding.inflate(layoutInflater)

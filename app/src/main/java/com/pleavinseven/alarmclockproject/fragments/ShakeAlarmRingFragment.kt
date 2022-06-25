@@ -22,6 +22,8 @@ import com.pleavinseven.alarmclockproject.alarmmanager.AlarmManager
 import com.pleavinseven.alarmclockproject.databinding.FragmentShakeAlarmRingBinding
 import com.pleavinseven.alarmclockproject.service.AlarmRingService
 import com.pleavinseven.alarmclockproject.R.id.alarm_bubble
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.math.abs
 import kotlin.math.sqrt
@@ -36,7 +38,6 @@ class ShakeAlarmRingFragment : Fragment() {
     var vibeOn = false
     lateinit var binding: FragmentShakeAlarmRingBinding
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,6 +48,7 @@ class ShakeAlarmRingFragment : Fragment() {
 
         wakeScreen()
         setBubble(true)
+        setCurrentTimeText()
 
         val vibe =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -79,7 +81,7 @@ class ShakeAlarmRingFragment : Fragment() {
 
                 val accelerometerCurrentVal = sqrt((x * x + y * y + z * z).toDouble())
 
-                var changeInAcceleration =
+                val changeInAcceleration =
                     abs(accelerometerCurrentVal - accelerometerPreviousVal)
                 accelerometerPreviousVal = accelerometerCurrentVal
 
@@ -130,32 +132,18 @@ class ShakeAlarmRingFragment : Fragment() {
         requireContext().stopService(intent)
     }
 
-    fun snoozeAlarm(prefs: SharedPreferences) {
-        val alarmId = Random().nextInt(Integer.MAX_VALUE)
-        val calendar: Calendar = Calendar.getInstance()
-        val snoozeMins = prefs.getString("lp_snooze", "-1")!!.toInt()
-        calendar.timeInMillis = System.currentTimeMillis()
-        calendar.add(Calendar.MINUTE, snoozeMins)
-        val alarm = AlarmManager(
-            alarmId,
-            calendar.get(Calendar.HOUR_OF_DAY),
-            calendar.get(Calendar.MINUTE),
-            started = true,
-            recurring = false,
-        )
-        Toast.makeText(
-            requireContext(),
-            "Alarm snoozed for $snoozeMins minutes",
-            Toast.LENGTH_SHORT
-        ).show()
-        alarm.schedule(requireContext())
-    }
-
     private fun setBubble(
         isLeftVisible: Boolean,
     ) {
         alarm_bubble.apply {
             binding.alarmBubble.visibility = if (isLeftVisible) View.VISIBLE else View.GONE
         }
+    }
+
+    fun setCurrentTimeText(){
+        val current = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("HH:mm")
+        val formattedTime = current.format(formatter)
+        binding.currentTime.text = formattedTime
     }
 }
