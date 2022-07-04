@@ -41,6 +41,10 @@ class HomeFragment : Fragment() {
         val recyclerView = binding.recyclerView
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_YES -> container!!.setBackgroundResource(R.drawable.dark_gradient_background)
+            Configuration.UI_MODE_NIGHT_NO -> container!!.setBackgroundResource(R.drawable.gradient_background)
+        }
 
         //ViewModel
         alarmViewModel = ViewModelProvider(this)[AlarmViewModel::class.java]
@@ -49,12 +53,6 @@ class HomeFragment : Fragment() {
             setTvNextAlarm(adapter, alarm)
         })
 
-        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_YES -> container!!.setBackgroundResource(R.drawable.dark_gradient_background)
-            Configuration.UI_MODE_NIGHT_NO -> container!!.setBackgroundResource(R.drawable.gradient_background)
-        }
-
-
         binding.btnAddAlarm.setOnClickListener {
             Navigation.findNavController(requireView())
                 .navigate(R.id.action_homeFragment_to_newAlarmFragment)
@@ -62,7 +60,7 @@ class HomeFragment : Fragment() {
 
         adapter.setOnItemClickListener(object : AlarmListAdapter.OnItemClickListener {
 
-            // shirt click updates alarm
+            // short click updates alarm
             override fun onClick(alarm: Alarm) {
                 Navigation.findNavController(requireView())
                     .navigate(HomeFragmentDirections.actionHomeFragmentToUpdateFragment(alarm))
@@ -75,7 +73,7 @@ class HomeFragment : Fragment() {
                     alarmViewModel.delete(alarm)
                     Toast.makeText(
                         context,
-                        R.string.delete_builder_alarm_deleted,
+                        "${context?.getString(R.string.delete_builder_alarm_deleted)}",
                         Toast.LENGTH_SHORT
                     )
                         .show()
@@ -99,7 +97,7 @@ class HomeFragment : Fragment() {
                 alarmManager.cancel(requireContext())
                 Toast.makeText(
                     context,
-                    "${R.string.toast_alarm_set} $toastTime ${R.string.toast_alarm_set2}",
+                    "${context?.getString(R.string.toast_alarm_set)} $toastTime",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -113,7 +111,11 @@ class HomeFragment : Fragment() {
                     alarm.repeat,
                 )
                 alarmManager.cancel(requireContext())
-                Toast.makeText(context, R.string.toast_alarm_cancelled, Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    "${context?.getString(R.string.toast_alarm_cancelled)}",
+                Toast.LENGTH_SHORT
+                ).show()
             }
         })
 

@@ -10,7 +10,6 @@
     <string name="delete_builder_delete">Delete</string>
     <string name="delete_builder_alarm_deleted">Alarm Deleted</string>
     <string name="toast_alarm_set">Alarm set for</string>
-    <string name="toast_alarm_set2"></string>
     <string name="toast_alarm_cancelled">Alarm cancelled</string>
 
 
