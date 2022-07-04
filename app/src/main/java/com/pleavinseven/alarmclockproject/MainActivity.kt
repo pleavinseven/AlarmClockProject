@@ -1,6 +1,8 @@
 package com.pleavinseven.alarmclockproject
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -10,7 +12,9 @@ import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+import androidx.preference.SwitchPreference
 import com.pleavinseven.alarmclockproject.databinding.ActivityMainBinding
 import com.pleavinseven.alarmclockproject.settings.SettingsActivity
 
@@ -18,6 +22,7 @@ import com.pleavinseven.alarmclockproject.settings.SettingsActivity
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // set action bar, status bar and nav to fit theme
+        setDayNight()
         actionBarColour()
         backGroundColour()
         navBarColour()
@@ -63,6 +69,16 @@ class MainActivity : AppCompatActivity() {
             Configuration.UI_MODE_NIGHT_UNDEFINED -> {
                 window.navigationBarColor = Color.parseColor("#F3b9a4")
             }
+        }
+    }
+
+    fun setDayNight(){
+        sharedPreferences = getSharedPreferences("nightModePrefs", Context.MODE_PRIVATE)!!
+        val nightMode = sharedPreferences.getBoolean("isNight", true)
+        if (nightMode){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }  else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
     }
 

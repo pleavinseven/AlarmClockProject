@@ -1,12 +1,13 @@
 package com.pleavinseven.alarmclockproject.settings
 
 import android.content.Context
+import android.content.Context.VIBRATOR_SERVICE
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.os.Bundle
+import android.os.*
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -91,6 +92,14 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
+        val vibe =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                val vibratorManager =
+                    activity?.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+                vibratorManager.defaultVibrator
+            } else {
+                activity?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            }
 
         sharedPreferences = context?.getSharedPreferences("nightModePrefs", Context.MODE_PRIVATE)!!
 
@@ -99,26 +108,44 @@ class SettingsFragment : PreferenceFragmentCompat() {
         spDarkMode!!.setOnPreferenceClickListener {
             if (spDarkMode.isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                saveNightModeState()
+                saveNightModeState(true)
+                setSwitch(spDarkMode, true)
 
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                saveNightModeState()
+                saveNightModeState(false)
+                setSwitch(spDarkMode, false)
             }
             true
         }
 
+        val spVibrate = findPreference<SwitchPreference>("sp_vibrate_on_off")
+        spVibrate!!.setOnPreferenceClickListener {
+            if (spVibrate.isChecked) {
+                vibe.vibrate(VibrationEffect.createOneShot(200, 1))
+                setSwitch(spDarkMode, true)
+            } else {
+                setSwitch(spDarkMode, false)
+            }
+            true
+        }
+
+
     }
 
-    private fun saveNightModeState() {
+    private fun saveNightModeState(Night: Boolean) {
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
-        editor.putBoolean("isNight", true)
+        if (Night){
+            editor.putBoolean("isNight", true)
+        } else {
+            editor.putBoolean("isNight", false)
+        }
         editor.apply()
     }
 
-//    private fun setSwitch(switch: SwitchPreference, isChecked: Boolean) {
-//        val editor: SharedPreferences.Editor = sharedPreferences.edit()
-//        editor.putBoolean(switch.key, isChecked)
-//        editor.apply()
-//    }
+    private fun setSwitch(switch: SwitchPreference, isChecked: Boolean) {
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+        editor.putBoolean(switch.key, isChecked)
+        editor.apply()
+    }
 }
