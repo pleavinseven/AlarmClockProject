@@ -92,18 +92,35 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
+
+        sharedPreferences = context?.getSharedPreferences("nightModePrefs", Context.MODE_PRIVATE)!!
+
+        setDarkMode()
+        setVibrate()
+    }
+
+    private fun setVibrate() {
         val vibe =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 val vibratorManager =
                     activity?.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
                 vibratorManager.defaultVibrator
             } else {
-                activity?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                activity?.getSystemService(VIBRATOR_SERVICE) as Vibrator
             }
+        val spVibrate = findPreference<SwitchPreference>("sp_vibrate_on_off")
+        spVibrate!!.setOnPreferenceClickListener {
+            if (spVibrate.isChecked) {
+                vibe.vibrate(VibrationEffect.createOneShot(200, 1))
+                setSwitch(spVibrate, true)
+            } else {
+                setSwitch(spVibrate, false)
+            }
+            true
+        }
+    }
 
-        sharedPreferences = context?.getSharedPreferences("nightModePrefs", Context.MODE_PRIVATE)!!
-
-        // dark mode on off switch
+    private fun setDarkMode() {
         val spDarkMode = findPreference<SwitchPreference>("sp_dark_mode")
         spDarkMode!!.setOnPreferenceClickListener {
             if (spDarkMode.isChecked) {
@@ -118,19 +135,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
             }
             true
         }
-
-        val spVibrate = findPreference<SwitchPreference>("sp_vibrate_on_off")
-        spVibrate!!.setOnPreferenceClickListener {
-            if (spVibrate.isChecked) {
-                vibe.vibrate(VibrationEffect.createOneShot(200, 1))
-                setSwitch(spDarkMode, true)
-            } else {
-                setSwitch(spDarkMode, false)
-            }
-            true
-        }
-
-
     }
 
     private fun saveNightModeState(Night: Boolean) {
