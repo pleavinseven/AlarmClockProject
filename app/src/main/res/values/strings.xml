@@ -22,7 +22,7 @@
 
     // update alarm screen
 
-    <string name="update_alarm">Update Alarm</string>
+    <string name="update_alarm">Update</string>
 
     // alarm ring screen
 
@@ -48,6 +48,6 @@
     <string name="notification_title">Alarm</string>
     <string name="notification_content">Click here to open alarm </string>
     <string name="add_new_alarm">Add new alarm</string>
-    <string name="_11_11">11:11</string>
+    <string name="no_alarm_set">No alarm set</string>
 
 </resources>
