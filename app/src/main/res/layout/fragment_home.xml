@@ -13,12 +13,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
         android:text="@string/_11_11"
-        android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <!--        android:textColor="@color/white"-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -37,7 +37,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="33dp"
         android:text="@string/next_alarm"
-        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +51,6 @@
         android:contentDescription="@string/add_new_alarm"
         android:focusable="true"
         android:text="+"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
