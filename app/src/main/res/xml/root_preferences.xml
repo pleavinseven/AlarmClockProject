@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="@string/title_general_settings" />
+    <PreferenceCategory android:title="@string/title_general_settings"
+        android:textColor="#F3b9a4"/>
 
     <SwitchPreference
         android:key="sp_dark_mode"
         android:summary="@string/summary_dark_theme"
-        android:title="@string/title_dark_theme" />
+        android:title="@string/title_dark_theme"
+        android:textColor="@color/white"/>
 
     <ListPreference
         android:defaultValue="English"
@@ -14,9 +16,11 @@
         android:entryValues="@array/language_values"
         android:key="lp_language"
         android:summary="%s"
-        android:title="@string/language_select" />
+        android:title="@string/language_select"
+        android:textColor="@color/white"/>
 
-    <PreferenceCategory android:title="@string/title_alarm_settings">
+    <PreferenceCategory android:title="@string/title_alarm_settings"
+        android:textColor="#F3b9a4">
 
     </PreferenceCategory>
 <!--    <Preference-->
@@ -29,16 +33,19 @@
         android:entryValues="@array/snooze_values"
         android:key="lp_snooze"
         android:summary="%s"
-        android:title="@string/snooze_length" />
+        android:title="@string/snooze_length"
+        android:textColor="@color/white"/>
     <SwitchPreference
         android:defaultValue="true"
         android:key="sp_vibrate_on_off"
-        android:title="@string/vibrate_on" />
+        android:title="@string/vibrate_on"
+        android:textColor="@color/white"/>
     <SwitchPreference
         android:defaultValue="true"
         android:key="sp_shake"
         android:summary="@string/shake_to_wake"
-        android:title="Shake to Wake" />
+        android:title="Shake to Wake"
+        android:textColor="@color/white"/>
 <!--    <SeekBarPreference-->
 <!--        android:defaultValue="60"-->
 <!--        android:title="@string/alarm_volume" />-->

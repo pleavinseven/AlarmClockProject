@@ -1,20 +1,13 @@
 package com.pleavinseven.alarmclockproject.settings
 
-import SettingsFragment
-import android.content.Context
-import android.content.Context.VIBRATOR_SERVICE
+import com.pleavinseven.alarmclockproject.fragments.SettingsFragment
 import android.content.Intent
-import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.*
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat
-import androidx.preference.PreferenceFragmentCompat
-import androidx.preference.SwitchPreference
 import com.pleavinseven.alarmclockproject.R
 import com.pleavinseven.alarmclockproject.databinding.ActivitySettingsBinding
 
