@@ -11,6 +11,7 @@
     <string name="delete_builder_alarm_deleted">Alarm Deleted</string>
     <string name="toast_alarm_set">Alarm set for</string>
     <string name="toast_alarm_cancelled">Alarm cancelled</string>
+    <string name="alarm_not_set" translatable="false"> </string>
 
 
     // set new alarm screen
@@ -48,6 +49,8 @@
     <string name="notification_title">Alarm</string>
     <string name="notification_content">Click here to open alarm </string>
     <string name="add_new_alarm">Add new alarm</string>
-    <string name="no_alarm_set">No alarm set</string>
+    <string name="no_alarm_set" translatable="false"> </string>
+    <string name="plus">+</string>
+    <string name="toast_alarm_set2">" "</string>
 
 </resources>

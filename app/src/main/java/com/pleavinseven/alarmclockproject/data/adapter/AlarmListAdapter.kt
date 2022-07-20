@@ -1,6 +1,5 @@
 package com.pleavinseven.alarmclockproject.data.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Switch
@@ -45,11 +44,13 @@ class AlarmListAdapter() :
         //set time text
         holder.itemView.findViewById<TextView>(R.id.tv_alarm_time).text = formatTime(currentItem)
 
+        println(recurring.toString())
 
         //set repeat text
         holder.itemView.findViewById<TextView>(R.id.tv_repeat_days).text =
-            if (recurring)
+            if (recurring) {
                 holder.itemView.context.getString(R.string.daily_alarm)
+            }
             else
                 holder.itemView.context.getString(R.string.once_alarm)
 

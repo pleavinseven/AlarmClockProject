@@ -46,5 +46,7 @@
     <string name="recurring">ყოველდღე</string>
     <string name="set_alarm">"დააყენე მაღვიძარა "</string>
     <string name="update_alarm">"შენახვა "</string>
+    <string name="plus">+</string>
+    <string name="add_new_alarm">ახალი მაღვიძარა</string>
 
 </resources>

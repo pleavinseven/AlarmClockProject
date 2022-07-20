@@ -13,6 +13,6 @@ data class Alarm(
     val id: Int,
     val hour: Int,
     val minute: Int,
+    val started: Boolean,
     val repeat: Boolean,
-    val started: Boolean
 ) : Parcelable
