@@ -44,8 +44,6 @@ class AlarmListAdapter() :
         //set time text
         holder.itemView.findViewById<TextView>(R.id.tv_alarm_time).text = formatTime(currentItem)
 
-        println(recurring.toString())
-
         //set repeat text
         holder.itemView.findViewById<TextView>(R.id.tv_repeat_days).text =
             if (recurring) {

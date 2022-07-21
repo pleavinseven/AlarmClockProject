@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
@@ -51,7 +52,11 @@ class MainActivity : AppCompatActivity() {
         actionBar?.title = ""
         actionBar?.elevation = 0F
         WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
-        window.setDecorFitsSystemWindows(false)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.setDecorFitsSystemWindows(false)
+        } else {
+            View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+        }
         val nightModeFlags: Int = this.resources.configuration.uiMode and
                 Configuration.UI_MODE_NIGHT_MASK
         when (nightModeFlags) {

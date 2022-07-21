@@ -10,19 +10,9 @@
         android:title="@string/title_dark_theme"
         android:textColor="@color/white"/>
 
-    <ListPreference
-        android:defaultValue="English"
-        android:entries="@array/language_entries"
-        android:entryValues="@array/language_values"
-        android:key="lp_language"
-        android:summary="%s"
-        android:title="@string/language_select"
-        android:textColor="@color/white"/>
-
     <PreferenceCategory android:title="@string/title_alarm_settings"
-        android:textColor="#F3b9a4">
+        android:textColor="#F3b9a4"/>
 
-    </PreferenceCategory>
 <!--    <Preference-->
 <!--        android:title="@string/set_ringtone"-->
 <!--        android:summary="%s"/>-->
@@ -46,6 +36,7 @@
         android:summary="@string/shake_to_wake"
         android:title="Shake to Wake"
         android:textColor="@color/white"/>
+
 <!--    <SeekBarPreference-->
 <!--        android:defaultValue="60"-->
 <!--        android:title="@string/alarm_volume" />-->
