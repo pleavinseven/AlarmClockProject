@@ -7,9 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.*
 import android.view.View
 import android.view.WindowManager
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import com.pleavinseven.alarmclockproject.databinding.ActivityAlarmRingBinding
 import com.pleavinseven.alarmclockproject.fragments.AlarmRingFragment
@@ -65,13 +63,13 @@ class AlarmRingActivity : AppCompatActivity() {
                 window.navigationBarColor = Color.parseColor("#715c54")
             }
             Configuration.UI_MODE_NIGHT_NO -> {
-                window.setBackgroundDrawableResource(R.drawable.gradient_background)
+                window.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
                 window.statusBarColor = Color.parseColor("#248e8a")
                 actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#248e8a")))
                 window.navigationBarColor = Color.parseColor("#e3b6a2")
             }
             Configuration.UI_MODE_NIGHT_UNDEFINED -> {
-                window.setBackgroundDrawableResource(R.drawable.gradient_background)
+                window.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
                 window.statusBarColor = Color.parseColor("#248e8a")
                 actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#248e8a")))
                 window.navigationBarColor = Color.parseColor("#e3b6a2")

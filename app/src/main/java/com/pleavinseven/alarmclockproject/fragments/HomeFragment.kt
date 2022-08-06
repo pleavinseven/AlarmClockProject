@@ -1,6 +1,8 @@
 package com.pleavinseven.alarmclockproject.fragments
 
 import android.content.res.Configuration
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -41,9 +43,12 @@ class HomeFragment : Fragment() {
         val recyclerView = binding.recyclerView
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+
         when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_YES -> container!!.setBackgroundResource(R.drawable.dark_gradient_background)
-            Configuration.UI_MODE_NIGHT_NO -> container!!.setBackgroundResource(R.drawable.gradient_background)
+            Configuration.UI_MODE_NIGHT_NO -> container!!.background = ColorDrawable(Color.parseColor("#CDCCF0"))
+
         }
 
         //ViewModel
