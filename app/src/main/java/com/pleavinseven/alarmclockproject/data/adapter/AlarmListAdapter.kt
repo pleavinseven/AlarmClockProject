@@ -2,8 +2,8 @@ package com.pleavinseven.alarmclockproject.data.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Switch
 import android.widget.TextView
+import androidx.appcompat.widget.SwitchCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.pleavinseven.alarmclockproject.R
 import com.pleavinseven.alarmclockproject.data.model.Alarm
@@ -39,7 +39,7 @@ class AlarmListAdapter() :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val currentItem = alarmList[position]
         val recurring = currentItem.repeat
-        val switch = holder.itemView.findViewById<Switch>(R.id.switch_alarm)
+        val switch = holder.itemView.findViewById<SwitchCompat>(R.id.switch_alarm)
 
         //set time text
         holder.itemView.findViewById<TextView>(R.id.tv_alarm_time).text = formatTime(currentItem)
@@ -48,8 +48,7 @@ class AlarmListAdapter() :
         holder.itemView.findViewById<TextView>(R.id.tv_repeat_days).text =
             if (recurring) {
                 holder.itemView.context.getString(R.string.daily_alarm)
-            }
-            else
+            } else
                 holder.itemView.context.getString(R.string.once_alarm)
 
 
@@ -87,7 +86,7 @@ class AlarmListAdapter() :
         notifyDataSetChanged()
     }
 
-    private fun formatTime(currentItem: Alarm): String{
+    private fun formatTime(currentItem: Alarm): String {
         return if (currentItem.minute <= 9 && currentItem.hour <= 9) {
             "0${currentItem.hour}:0${currentItem.minute}"
         } else if (currentItem.minute <= 9) {
