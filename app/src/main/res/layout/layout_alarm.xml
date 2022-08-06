@@ -1,51 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/btn_alarm_layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="120sp">
 
-
-    <TextView
-        android:id="@+id/tv_alarm_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="126dp"
-        android:text="11:11"
-        android:textColor="@color/white"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        app:layout_constraintBottom_toTopOf="@+id/tv_repeat_days"
-        app:layout_constraintEnd_toStartOf="@+id/switch_alarm"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <TextView
-        android:id="@+id/tv_repeat_days"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:paddingBottom="2dp"
-        android:text="@string/daily_alarm"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_alarm_time" />
-
-
-    <Switch
-        android:id="@+id/switch_alarm"
-        android:layout_width="70dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="16dp"
-        android:checked="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardBackgroundColor="#CDCCF0"
+        android:layout_marginStart="15dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintBottom_toBottomOf="parent">
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="350dp"
+            android:layout_height="93dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tv_alarm_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="126dp"
+                    android:text="11:11"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_repeat_days"
+                    app:layout_constraintEnd_toStartOf="@+id/switch_alarm"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/tv_repeat_days"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:paddingBottom="2dp"
+                    android:text="@string/daily_alarm"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_alarm_time" />
+
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_alarm"
+                    android:layout_width="70dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="16dp"
+                    android:checked="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
