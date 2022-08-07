@@ -50,15 +50,15 @@ class SettingsActivity : AppCompatActivity() {
             }
             Configuration.UI_MODE_NIGHT_NO -> {
                 window.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
-                window.statusBarColor = Color.parseColor("#248e8a")
-                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#248e8a")))
-                window.navigationBarColor = Color.parseColor("#e3b6a2")
+                window.statusBarColor = Color.parseColor("#F0EDFF")
+                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
+                window.navigationBarColor = Color.parseColor("#F0EDFF")
             }
             Configuration.UI_MODE_NIGHT_UNDEFINED -> {
                 window.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
-                window.statusBarColor = Color.parseColor("#248e8a")
-                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#248e8a")))
-                window.navigationBarColor = Color.parseColor("#e3b6a2")
+                window.statusBarColor = Color.parseColor("#F0EDFF")
+                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
+                window.navigationBarColor = Color.parseColor("#F0EDFF")
             }
         }
     }
