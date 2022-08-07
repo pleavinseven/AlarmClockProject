@@ -91,6 +91,7 @@
         android:layout_marginBottom="20dp"
         android:clickable="true"
         app:srcCompat="@drawable/ic_baseline_add_24"
+        android:contentDescription="@string/add_new_alarm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
