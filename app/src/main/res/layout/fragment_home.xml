@@ -7,6 +7,23 @@
     android:layout_height="match_parent"
     tools:context=".fragments.HomeFragment">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/next_alarm"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/tv_next_alarm_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/tv_next_alarm_card"
         android:layout_width="match_parent"
@@ -25,7 +42,7 @@
             android:layout_marginTop="25dp"
             android:layout_marginEnd="35dp"
             android:layout_marginBottom="25dp"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="#F0BC9C"
             app:cardCornerRadius="30dp"
             app:cardElevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +60,7 @@
                     android:elevation="10dp"
                     android:text="@string/alarm_not_set"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="70sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -54,7 +71,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.cardview.widget.CardView>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -68,35 +84,16 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_next_alarm_card" />
 
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_add_alarm"
-        android:layout_width="57dp"
-        android:layout_height="57dp"
-        android:layout_marginBottom="25dp"
-        android:background="@drawable/circular_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:clickable="true"
-        android:contentDescription="@string/add_new_alarm"
-        android:elevation="40dp"
-        android:focusable="true"
-        android:text="@string/plus"
+        app:srcCompat="@drawable/ic_baseline_add_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recycler_view" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/next_alarm"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tv_next_alarm_card"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
