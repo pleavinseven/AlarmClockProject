@@ -57,22 +57,22 @@ class AlarmRingActivity : AppCompatActivity() {
                 Configuration.UI_MODE_NIGHT_MASK
         when (nightModeFlags) {
             Configuration.UI_MODE_NIGHT_YES -> {
-                window.setBackgroundDrawableResource(R.drawable.dark_gradient_background)
-                window.statusBarColor = Color.parseColor("#133936")
-                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#133936")))
-                window.navigationBarColor = Color.parseColor("#715c54")
+                window.setBackgroundDrawable(ColorDrawable(Color.parseColor("#56557B")))
+                window.statusBarColor = Color.parseColor("#F0EDFF")
+                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#56557B")))
+                window.navigationBarColor = Color.parseColor("#F0EDFF")
             }
             Configuration.UI_MODE_NIGHT_NO -> {
                 window.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
-                window.statusBarColor = Color.parseColor("#248e8a")
-                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#248e8a")))
-                window.navigationBarColor = Color.parseColor("#e3b6a2")
+                window.statusBarColor = Color.parseColor("#F0EDFF")
+                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
+                window.navigationBarColor = Color.parseColor("#F0EDFF")
             }
             Configuration.UI_MODE_NIGHT_UNDEFINED -> {
                 window.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
-                window.statusBarColor = Color.parseColor("#248e8a")
-                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#248e8a")))
-                window.navigationBarColor = Color.parseColor("#e3b6a2")
+                window.statusBarColor = Color.parseColor("#F0EDFF")
+                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
+                window.navigationBarColor = Color.parseColor("#F0EDFF")
             }
         }
     }
