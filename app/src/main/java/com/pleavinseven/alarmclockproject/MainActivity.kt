@@ -59,9 +59,9 @@ class MainActivity : AppCompatActivity() {
                 Configuration.UI_MODE_NIGHT_MASK
         when (nightModeFlags) {
             Configuration.UI_MODE_NIGHT_YES -> {
-                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#023331")))
-                window.statusBarColor = Color.parseColor("#023331")
-                window.navigationBarColor = Color.parseColor("#795f56")
+                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#56557B")))
+                window.navigationBarColor = Color.parseColor("#F0EDFF")
+
             }
             Configuration.UI_MODE_NIGHT_NO -> {
                 window.navigationBarColor = Color.parseColor("#F0EDFF")
