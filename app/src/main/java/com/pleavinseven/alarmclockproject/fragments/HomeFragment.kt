@@ -31,7 +31,6 @@ class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeBinding
     private lateinit var alarmViewModel: AlarmViewModel
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,17 +45,17 @@ class HomeFragment : Fragment() {
 
 
         when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_YES -> container!!.setBackgroundResource(R.drawable.dark_gradient_background)
+            Configuration.UI_MODE_NIGHT_YES -> container!!.background = ColorDrawable(Color.parseColor("#56557B"))
             Configuration.UI_MODE_NIGHT_NO -> container!!.background = ColorDrawable(Color.parseColor("#CDCCF0"))
 
         }
 
         //ViewModel
         alarmViewModel = ViewModelProvider(this)[AlarmViewModel::class.java]
-        alarmViewModel.readAlarmData.observe(viewLifecycleOwner, Observer { alarm ->
+        alarmViewModel.readAlarmData.observe(viewLifecycleOwner) { alarm ->
             adapter.setData(alarm)
             setTvNextAlarm(adapter, alarm)
-        })
+        }
 
         binding.btnAddAlarm.setOnClickListener {
             Navigation.findNavController(requireView())
@@ -127,7 +126,6 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun setTvNextAlarm(adapter: AlarmListAdapter, alarm: List<Alarm>) {
         // format alarm time to today's date
         var tvNextAlarm = 1441 // minutes in a day
