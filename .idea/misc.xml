@@ -37,7 +37,7 @@
         <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.3411458333333333" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_new_alarm.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/fragment_set_new_alarm.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_set_new_alarm.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_shake_alarm_ring.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_update.xml" value="0.335" />
         <entry key="app/src/main/res/layout/layout_alarm.xml" value="0.1" />
