@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="@string/title_general_settings"
-        android:textColor="#F3b9a4"/>
+    <PreferenceCategory
+        android:title="@string/title_general_settings" />
 
     <SwitchPreference
         android:key="sp_dark_mode"
         android:summary="@string/summary_dark_theme"
-        android:title="@string/title_dark_theme"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:title="@string/title_dark_theme" />
 
-    <PreferenceCategory android:title="@string/title_alarm_settings"
-        android:textColor="#F3b9a4"/>
-
-<!--    <Preference-->
-<!--        android:title="@string/set_ringtone"-->
-<!--        android:summary="%s"/>-->
+    <PreferenceCategory
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:title="@string/title_alarm_settings" />
 
     <ListPreference
         android:defaultValue="5 mins"
@@ -23,23 +22,18 @@
         android:entryValues="@array/snooze_values"
         android:key="lp_snooze"
         android:summary="%s"
-        android:title="@string/snooze_length"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:title="@string/snooze_length" />
     <SwitchPreference
         android:defaultValue="true"
         android:key="sp_vibrate_on_off"
-        android:title="@string/vibrate_on"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:title="@string/vibrate_on" />
     <SwitchPreference
         android:defaultValue="true"
         android:key="sp_shake"
         android:summary="@string/shake_to_wake"
-        android:title="Shake to Wake"
-        android:textColor="@color/white"/>
-
-<!--    <SeekBarPreference-->
-<!--        android:defaultValue="60"-->
-<!--        android:title="@string/alarm_volume" />-->
-
+        android:textColor="@color/white"
+        android:title="Shake to Wake" />
 
 </PreferenceScreen>
