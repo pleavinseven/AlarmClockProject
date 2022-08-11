@@ -40,8 +40,8 @@
     <string name="title_alarm_settings">Alarm Settings</string>
     <string name="set_ringtone">Set Ringtone</string>
     <string name="snooze_length">Snooze Length</string>
-    <string name="vibrate_on">Vibrate on Alarm Ring</string>
-    <string name="shake_to_wake">shake phone to cancel alarm</string>
+    <string name="vibrate_on">Vibrate </string>
+    <string name="shake_to_wake">shake to cancel </string>
     <string name="alarm_volume">Alarm Volume</string>
 
     // notification text
