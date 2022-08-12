@@ -59,7 +59,7 @@
                 android:shadowRadius="5"
                 android:text="@string/alarm_not_set"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-                android:textColor="?android:textColor"
+                android:textColor="@color/white"
                 android:textSize="70sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
