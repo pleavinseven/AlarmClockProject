@@ -19,7 +19,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="210dp"
                 android:layout_marginStart="15dp"
@@ -28,7 +28,9 @@
                 android:layout_marginBottom="25dp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="30dp"
-                app:cardElevation="10dp">
+                app:cardElevation="10dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="5dp">
 
                 <TimePicker
                     android:id="@+id/fragment_create_alarm_timePicker"
@@ -39,11 +41,11 @@
                     android:theme="@style/NumberPickerStyle"
                     android:timePickerMode="spinner" />
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/add_alarm_settings_cardview"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
@@ -54,6 +56,8 @@
             app:cardBackgroundColor="?android:colorPrimary"
             app:cardCornerRadius="30dp"
             app:cardElevation="10dp"
+            app:strokeColor="@color/black"
+            app:strokeWidth="3dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_create_alarm_timePickerLayout">
 
@@ -69,9 +73,13 @@
                     android:layout_marginTop="10dp"
                     android:padding="8dp"
                     android:text="@string/days"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold"
+                    android:shadowColor="#000000"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -88,13 +96,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/recurring"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:padding="8dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:shadowColor="#000000"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_create_alarm_days" />
 
@@ -111,11 +123,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vibrate_on"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:padding="8dp"
                     android:layout_marginStart="10dp"
+                    android:shadowColor="#000000"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_create_alarm_recurring" />
 
@@ -125,8 +141,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
                     android:checked="false"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
+                    android:shadowColor="#000000"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_create_alarm_recurring" />
 
@@ -134,10 +154,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/snooze_length"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:padding="8dp"
+                    android:shadowColor="#000000"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="5"
                     android:layout_marginStart="10dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_create_alarm_vibrate" />
@@ -156,12 +180,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/shake_to_wake"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:padding="8dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginBottom="10dp"
+                    android:shadowColor="#000000"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
@@ -171,12 +199,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
                     android:checked="false"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
+                    android:shadowColor="#000000"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/spinner" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/fragment_btn_set_alarm"
@@ -186,9 +218,16 @@
             android:layout_marginBottom="90dp"
             android:text="@string/set_alarm"
             android:textColor="@color/white"
+            android:shadowColor="#000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:strokeColor="@color/black"
+            app:strokeWidth="3dp"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
