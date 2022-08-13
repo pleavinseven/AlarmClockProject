@@ -3,16 +3,13 @@ package com.pleavinseven.alarmclockproject.fragments
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -45,8 +42,10 @@ class HomeFragment : Fragment() {
 
 
         when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_YES -> container!!.background = ColorDrawable(Color.parseColor("#56557B"))
-            Configuration.UI_MODE_NIGHT_NO -> container!!.background = ColorDrawable(Color.parseColor("#CDCCF0"))
+            Configuration.UI_MODE_NIGHT_YES -> container!!.background =
+                ColorDrawable(Color.parseColor("#56557B"))
+            Configuration.UI_MODE_NIGHT_NO -> container!!.background =
+                ColorDrawable(Color.parseColor("#CDCCF0"))
 
         }
 
@@ -118,7 +117,7 @@ class HomeFragment : Fragment() {
                 Toast.makeText(
                     context,
                     "${context?.getString(R.string.toast_alarm_cancelled)}",
-                Toast.LENGTH_SHORT
+                    Toast.LENGTH_SHORT
                 ).show()
             }
         })
