@@ -3,7 +3,6 @@ package com.pleavinseven.alarmclockproject.fragments
 import android.app.KeyguardManager
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -14,28 +13,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
-import com.pleavinseven.alarmclockproject.alarmmanager.AlarmManager
 import com.pleavinseven.alarmclockproject.databinding.FragmentShakeAlarmRingBinding
 import com.pleavinseven.alarmclockproject.service.AlarmRingService
 import com.pleavinseven.alarmclockproject.R.id.alarm_bubble
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
 import kotlin.math.abs
 import kotlin.math.sqrt
 
 
-class ShakeAlarmRingFragment : Fragment() {
+class ShakeAlarmRingFragment : Fragment(), SensorEventListener {
 
     private lateinit var sensorManager: SensorManager
-    private lateinit var accelerometer: Sensor
-    private lateinit var sensorEventListener: SensorEventListener
+    private lateinit var vibe: Vibrator
     var accelerometerPreviousVal = 0.0
     var vibeOn = false
+    var n = 0
     lateinit var binding: FragmentShakeAlarmRingBinding
 
     override fun onCreateView(
@@ -46,10 +41,6 @@ class ShakeAlarmRingFragment : Fragment() {
 
         val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
-        wakeScreen()
-        setBubble(true)
-        setCurrentTimeText()
-
         val vibe =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 val vibratorManager =
@@ -59,43 +50,28 @@ class ShakeAlarmRingFragment : Fragment() {
                 activity?.getSystemService(AppCompatActivity.VIBRATOR_SERVICE) as Vibrator
             }
 
+        wakeScreen()
+        setBubble(true)
+        setCurrentTimeText()
         if (prefs.getBoolean("sp_vibrate_on_off", true)) {
             vibeOn = true
             vibe.vibrate(VibrationEffect.createWaveform(longArrayOf(200, 1000, 500, 500), 0))
         }
-
-        // accelerometer
-        sensorManager =
-            activity?.getSystemService(AppCompatActivity.SENSOR_SERVICE) as SensorManager
-        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
-        var n = 0
-        sensorEventListener = object : SensorEventListener {
-            override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-                true
-            }
-
-            override fun onSensorChanged(event: SensorEvent?) {
-                val x: Float = event!!.values[0]
-                val y: Float = event.values[1]
-                val z: Float = event.values[2]
-
-                val accelerometerCurrentVal = sqrt((x * x + y * y + z * z).toDouble())
-
-                val changeInAcceleration =
-                    abs(accelerometerCurrentVal - accelerometerPreviousVal)
-                accelerometerPreviousVal = accelerometerCurrentVal
-
-                // shake phone to turn off alarm
-                if (changeInAcceleration > 10f) {
-                    n += 1
-                    if (n > 200) {
-                        turnOffAlarm(vibe)
-                    }
-                }
-            }
-        }
+        setSensorManager()
 
         return binding.root
+    }
+
+    private fun setSensorManager() {
+        sensorManager =
+            activity?.getSystemService(AppCompatActivity.SENSOR_SERVICE) as SensorManager
+        sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)?.also {
+            sensorManager.registerListener(
+                this,
+                it,
+                SensorManager.SENSOR_DELAY_FASTEST
+            )
+        }
     }
 
     private fun wakeScreen() {
@@ -126,7 +102,7 @@ class ShakeAlarmRingFragment : Fragment() {
         }
     }
 
-    fun turnOffAlarm(vibe: Vibrator) {
+    private fun turnOffAlarm(vibe: Vibrator) {
         vibe.cancel()
         val intent = Intent(requireContext(), AlarmRingService::class.java)
         requireContext().stopService(intent)
@@ -140,10 +116,44 @@ class ShakeAlarmRingFragment : Fragment() {
         }
     }
 
-    fun setCurrentTimeText(){
+    fun setCurrentTimeText() {
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("HH:mm")
         val formattedTime = current.format(formatter)
         binding.currentTime.text = formattedTime
     }
+
+    override fun onSensorChanged(event: SensorEvent?) {
+        if (event?.sensor?.type == Sensor.TYPE_ACCELEROMETER) {
+            val x: Float = event!!.values[0]
+            val y: Float = event.values[1]
+            val z: Float = event.values[2]
+
+            val accelerometerCurrentVal = sqrt((x * x + y * y + z * z).toDouble())
+
+            val changeInAcceleration =
+                abs(accelerometerCurrentVal - accelerometerPreviousVal)
+            accelerometerPreviousVal = accelerometerCurrentVal
+
+            // shake phone to turn off alarm
+            if (changeInAcceleration > 12f) {
+                n += 1
+                println(n)
+                if (n > 100) {
+                turnOffAlarm(vibe)
+
+                }
+            }
+        }
+    }
+
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+        return
+    }
+
+    override fun onDestroy() {
+        sensorManager.unregisterListener(this)
+        super.onDestroy()
+    }
+
 }
