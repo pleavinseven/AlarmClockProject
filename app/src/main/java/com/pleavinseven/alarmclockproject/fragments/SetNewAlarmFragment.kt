@@ -32,15 +32,18 @@ class SetNewAlarmFragment : Fragment() {
 
         alarmViewModel = ViewModelProvider(this)[AlarmViewModel::class.java]
 
-
         binding.fragmentBtnSetAlarm.setOnClickListener {
             scheduleAlarm()
             Navigation.findNavController(requireView())
                 .navigate(SetNewAlarmFragmentDirections.actionNewAlarmFragmentToHomeFragment())
         }
+
+        binding.fragmentCreateAlarmDays.setOnClickListener {
+            Navigation.findNavController(requireView())
+                .navigate(SetNewAlarmFragmentDirections.actionNewAlarmFragmentToDaysFragment())
+        }
+
         return binding.root
-
-
     }
 
     private fun insertToDatabase(hour: Int, minute: Int, started: Boolean, repeat: Boolean) {

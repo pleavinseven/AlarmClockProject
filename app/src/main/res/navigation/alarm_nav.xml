@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_newAlarmFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_newAlarmFragment_to_daysFragment"
+            app:destination="@id/daysFragment" />
     </fragment>
     <fragment
         android:id="@+id/updateFragment"
@@ -35,5 +38,20 @@
         <argument
             android:name="currentAlarm"
             app:argType="com.pleavinseven.alarmclockproject.data.model.Alarm" />
+        <action
+            android:id="@+id/action_updateFragment_to_daysFragment"
+            app:destination="@id/daysFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/daysFragment"
+        android:name="com.pleavinseven.alarmclockproject.fragments.DaysFragment"
+        android:label="fragment_days"
+        tools:layout="@layout/fragment_days" >
+        <action
+            android:id="@+id/action_daysFragment_to_newAlarmFragment"
+            app:destination="@id/newAlarmFragment" />
+        <action
+            android:id="@+id/action_daysFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
     </fragment>
 </navigation>

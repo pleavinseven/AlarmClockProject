@@ -27,7 +27,7 @@ class UpdateFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentUpdateBinding.inflate(inflater, container, false)
 
         alarmViewModel = ViewModelProvider(this)[AlarmViewModel::class.java]
@@ -37,6 +37,12 @@ class UpdateFragment : Fragment() {
             Navigation.findNavController(requireView())
                 .navigate(R.id.action_updateFragment_to_homeFragment)
         }
+
+        binding.fragmentCreateAlarmDays.setOnClickListener {
+            Navigation.findNavController(requireView())
+                .navigate(UpdateFragmentDirections.actionUpdateFragmentToDaysFragment())
+        }
+
         return binding.root
     }
 

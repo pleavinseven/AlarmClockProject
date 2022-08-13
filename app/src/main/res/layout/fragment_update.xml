@@ -57,8 +57,8 @@
             app:cardBackgroundColor="?android:colorPrimary"
             app:cardCornerRadius="30dp"
             app:cardElevation="10dp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_update_alarm_timePickerLayout"
             app:strokeColor="@color/black"
             app:strokeWidth="3dp">
@@ -89,14 +89,19 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/fragment_update_alarm_days"
+                    <TextView
+                        android:id="@+id/fragment_create_alarm_days"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:layout_marginTop="15dp"
-                        android:layout_marginEnd="15dp"
+                        android:layout_marginEnd="22dp"
                         android:layout_weight="1"
-                        android:checked="false" />
+                        android:clickable="true"
+                        android:text="@string/daily_alarm"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
