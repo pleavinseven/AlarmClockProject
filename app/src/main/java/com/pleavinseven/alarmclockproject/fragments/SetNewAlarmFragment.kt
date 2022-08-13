@@ -30,14 +30,6 @@ class SetNewAlarmFragment : Fragment() {
 
         binding = FragmentSetNewAlarmBinding.inflate(inflater, container, false)
 
-        binding.fragmentCreateAlarmRecurring.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                binding.fragmentCreateAlarmRecurring.visibility = View.VISIBLE
-            } else {
-                binding.fragmentCreateAlarmRecurring.visibility = View.GONE
-            }
-        }
-
         alarmViewModel = ViewModelProvider(this)[AlarmViewModel::class.java]
 
 
