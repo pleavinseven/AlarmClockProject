@@ -21,6 +21,7 @@ class SetNewAlarmFragment : Fragment() {
     private val timePickerUtil = TimePickerUtil()
     lateinit var binding: FragmentSetNewAlarmBinding
     private lateinit var alarmViewModel: AlarmViewModel
+    private var new = 1
 
 
     override fun onCreateView(

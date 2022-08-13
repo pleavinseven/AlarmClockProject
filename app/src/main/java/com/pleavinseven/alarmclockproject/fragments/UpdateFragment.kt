@@ -40,7 +40,7 @@ class UpdateFragment : Fragment() {
 
         binding.fragmentCreateAlarmDays.setOnClickListener {
             Navigation.findNavController(requireView())
-                .navigate(UpdateFragmentDirections.actionUpdateFragmentToDaysFragment())
+                .navigate(UpdateFragmentDirections.actionUpdateFragmentToDaysFragment(0, args.currentAlarm))
         }
 
         return binding.root
