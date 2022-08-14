@@ -189,13 +189,19 @@
                         android:textStyle="bold" />
 
                     <Spinner
-                        android:id="@+id/spinner"
+                        android:id="@+id/UpdateSpinner"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:defaultValue="none"
+                        android:entries="@array/snooze_entries"
+                        android:entryValues="@array/snooze_values"
+                        android:key="lp_snooze"
                         android:padding="8dp"
-                        android:prompt="@string/next_alarm"
-                        android:spinnerMode="dropdown" />
+                        android:popupBackground="@color/black"
+                        android:spinnerMode="dropdown"
+                        android:textAlignment="center"
+                        android:layout_weight="1"
+                        android:summary="%s" />
 
                 </LinearLayout>
 
