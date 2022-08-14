@@ -125,7 +125,11 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    fun setTvNextAlarm(adapter: AlarmListAdapter, alarm: List<Alarm>) {
+    private fun setTvNextAlarm(adapter: AlarmListAdapter, alarm: List<Alarm>) {
+        if (alarm.isEmpty()) {
+            binding.tvNextAlarmTime.textSize = 25F
+            binding.tvNextAlarmTime.text = "${context?.getString(R.string.no_alarms)}"
+        }
         // format alarm time to today's date
         var tvNextAlarm = 1441 // minutes in a day
         adapter.setData(alarm)
