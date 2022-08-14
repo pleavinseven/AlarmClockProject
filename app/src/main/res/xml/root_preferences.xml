@@ -10,30 +10,4 @@
         android:textColor="@color/white"
         android:title="@string/title_dark_theme" />
 
-    <PreferenceCategory
-        android:textColor="@color/black"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        android:title="@string/title_alarm_settings" />
-
-    <ListPreference
-        android:defaultValue="5 mins"
-        android:entries="@array/snooze_entries"
-        android:entryValues="@array/snooze_values"
-        android:key="lp_snooze"
-        android:summary="%s"
-        android:textColor="@color/white"
-        android:title="@string/snooze_length" />
-    <SwitchPreference
-        android:defaultValue="true"
-        android:key="sp_vibrate_on_off"
-        android:textColor="@color/white"
-        android:title="@string/vibrate_on" />
-    <SwitchPreference
-        android:defaultValue="true"
-        android:key="sp_shake"
-        android:summary="@string/shake_to_wake"
-        android:textColor="@color/white"
-        android:title="Shake to Wake" />
-
 </PreferenceScreen>
