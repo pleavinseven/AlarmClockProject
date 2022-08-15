@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.pleavinseven.alarmclockproject.data.model.Alarm
 
 
-@Database(entities = [Alarm::class], version = 2)
+@Database(entities = [Alarm::class], version = 3)
 abstract class AlarmsDatabase : RoomDatabase() {
 
     abstract fun alarmDao(): AlarmDao
