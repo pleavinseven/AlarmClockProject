@@ -16,20 +16,23 @@ class AlarmManager(
     private val hour: Int,
     private val minute: Int,
     var started: Boolean,
-    val recurring: Boolean
+    val recurring: Boolean,
+    val vibrate: Boolean,
+    val shake: Boolean,
+    val snooze: Int
 ) {
 
     fun schedule(context: Context) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java)
         intent.putExtra("recurring", recurring)
+        intent.putExtra("vibrate", vibrate)
+        intent.putExtra("shake", shake)
+        intent.putExtra("snooze", snooze)
         val alarmPendingIntent = PendingIntent.getBroadcast(
             context,
-            alarmId, intent, if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
-            } else {
-                PendingIntent.FLAG_UPDATE_CURRENT
-            }
+            alarmId, intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
         val calendar: Calendar = Calendar.getInstance()
         calendar.timeInMillis = System.currentTimeMillis()
@@ -67,22 +70,19 @@ class AlarmManager(
         started = true
     }
 
-    fun cancel(context: Context){
+    fun cancel(context: Context) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java)
         val alarmPendingIntent = PendingIntent.getBroadcast(
             context,
-            alarmId, intent, if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
-            } else {
-                PendingIntent.FLAG_UPDATE_CURRENT
-            }
+            alarmId, intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
         alarmManager.cancel(alarmPendingIntent)
         started = false
     }
 
-    private fun formatTime(): String{
+    private fun formatTime(): String {
         return if (minute <= 9 && hour <= 9) {
             "0$hour:0$minute"
         } else if (minute <= 9) {
