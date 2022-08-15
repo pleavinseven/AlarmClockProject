@@ -23,7 +23,10 @@ class RescheduleAlarmRingService : LifecycleService() {
                     alarm.hour,
                     alarm.minute,
                     true,
-                    alarm.repeat
+                    alarm.repeat,
+                    alarm.vibrate,
+                    alarm.shake,
+                    alarm.snooze
                 )
                 alarmManager.schedule(applicationContext)
             }
