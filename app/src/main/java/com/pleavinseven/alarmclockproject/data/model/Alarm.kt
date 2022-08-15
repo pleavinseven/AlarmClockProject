@@ -15,4 +15,7 @@ data class Alarm(
     val minute: Int,
     val started: Boolean,
     val repeat: Boolean,
+    val vibrate: Boolean,
+    val shake: Boolean,
+    val snooze: Int
 ) : Parcelable
