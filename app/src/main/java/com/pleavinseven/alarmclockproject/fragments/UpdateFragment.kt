@@ -46,8 +46,8 @@ class UpdateFragment : Fragment() {
         return binding.root
     }
 
-    private fun updateDatabase(id: Int, hour: Int, minute: Int, started: Boolean, repeat: Boolean) {
-        val alarm = Alarm(id, hour, minute, started, repeat)
+    private fun updateDatabase(id: Int, hour: Int, minute: Int, started: Boolean, repeat: Boolean, vibrate: Boolean, shake: Boolean, snooze: Int) {
+        val alarm = Alarm(id, hour, minute, started, repeat, vibrate, shake, snooze)
         alarmViewModel.update(alarm)
     }
 
@@ -58,16 +58,22 @@ class UpdateFragment : Fragment() {
         val minute = timePickerUtil.getTimePickerMinute(timePicker)
         val started = true
         val repeat = binding.fragmentUpdateAlarmRecurring.isChecked
+        val vibrate = binding.fragmentUpdateAlarmVibrate.isChecked
+        val shake = binding.fragmentUpdateAlarmShakeToWake.isChecked
+        val snooze = binding.fragmentUpdateAlarmSnooze.selectedItem as Int
 
         val alarmManager = AlarmManager(
             id,
             hour,
             minute,
             true,
-            binding.fragmentUpdateAlarmRecurring.isChecked
+            repeat,
+            vibrate,
+            shake,
+            snooze
         )
 
-        updateDatabase(id, hour, minute, started, repeat)
+        updateDatabase(id, hour, minute, started, repeat, vibrate, shake, snooze)
         alarmManager.cancel(requireContext())
         alarmManager.schedule(requireContext())
     }

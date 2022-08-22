@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CompoundButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -21,8 +20,6 @@ class SetNewAlarmFragment : Fragment() {
     private val timePickerUtil = TimePickerUtil()
     lateinit var binding: FragmentSetNewAlarmBinding
     private lateinit var alarmViewModel: AlarmViewModel
-    private var new = 1
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,8 +44,16 @@ class SetNewAlarmFragment : Fragment() {
         return binding.root
     }
 
-    private fun insertToDatabase(hour: Int, minute: Int, started: Boolean, repeat: Boolean) {
-        val alarm = Alarm(0, hour, minute, started, repeat)
+    private fun insertToDatabase(
+        hour: Int,
+        minute: Int,
+        started: Boolean,
+        repeat: Boolean,
+        vibrate: Boolean,
+        shake: Boolean,
+        snooze: Int
+    ) {
+        val alarm = Alarm(0, hour, minute, started, repeat, vibrate, shake, snooze)
         alarmViewModel.addAlarm(alarm)
     }
 
@@ -59,16 +64,22 @@ class SetNewAlarmFragment : Fragment() {
         val minute = timePickerUtil.getTimePickerMinute(timePicker)
         val started = true
         val repeat = binding.fragmentCreateAlarmRecurring.isChecked
+        val vibrate = binding.fragmentCreateAlarmVibrate.isChecked
+        val shake = binding.fragmentCreateAlarmShakeToWake.isChecked
+        val snooze = binding.fragmentCreateAlarmSnooze.selectedItem as Int
 
         val alarmManager = AlarmManager(
             alarmId,
             hour,
             minute,
             true,
-            repeat
+            repeat,
+            vibrate,
+            shake,
+            snooze
         )
 
-        insertToDatabase(hour, minute, started, repeat)
+        insertToDatabase(hour, minute, started, repeat, vibrate, shake, snooze)
         alarmManager.schedule(requireContext())
     }
 }
