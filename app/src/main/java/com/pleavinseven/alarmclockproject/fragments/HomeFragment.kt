@@ -96,6 +96,9 @@ class HomeFragment : Fragment() {
                     alarm.minute,
                     true,
                     alarm.repeat,
+                    alarm.vibrate,
+                    alarm.shake,
+                    alarm.snooze
                 )
                 alarmManager.cancel(requireContext())
                 Toast.makeText(
@@ -112,6 +115,9 @@ class HomeFragment : Fragment() {
                     alarm.minute,
                     true,
                     alarm.repeat,
+                    alarm.vibrate,
+                    alarm.shake,
+                    alarm.snooze
                 )
                 alarmManager.cancel(requireContext())
                 Toast.makeText(
