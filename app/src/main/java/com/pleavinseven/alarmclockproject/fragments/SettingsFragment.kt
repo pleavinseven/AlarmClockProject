@@ -31,28 +31,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
         sharedPreferences = context?.getSharedPreferences("nightModePrefs", Context.MODE_PRIVATE)!!
 
         setDarkMode()
-        setVibrate()
-    }
-
-    private fun setVibrate() {
-        val vibe =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                val vibratorManager =
-                    activity?.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
-                vibratorManager.defaultVibrator
-            } else {
-                activity?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-            }
-        val spVibrate = findPreference<SwitchPreference>("sp_vibrate_on_off")
-        spVibrate!!.setOnPreferenceClickListener {
-            if (spVibrate.isChecked) {
-                vibe.vibrate(VibrationEffect.createOneShot(200, 1))
-                setSwitch(spVibrate, true)
-            } else {
-                setSwitch(spVibrate, false)
-            }
-            true
-        }
     }
 
     private fun setDarkMode() {
