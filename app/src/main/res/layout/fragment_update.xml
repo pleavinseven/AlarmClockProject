@@ -189,7 +189,7 @@
                         android:textStyle="bold" />
 
                     <Spinner
-                        android:id="@+id/UpdateSpinner"
+                        android:id="@+id/fragment_update_alarm_snooze"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:defaultValue="none"
