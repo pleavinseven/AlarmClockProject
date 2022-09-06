@@ -28,8 +28,7 @@ class ShakeAlarmRingFragment : Fragment(), SensorEventListener {
     private lateinit var sensorManager: SensorManager
     private lateinit var vibe: Vibrator
     var accelerometerPreviousVal = 0.0
-    var vibeOn = false
-    var n = 0
+    var accelerometerHitCount = 0
     lateinit var binding: FragmentShakeAlarmRingBinding
 
     override fun onCreateView(
@@ -54,7 +53,7 @@ class ShakeAlarmRingFragment : Fragment(), SensorEventListener {
         setBubble(true)
         setCurrentTimeText()
 
-        if (vibrate == true) {
+        if (vibrate!!) {
             vibe.vibrate(VibrationEffect.createWaveform(longArrayOf(200, 1000, 500, 500), 0))
         }
         setSensorManager()
@@ -137,8 +136,8 @@ class ShakeAlarmRingFragment : Fragment(), SensorEventListener {
 
             // shake phone to turn off alarm
             if (changeInAcceleration > 12f) {
-                n += 1
-                if (n > 100) {
+                accelerometerHitCount += 1
+                if (accelerometerHitCount > 100) {
                     turnOffAlarm(vibe)
 
                 }
