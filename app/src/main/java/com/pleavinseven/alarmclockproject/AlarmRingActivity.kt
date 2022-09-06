@@ -1,6 +1,5 @@
 package com.pleavinseven.alarmclockproject
 
-import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -8,7 +7,7 @@ import android.os.*
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.preference.PreferenceManager
+import androidx.fragment.app.Fragment
 import com.pleavinseven.alarmclockproject.databinding.ActivityAlarmRingBinding
 import com.pleavinseven.alarmclockproject.fragments.AlarmRingFragment
 import com.pleavinseven.alarmclockproject.fragments.ShakeAlarmRingFragment
@@ -18,26 +17,23 @@ class AlarmRingActivity : AppCompatActivity() {
     lateinit var binding: ActivityAlarmRingBinding
     private val fragmentManager = supportFragmentManager
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAlarmRingBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.title = ""
 
-        val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val vibrate = intent?.extras?.getBoolean("vibrate")
+        val shake = intent?.extras?.getBoolean("shake")!!
 
-        if (prefs.getBoolean("sp_shake", true)) {
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.add(R.id.fragmentContainerViewAlarm, ShakeAlarmRingFragment())
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
-        } else {
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.add(R.id.fragmentContainerViewAlarm, AlarmRingFragment())
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
-        }
+        //create shake or non shake fragment and pass in vibrate boolean
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        val fragObj = if (shake) ShakeAlarmRingFragment() else AlarmRingFragment()
+        val bundle = Bundle()
+        bundle.putBoolean("vibrate", vibrate!!)
+        fragObj.arguments = bundle
+        fragmentTransaction.add(R.id.fragmentContainerViewAlarm, fragObj)
+        fragmentTransaction.commit()
 
         // set action bar, status bar and nav to fit theme
         backGroundColour()

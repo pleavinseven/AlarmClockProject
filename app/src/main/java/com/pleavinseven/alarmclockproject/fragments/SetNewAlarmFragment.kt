@@ -66,7 +66,7 @@ class SetNewAlarmFragment : Fragment() {
         val repeat = binding.fragmentCreateAlarmRecurring.isChecked
         val vibrate = binding.fragmentCreateAlarmVibrate.isChecked
         val shake = binding.fragmentCreateAlarmShakeToWake.isChecked
-        val snooze = binding.fragmentCreateAlarmSnooze.selectedItem as Int
+        val snooze = 5 //todo set this to a real int from list
 
         val alarmManager = AlarmManager(
             alarmId,

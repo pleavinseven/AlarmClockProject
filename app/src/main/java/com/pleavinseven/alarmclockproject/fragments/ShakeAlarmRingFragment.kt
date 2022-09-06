@@ -14,7 +14,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.preference.PreferenceManager
 import com.pleavinseven.alarmclockproject.databinding.FragmentShakeAlarmRingBinding
 import com.pleavinseven.alarmclockproject.service.AlarmRingService
 import com.pleavinseven.alarmclockproject.R.id.alarm_bubble
@@ -39,7 +38,8 @@ class ShakeAlarmRingFragment : Fragment(), SensorEventListener {
     ): View {
         binding = FragmentShakeAlarmRingBinding.inflate(inflater, container, false)
 
-        val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val bundle = arguments
+        val vibrate = bundle?.getBoolean("vibrate")
 
         val vibe =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -53,8 +53,8 @@ class ShakeAlarmRingFragment : Fragment(), SensorEventListener {
         wakeScreen()
         setBubble(true)
         setCurrentTimeText()
-        if (prefs.getBoolean("sp_vibrate_on_off", true)) {
-            vibeOn = true
+
+        if (vibrate == true) {
             vibe.vibrate(VibrationEffect.createWaveform(longArrayOf(200, 1000, 500, 500), 0))
         }
         setSensorManager()
@@ -116,7 +116,7 @@ class ShakeAlarmRingFragment : Fragment(), SensorEventListener {
         }
     }
 
-    fun setCurrentTimeText() {
+    private fun setCurrentTimeText() {
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("HH:mm")
         val formattedTime = current.format(formatter)
@@ -125,7 +125,7 @@ class ShakeAlarmRingFragment : Fragment(), SensorEventListener {
 
     override fun onSensorChanged(event: SensorEvent?) {
         if (event?.sensor?.type == Sensor.TYPE_ACCELEROMETER) {
-            val x: Float = event!!.values[0]
+            val x: Float = event.values[0]
             val y: Float = event.values[1]
             val z: Float = event.values[2]
 
@@ -138,9 +138,8 @@ class ShakeAlarmRingFragment : Fragment(), SensorEventListener {
             // shake phone to turn off alarm
             if (changeInAcceleration > 12f) {
                 n += 1
-                println(n)
                 if (n > 100) {
-                turnOffAlarm(vibe)
+                    turnOffAlarm(vibe)
 
                 }
             }
@@ -155,5 +154,4 @@ class ShakeAlarmRingFragment : Fragment(), SensorEventListener {
         sensorManager.unregisterListener(this)
         super.onDestroy()
     }
-
 }

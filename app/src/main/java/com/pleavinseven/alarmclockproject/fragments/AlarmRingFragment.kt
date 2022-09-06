@@ -25,8 +25,10 @@ import java.util.*
 
 class AlarmRingFragment : Fragment() {
 
+    // todo whole fragment
+
+
     lateinit var binding: FragmentAlarmRingBinding
-    var vibeOn = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,33 +36,18 @@ class AlarmRingFragment : Fragment() {
     ): View {
         binding = FragmentAlarmRingBinding.inflate(inflater, container, false)
 
-        val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
-
-        val vibe =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                val vibratorManager =
-                    activity?.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
-                vibratorManager.defaultVibrator
-            } else {
-                activity?.getSystemService(AppCompatActivity.VIBRATOR_SERVICE) as Vibrator
-            }
-
-        if (prefs.getBoolean("sp_vibrate_on_off", true)) {
-            vibeOn = true
-            vibe.vibrate(VibrationEffect.createWaveform(longArrayOf(200, 1000, 500, 500), 0))
-        }
 
         wakeScreen()
         setBubble(true)
         setCurrentTimeText()
 
         binding.btnCancelAlarm.setOnClickListener {
-            turnOffAlarm(vibe)
+            //turnOffAlarm(vibe)
         }
 
         binding.btnSnoozeAlarm.setOnClickListener {
-            snoozeAlarm(prefs)
-            turnOffAlarm(vibe)
+//            snoozeAlarm(prefs)
+//            turnOffAlarm(vibe)
         }
 
         return binding.root
@@ -112,6 +99,9 @@ class AlarmRingFragment : Fragment() {
             calendar.get(Calendar.MINUTE),
             started = true,
             recurring = false,
+            vibrate = true,
+            snooze = 1,
+            shake = true
         )
         Toast.makeText(
             requireContext(),
@@ -129,7 +119,7 @@ class AlarmRingFragment : Fragment() {
         }
     }
 
-    fun setCurrentTimeText(){
+    private fun setCurrentTimeText(){
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("HH:mm")
         val formattedTime = current.format(formatter)
