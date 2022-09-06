@@ -2,7 +2,6 @@ package com.pleavinseven.alarmclockproject.service
 
 import android.app.*
 import android.content.Intent
-import android.content.Intent.parseUri
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.media.RingtoneManager
@@ -16,8 +15,6 @@ class AlarmRingService : Service() {
 
     private var mPlayer: MediaPlayer? = null
     private val alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
-    private val shake = parseUri("shake", 0)
-    private val snooze = parseUri("snooze", 0)
 
     override fun onCreate() {
         super.onCreate()
