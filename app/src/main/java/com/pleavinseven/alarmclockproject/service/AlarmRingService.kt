@@ -35,11 +35,13 @@ class AlarmRingService : Service() {
 
         val vibrate = intent?.extras?.getBoolean("vibrate")
         val shake = intent?.extras?.getBoolean("shake")
+        val snooze = intent?.extras?.getInt("snooze")
 
         val notificationIntent = Intent(this, AlarmRingActivity::class.java)
         notificationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         notificationIntent.putExtra("vibrate", vibrate)
         notificationIntent.putExtra("shake", shake)
+        notificationIntent.putExtra("snooze", snooze)
 
         val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0)
 
@@ -59,6 +61,7 @@ class AlarmRingService : Service() {
         ringIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         ringIntent.putExtra("vibrate", vibrate)
         ringIntent.putExtra("shake", shake)
+        ringIntent.putExtra("snooze", snooze)
 
         startActivity(ringIntent)
         startForeground(1, notification)

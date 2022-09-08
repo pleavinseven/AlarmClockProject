@@ -25,12 +25,14 @@ class AlarmRingActivity : AppCompatActivity() {
 
         val vibrate = intent?.extras?.getBoolean("vibrate")
         val shake = intent?.extras?.getBoolean("shake")!!
+        val snooze = intent?.extras?.getInt("snooze")!!
 
         //create shake or non shake fragment and pass in vibrate boolean
         val fragmentTransaction = fragmentManager.beginTransaction()
         val fragObj = if (shake) ShakeAlarmRingFragment() else AlarmRingFragment()
         val bundle = Bundle()
         bundle.putBoolean("vibrate", vibrate!!)
+        bundle.putInt("snooze", snooze)
         fragObj.arguments = bundle
         fragmentTransaction.add(R.id.fragmentContainerViewAlarm, fragObj)
         fragmentTransaction.commit()

@@ -25,9 +25,6 @@ import java.util.*
 
 class AlarmRingFragment : Fragment() {
 
-    // todo whole fragment
-
-
     lateinit var binding: FragmentAlarmRingBinding
 
     override fun onCreateView(
@@ -36,18 +33,34 @@ class AlarmRingFragment : Fragment() {
     ): View {
         binding = FragmentAlarmRingBinding.inflate(inflater, container, false)
 
+        val bundle = arguments
+        val vibrate = bundle?.getBoolean("vibrate")
+        val snoozeMins = bundle?.getInt("snooze")
+
+        val vibe =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                val vibratorManager =
+                    activity?.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+                vibratorManager.defaultVibrator
+            } else {
+                activity?.getSystemService(AppCompatActivity.VIBRATOR_SERVICE) as Vibrator
+            }
 
         wakeScreen()
         setBubble(true)
         setCurrentTimeText()
 
         binding.btnCancelAlarm.setOnClickListener {
-            //turnOffAlarm(vibe)
+            turnOffAlarm(vibe)
         }
 
         binding.btnSnoozeAlarm.setOnClickListener {
-//            snoozeAlarm(prefs)
-//            turnOffAlarm(vibe)
+            snoozeAlarm(snoozeMins!!)
+            turnOffAlarm(vibe)
+        }
+
+        if (vibrate!!) {
+            vibe.vibrate(VibrationEffect.createWaveform(longArrayOf(200, 1000, 500, 500), 0))
         }
 
         return binding.root
@@ -87,10 +100,10 @@ class AlarmRingFragment : Fragment() {
         requireContext().stopService(intent)
     }
 
-    private fun snoozeAlarm(prefs: SharedPreferences) {
+    private fun snoozeAlarm(snoozeMins: Int) {
+        if (snoozeMins <= 0) return
         val alarmId = Random().nextInt(Integer.MAX_VALUE)
         val calendar: Calendar = Calendar.getInstance()
-        val snoozeMins = prefs.getString("lp_snooze", "-1")!!.toInt()
         calendar.timeInMillis = System.currentTimeMillis()
         calendar.add(Calendar.MINUTE, snoozeMins)
         val alarm = AlarmManager(
@@ -100,8 +113,8 @@ class AlarmRingFragment : Fragment() {
             started = true,
             recurring = false,
             vibrate = true,
-            snooze = 1,
-            shake = true
+            snooze = 0,
+            shake = false
         )
         Toast.makeText(
             requireContext(),
@@ -119,7 +132,7 @@ class AlarmRingFragment : Fragment() {
         }
     }
 
-    private fun setCurrentTimeText(){
+    private fun setCurrentTimeText() {
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("HH:mm")
         val formattedTime = current.format(formatter)
