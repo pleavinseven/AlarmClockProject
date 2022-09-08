@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.pleavinseven.alarmclockproject.R
 import com.pleavinseven.alarmclockproject.alarmmanager.AlarmManager
 import com.pleavinseven.alarmclockproject.data.model.Alarm
 import com.pleavinseven.alarmclockproject.data.viewmodel.AlarmViewModel
@@ -28,10 +29,15 @@ class SetNewAlarmFragment : Fragment() {
 
         binding = FragmentSetNewAlarmBinding.inflate(inflater, container, false)
 
+        val snoozeEntries = resources.getStringArray(R.array.snooze_entries)
+        val snoozeValues = resources.getStringArray(R.array.snooze_values)
+
+        val snoozeMap: Map<String, String> = snoozeEntries.zip(snoozeValues).toMap()
+
         alarmViewModel = ViewModelProvider(this)[AlarmViewModel::class.java]
 
         binding.fragmentBtnSetAlarm.setOnClickListener {
-            scheduleAlarm()
+            scheduleAlarm(snoozeMap)
             Navigation.findNavController(requireView())
                 .navigate(SetNewAlarmFragmentDirections.actionNewAlarmFragmentToHomeFragment())
         }
@@ -57,7 +63,7 @@ class SetNewAlarmFragment : Fragment() {
         alarmViewModel.addAlarm(alarm)
     }
 
-    private fun scheduleAlarm() {
+    private fun scheduleAlarm(snoozeMap: Map<String,String>) {
         val alarmId = Random().nextInt(Integer.MAX_VALUE)
         val timePicker = binding.fragmentCreateAlarmTimePicker
         val hour = timePickerUtil.getTimePickerHour(timePicker)
@@ -66,7 +72,7 @@ class SetNewAlarmFragment : Fragment() {
         val repeat = binding.fragmentCreateAlarmRecurring.isChecked
         val vibrate = binding.fragmentCreateAlarmVibrate.isChecked
         val shake = binding.fragmentCreateAlarmShakeToWake.isChecked
-        val snooze = 5 //todo set this to a real int from list
+        val snooze = snoozeMap[binding.fragmentCreateAlarmSnooze.selectedItem]!!.toInt()
 
         val alarmManager = AlarmManager(
             alarmId,
