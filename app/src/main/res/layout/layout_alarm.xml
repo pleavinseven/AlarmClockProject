@@ -4,33 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="120sp">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="15dp"
-        app:cardBackgroundColor="@android:color/transparent"
-        app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardView"
-            android:layout_width="350dp"
-            android:layout_height="93dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="35dp"
-            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="@dimen/layout_margin_small"
+            android:layout_marginHorizontal="@dimen/layout_margin_medium"
             app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="30dp"
-            app:cardElevation="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/elevation"
             app:strokeColor="@color/black"
-            app:strokeWidth="3dp">
+            app:strokeWidth="@dimen/stroke"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -41,7 +29,7 @@
                     android:id="@+id/tv_alarm_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/layout_margin_medium"
                     android:layout_marginEnd="126dp"
                     android:text="11:11"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display2"
@@ -58,8 +46,8 @@
                     android:id="@+id/tv_repeat_days"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="@dimen/layout_margin_medium"
+                    android:layout_marginEnd="@dimen/layout_margin_small"
                     android:paddingBottom="2dp"
                     android:text="@string/daily_alarm"
                     android:textColor="@color/black"
@@ -72,12 +60,11 @@
                     android:id="@+id/switch_alarm"
                     android:layout_width="70dp"
                     android:layout_height="48dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="@dimen/layout_margin_medium"
                     android:checked="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
-    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

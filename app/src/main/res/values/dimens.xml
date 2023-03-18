@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <dimen name="card_corner_radius">30dp</dimen>
+
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">12dp</dimen>
+    <dimen name="padding_large">16dp</dimen>
+
+    <dimen name="layout_margin_small">8dp</dimen>
+    <dimen name="layout_margin_medium">12dp</dimen>
+    <dimen name="layout_margin_large">16dp</dimen>
+    <dimen name="layout_margin_extra_large">24dp</dimen>
+
+    <dimen name="elevation">12dp</dimen>
+
+    <dimen name="large_text">70sp</dimen>
+
+    <dimen name="stroke">5dp</dimen>
+    <dimen name="stroke_small">3dp</dimen>
+
+</resources>

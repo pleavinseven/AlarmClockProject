@@ -29,10 +29,10 @@
                 android:layout_marginEnd="15dp"
                 android:layout_marginBottom="25dp"
                 app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="30dp"
-                app:cardElevation="10dp"
+                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardElevation="@dimen/elevation"
                 app:strokeColor="@color/black"
-                app:strokeWidth="5dp">
+                app:strokeWidth="@dimen/stroke">
 
                 <TimePicker
                     android:id="@+id/fragment_create_alarm_timePicker"
@@ -55,13 +55,13 @@
             android:layout_marginTop="25dp"
             android:layout_marginBottom="25dp"
             app:cardBackgroundColor="?android:colorPrimary"
-            app:cardCornerRadius="30dp"
-            app:cardElevation="10dp"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/elevation"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_create_alarm_timePickerLayout"
             app:strokeColor="@color/black"
-            app:strokeWidth="3dp">
+            app:strokeWidth="@dimen/stroke_small">
 
 
             <LinearLayout
@@ -179,7 +179,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:padding="8dp"
-                        android:shadowColor="#000000"
+                        android:shadowColor="@color/black"
                         android:shadowDx="2"
                         android:shadowDy="2"
                         android:shadowRadius="5"
@@ -246,7 +246,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="90dp"
-            android:shadowColor="#000000"
+            android:shadowColor="@color/black"
             android:shadowDx="2"
             android:shadowDy="2"
             android:shadowRadius="5"
@@ -256,7 +256,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:strokeColor="@color/black"
-            app:strokeWidth="3dp" />
+            app:strokeWidth="@dimen/stroke_small" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
