@@ -32,7 +32,7 @@ class AlarmListAdapter() :
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val binding = LayoutAlarmBinding.inflate(LayoutInflater.from(parent.context))
+        val binding = LayoutAlarmBinding.bind(LayoutInflater.from(parent.context).inflate(R.layout.layout_alarm, parent, false))
         return MyViewHolder(binding)
     }
 
