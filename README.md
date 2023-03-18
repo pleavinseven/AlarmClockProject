@@ -1,12 +1,11 @@
 # Shake'n'Wake
-Multi-functional alarm clock that must be physically shaken to be snoozed/cancelled.
-The alarm has day/night mode, vibrate and snooze options as well as multiple available languages.
+Welcome to Shake'n'Wake' a multi-functional alarm clock application that features a shake-to-snooze/cancel function along with day/night mode, vibrate and snooze options, and multiple available languages.
 
+Built with the MVVM architecture and XML for UI, this application utilizes Activities and Fragments to provide a seamless user experience. The alarm can run in the background and will continue to work even if the device is locked, however if the app is force closed then alarms will be lost.
 
-The app makes use of MVVM architecture while sticking to XML written UI along with Activities and Fragments. 
-The alarm can run in the background, but if force closed will cancel all alarms.
+Please note that this is a work in progress, and I am continuously improving the current features while exploring new functionalities. I welcome any feedback you may have.
 
-This is still a work in progress and I am looking to implement more feautures whilst continuing to improve the current features.
+I hope to release the app for free on the Google Play Store in the near future.
 
 ![alarm_home](https://github.com/pleavinseven/AlarmClockProject/blob/master/readmeimages/alarm_home_227x479.png?raw=true)
 ![alarm_settings](https://github.com/pleavinseven/AlarmClockProject/blob/master/readmeimages/alarm_settings1_227x479.png?raw=true)
