@@ -1,7 +1,6 @@
 package com.pleavinseven.alarmclockproject.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,6 @@ import com.pleavinseven.alarmclockproject.data.model.Alarm
 import com.pleavinseven.alarmclockproject.data.viewmodel.AlarmViewModel
 import com.pleavinseven.alarmclockproject.databinding.FragmentUpdateBinding
 import com.pleavinseven.alarmclockproject.util.TimePickerUtil
-import java.util.*
 
 
 class UpdateFragment : Fragment() {
@@ -43,17 +41,6 @@ class UpdateFragment : Fragment() {
             Navigation.findNavController(requireView())
                 .navigate(R.id.action_updateFragment_to_homeFragment)
         }
-
-        binding.fragmentCreateAlarmDays.setOnClickListener {
-            Navigation.findNavController(requireView())
-                .navigate(
-                    UpdateFragmentDirections.actionUpdateFragmentToDaysFragment(
-                        0,
-                        args.currentAlarm
-                    )
-                )
-        }
-
         return binding.root
     }
 
