@@ -36,15 +36,10 @@ class SetNewAlarmFragment : Fragment() {
 
         alarmViewModel = ViewModelProvider(this)[AlarmViewModel::class.java]
 
-        binding.fragmentBtnSetAlarm.setOnClickListener {
+        binding.addAlarmBtnSetAlarm.setOnClickListener {
             scheduleAlarm(snoozeMap)
             Navigation.findNavController(requireView())
                 .navigate(SetNewAlarmFragmentDirections.actionNewAlarmFragmentToHomeFragment())
-        }
-
-        binding.fragmentCreateAlarmDays.setOnClickListener {
-            Navigation.findNavController(requireView())
-                .navigate(SetNewAlarmFragmentDirections.actionNewAlarmFragmentToDaysFragment())
         }
 
         return binding.root
@@ -65,14 +60,14 @@ class SetNewAlarmFragment : Fragment() {
 
     private fun scheduleAlarm(snoozeMap: Map<String,String>) {
         val alarmId = Random().nextInt(Integer.MAX_VALUE)
-        val timePicker = binding.fragmentCreateAlarmTimePicker
+        val timePicker = binding.addAlarmTimePicker
         val hour = timePickerUtil.getTimePickerHour(timePicker)
         val minute = timePickerUtil.getTimePickerMinute(timePicker)
         val started = true
-        val repeat = binding.fragmentCreateAlarmRecurring.isChecked
-        val vibrate = binding.fragmentCreateAlarmVibrate.isChecked
-        val shake = binding.fragmentCreateAlarmShakeToWake.isChecked
-        val snooze = snoozeMap[binding.fragmentCreateAlarmSnooze.selectedItem]!!.toInt()
+        val repeat = binding.addAlarmSwitchRecurring.isChecked
+        val vibrate = binding.addAlarmSwitchVibrate.isChecked
+        val shake = binding.addAlarmSwitchShake.isChecked
+        val snooze = snoozeMap[binding.addAlarmSwitchSnooze.selectedItem]!!.toInt()
 
         val alarmManager = AlarmManager(
             alarmId,
