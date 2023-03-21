@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Shake\'n\'Wake</string>
+    <string name="app_name">ShakeWake</string>
 
     // home screen
 
@@ -17,7 +17,7 @@
 
     <string name="set_new_alarm">Set New Alarm</string>
     <string name="alarm_time">Alarm Time</string>
-    <string name="recurring">Recurring</string>
+    <string name="one_time">Once</string>
     <string name="set_alarm">Set Alarm</string>
 
     // update alarm screen
