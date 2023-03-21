@@ -1,262 +1,295 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="@dimen/elevation"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <!--   time picker     -->
+    <!--   time picker     -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/update_timepicker_card"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:layout_marginHorizontal="@dimen/layout_margin_large"
+        android:layout_marginVertical="@dimen/layout_margin_extra_large"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/elevation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/my_toolbar"
+        app:strokeColor="@color/black"
+        app:strokeWidth="@dimen/stroke">
 
-        <LinearLayout
-            android:id="@+id/fragment_update_alarm_timePickerLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="65dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <TimePicker
+            android:id="@+id/update_alarm_timePicker"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.6"
+            android:elevation="31dp"
+            android:theme="@style/NumberPickerStyle"
+            android:timePickerMode="spinner"/>
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="210dp"
-                android:layout_marginStart="@dimen/layout_margin_large"
-                android:layout_marginTop="@dimen/layout_margin_extra_large"
-                android:layout_marginEnd="@dimen/layout_margin_large"
-                android:layout_marginBottom="25dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="@dimen/card_corner_radius"
-                app:cardElevation="@dimen/elevation"
-                app:strokeColor="@color/black"
-                app:strokeWidth="@dimen/stroke">
+    </com.google.android.material.card.MaterialCardView>
 
-                <TimePicker
-                    android:id="@+id/fragment_update_alarm_timePicker"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.6"
-                    android:elevation="31dp"
-                    android:theme="@style/NumberPickerStyle"
-                    android:timePickerMode="spinner" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/monday"
+        app:fabSize="mini"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:backgroundTint="@color/teal_200"
+        app:backgroundTint="@color/black"
+        app:borderWidth="@dimen/stroke_small"
+        android:layout_marginStart="@dimen/layout_margin_extra_large"
+        android:layout_marginVertical="@dimen/layout_margin_extra_large"
+        app:layout_constraintEnd_toStartOf="@+id/tuesday"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/update_timepicker_card"/>
 
-            </com.google.android.material.card.MaterialCardView>
-        </LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/tuesday"
+        app:fabSize="mini"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:backgroundTint="@color/teal_200"
+        app:backgroundTint="@color/black"
+        app:borderWidth="@dimen/stroke_small"
+        android:layout_marginVertical="@dimen/layout_margin_extra_large"
+        app:layout_constraintEnd_toStartOf="@+id/wednesday"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/monday"
+        app:layout_constraintTop_toBottomOf="@id/update_timepicker_card"/>
 
-        <!--    alarm options   -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/wednesday"
+        app:fabSize="mini"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:backgroundTint="@color/teal_200"
+        app:backgroundTint="@color/black"
+        app:borderWidth="@dimen/stroke_small"
+        android:layout_marginVertical="@dimen/layout_margin_extra_large"
+        app:layout_constraintEnd_toStartOf="@+id/thursday"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tuesday"
+        app:layout_constraintTop_toBottomOf="@id/update_timepicker_card"/>
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/update_alarm_settings_cardview"
-            android:layout_width="340dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="25dp"
-            app:cardBackgroundColor="?android:colorPrimary"
-            app:cardCornerRadius="@dimen/card_corner_radius"
-            app:cardElevation="@dimen/elevation"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_update_alarm_timePickerLayout"
-            app:strokeColor="@color/black"
-            app:strokeWidth="@dimen/stroke_small">
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/thursday"
+        app:fabSize="mini"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:backgroundTint="@color/teal_200"
+        app:backgroundTint="@color/black"
+        app:borderWidth="@dimen/stroke_small"
+        android:layout_marginVertical="@dimen/layout_margin_extra_large"
+        app:layout_constraintEnd_toStartOf="@+id/friday"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/wednesday"
+        app:layout_constraintTop_toBottomOf="@id/update_timepicker_card"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/friday"
+        app:fabSize="mini"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:backgroundTint="@color/teal_200"
+        app:backgroundTint="@color/black"
+        app:borderWidth="@dimen/stroke_small"
+        android:layout_marginVertical="@dimen/layout_margin_extra_large"
+        app:layout_constraintEnd_toStartOf="@+id/saturday"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/thursday"
+        app:layout_constraintTop_toBottomOf="@id/update_timepicker_card"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/saturday"
+        app:fabSize="mini"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:backgroundTint="@color/teal_200"
+        app:backgroundTint="@color/black"
+        app:borderWidth="@dimen/stroke_small"
+        android:layout_marginVertical="@dimen/layout_margin_extra_large"
+        app:layout_constraintEnd_toStartOf="@+id/sunday"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/friday"
+        app:layout_constraintTop_toBottomOf="@id/update_timepicker_card"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/sunday"
+        app:fabSize="mini"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:backgroundTint="@color/teal_200"
+        app:backgroundTint="@color/black"
+        app:borderWidth="@dimen/stroke_small"
+        android:layout_marginVertical="@dimen/layout_margin_extra_large"
+        android:layout_marginEnd="@dimen/layout_margin_extra_large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/saturday"
+        app:layout_constraintTop_toBottomOf="@id/update_timepicker_card"/>
+
+    <!--    alarm options   -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/update_alarm_settings_cardview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/layout_margin_extra_large"
+        android:layout_marginHorizontal="@dimen/layout_margin_large"
+        app:cardBackgroundColor="?android:colorPrimary"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/elevation"
+        app:layout_constraintTop_toBottomOf="@+id/thursday"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/black"
+        app:strokeWidth="@dimen/stroke_small">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/update_alarm_tv_recurring"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:padding="8dp"
+                android:text="@string/one_time"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/update_alarm_switch_recurring"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_weight="1"
+                android:checked="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/update_alarm_tv_vibrate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:padding="8dp"
+                android:text="@string/vibrate_on"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/update_alarm_tv_recurring"/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/update_alarm_switch_vibrate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_weight="1"
+                android:checked="false"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/update_alarm_tv_recurring"/>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/update_alarm_tv_snooze"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:padding="8dp"
+                android:text="@string/snooze_length"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/update_alarm_tv_vibrate"/>
+
+            <Spinner
+                android:id="@+id/update_alarm_switch_snooze"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_weight="1"
+                android:defaultValue="none"
+                android:entries="@array/snooze_entries"
+                android:entryValues="@array/snooze_values"
+                android:key="lp_snooze"
+                android:padding="8dp"
+                android:popupBackground="@color/black"
+                android:spinnerMode="dropdown"
+                android:summary="%s"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/update_alarm_tv_vibrate"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginTop="15dp"
-                        android:padding="8dp"
-                        android:shadowColor="#000000"
-                        android:shadowDx="2"
-                        android:shadowDy="2"
-                        android:shadowRadius="5"
-                        android:text="@string/days"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+            <TextView
+                android:id="@+id/update_alarm_tv_shake"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="15dp"
+                android:padding="8dp"
+                android:text="@string/shake_to_wake"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/update_alarm_tv_snooze"/>
 
-                    <TextView
-                        android:id="@+id/fragment_create_alarm_days"
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginEnd="22dp"
-                        android:layout_weight="1"
-                        android:clickable="true"
-                        android:text="@string/daily_alarm"
-                        android:textAlignment="textEnd"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/update_alarm_shake"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_weight="1"
+                android:checked="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/update_alarm_tv_snooze"/>
 
-                </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+    <!--    set alarm button   -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btn_update_alarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/layout_margin_large"
+        android:layout_marginBottom="@dimen/layout_margin_extra_large"
+        android:text="@string/update_alarm"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/update_alarm_settings_cardview"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/black"
+        app:strokeWidth="@dimen/stroke_small"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:padding="8dp"
-                        android:shadowColor="#000000"
-                        android:shadowDx="2"
-                        android:shadowDy="2"
-                        android:shadowRadius="5"
-                        android:text="@string/recurring"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/fragment_update_alarm_recurring"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="15dp"
-                        android:layout_weight="1"
-                        android:checked="false" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:padding="8dp"
-                        android:shadowColor="#000000"
-                        android:shadowDx="2"
-                        android:shadowDy="2"
-                        android:shadowRadius="5"
-                        android:text="@string/vibrate_on"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/fragment_update_alarm_vibrate"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="15dp"
-                        android:layout_weight="1"
-                        android:checked="false"
-                        android:shadowColor="#000000"
-                        android:shadowDx="2"
-                        android:shadowDy="2"
-                        android:shadowRadius="5"
-                        android:textColor="@color/white"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:padding="8dp"
-                        android:shadowColor="#000000"
-                        android:shadowDx="2"
-                        android:shadowDy="2"
-                        android:shadowRadius="5"
-                        android:text="@string/snooze_length"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <Spinner
-                        android:id="@+id/fragment_update_alarm_snooze"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:defaultValue="none"
-                        android:entries="@array/snooze_entries"
-                        android:entryValues="@array/snooze_values"
-                        android:key="lp_snooze"
-                        android:padding="8dp"
-                        android:popupBackground="@color/black"
-                        android:spinnerMode="dropdown"
-                        android:textAlignment="center"
-                        android:layout_weight="1"
-                        android:summary="%s" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:padding="8dp"
-                        android:shadowColor="#000000"
-                        android:shadowDx="2"
-                        android:shadowDy="2"
-                        android:shadowRadius="5"
-                        android:text="@string/shake_to_wake"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/fragment_update_alarm_shake_to_wake"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:layout_weight="1"
-                        android:checked="false" />
-
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/fragment_btn_update_alarm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="90dp"
-            android:shadowColor="#000000"
-            android:shadowDx="2"
-            android:shadowDy="2"
-            android:shadowRadius="5"
-            android:text="@string/update_alarm"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:strokeColor="@color/black"
-            app:strokeWidth="@dimen/stroke_small" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

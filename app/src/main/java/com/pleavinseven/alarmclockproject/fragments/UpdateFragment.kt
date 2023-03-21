@@ -19,7 +19,7 @@ import com.pleavinseven.alarmclockproject.util.TimePickerUtil
 class UpdateFragment : Fragment() {
 
     private val timePickerUtil = TimePickerUtil()
-    lateinit var binding: FragmentUpdateBinding
+    private lateinit var binding: FragmentUpdateBinding
     private lateinit var alarmViewModel: AlarmViewModel
     private val args by navArgs<UpdateFragmentArgs>()
 
@@ -36,7 +36,7 @@ class UpdateFragment : Fragment() {
 
         alarmViewModel = ViewModelProvider(this)[AlarmViewModel::class.java]
 
-        binding.fragmentBtnUpdateAlarm.setOnClickListener {
+        binding.btnUpdateAlarm.setOnClickListener {
             updateAlarm(snoozeMap)
             Navigation.findNavController(requireView())
                 .navigate(R.id.action_updateFragment_to_homeFragment)
@@ -59,15 +59,15 @@ class UpdateFragment : Fragment() {
     }
 
     private fun updateAlarm(snoozeMap: Map<String,String>) {
-        val timePicker = binding.fragmentUpdateAlarmTimePicker
+        val timePicker = binding.updateAlarmTimePicker
         val id = args.currentAlarm.id
         val hour = timePickerUtil.getTimePickerHour(timePicker)
         val minute = timePickerUtil.getTimePickerMinute(timePicker)
         val started = true
-        val repeat = binding.fragmentUpdateAlarmRecurring.isChecked
-        val vibrate = binding.fragmentUpdateAlarmVibrate.isChecked
-        val shake = binding.fragmentUpdateAlarmShakeToWake.isChecked
-        val snooze = snoozeMap[binding.fragmentUpdateAlarmSnooze.selectedItem]!!.toInt()
+        val repeat = binding.updateAlarmSwitchRecurring.isChecked
+        val vibrate = binding.updateAlarmSwitchVibrate.isChecked
+        val shake = binding.updateAlarmShake.isChecked
+        val snooze = snoozeMap[binding.updateAlarmSwitchSnooze.selectedItem]!!.toInt()
 
         val alarmManager = AlarmManager(
             id,
