@@ -19,4 +19,7 @@
     <dimen name="stroke">5dp</dimen>
     <dimen name="stroke_small">3dp</dimen>
 
+    <dimen name="fab_icon">16dp</dimen>
+    <dimen name="fab_icon_wed">20dp</dimen>
+
 </resources>

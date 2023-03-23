@@ -41,7 +41,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/monday"
+        android:id="@+id/add_monday"
         app:fabSize="mini"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -49,15 +49,18 @@
         android:backgroundTint="@color/teal_200"
         app:backgroundTint="@color/black"
         app:borderWidth="@dimen/stroke_small"
+        android:src="@drawable/m_icon"
+        app:maxImageSize="@dimen/fab_icon"
         android:layout_marginStart="@dimen/layout_margin_extra_large"
         android:layout_marginVertical="@dimen/layout_margin_extra_large"
-        app:layout_constraintEnd_toStartOf="@+id/tuesday"
+        android:contentDescription="@string/monday"
+        app:layout_constraintEnd_toStartOf="@+id/add_tuesday"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/timepicker_card"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/tuesday"
+        android:id="@+id/add_tuesday"
         app:fabSize="mini"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -65,14 +68,17 @@
         android:backgroundTint="@color/teal_200"
         app:backgroundTint="@color/black"
         app:borderWidth="@dimen/stroke_small"
+        android:src="@drawable/t_icon"
+        app:maxImageSize="@dimen/fab_icon"
         android:layout_marginVertical="@dimen/layout_margin_extra_large"
-        app:layout_constraintEnd_toStartOf="@+id/wednesday"
+        android:contentDescription="@string/tuesday"
+        app:layout_constraintEnd_toStartOf="@+id/add_wednesday"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/monday"
+        app:layout_constraintStart_toEndOf="@+id/add_monday"
         app:layout_constraintTop_toBottomOf="@id/timepicker_card"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/wednesday"
+        android:id="@+id/add_wednesday"
         app:fabSize="mini"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -80,14 +86,17 @@
         android:backgroundTint="@color/teal_200"
         app:backgroundTint="@color/black"
         app:borderWidth="@dimen/stroke_small"
+        android:src="@drawable/w_icon"
+        app:maxImageSize="@dimen/fab_icon_wed"
         android:layout_marginVertical="@dimen/layout_margin_extra_large"
-        app:layout_constraintEnd_toStartOf="@+id/thursday"
+        android:contentDescription="@string/wednesday"
+        app:layout_constraintEnd_toStartOf="@+id/add_thursday"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tuesday"
+        app:layout_constraintStart_toEndOf="@+id/add_tuesday"
         app:layout_constraintTop_toBottomOf="@id/timepicker_card"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/thursday"
+        android:id="@+id/add_thursday"
         app:fabSize="mini"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -95,14 +104,17 @@
         android:backgroundTint="@color/teal_200"
         app:backgroundTint="@color/black"
         app:borderWidth="@dimen/stroke_small"
+        android:src="@drawable/t_icon"
+        app:maxImageSize="@dimen/fab_icon"
         android:layout_marginVertical="@dimen/layout_margin_extra_large"
-        app:layout_constraintEnd_toStartOf="@+id/friday"
+        android:contentDescription="@string/thursday"
+        app:layout_constraintEnd_toStartOf="@+id/add_friday"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/wednesday"
+        app:layout_constraintStart_toEndOf="@+id/add_wednesday"
         app:layout_constraintTop_toBottomOf="@id/timepicker_card"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/friday"
+        android:id="@+id/add_friday"
         app:fabSize="mini"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -110,14 +122,17 @@
         android:backgroundTint="@color/teal_200"
         app:backgroundTint="@color/black"
         app:borderWidth="@dimen/stroke_small"
+        android:src="@drawable/f_icon"
+        app:maxImageSize="@dimen/fab_icon"
         android:layout_marginVertical="@dimen/layout_margin_extra_large"
-        app:layout_constraintEnd_toStartOf="@+id/saturday"
+        android:contentDescription="@string/friday"
+        app:layout_constraintEnd_toStartOf="@+id/add_saturday"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/thursday"
+        app:layout_constraintStart_toEndOf="@+id/add_thursday"
         app:layout_constraintTop_toBottomOf="@id/timepicker_card"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/saturday"
+        android:id="@+id/add_saturday"
         app:fabSize="mini"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -125,14 +140,17 @@
         android:backgroundTint="@color/teal_200"
         app:backgroundTint="@color/black"
         app:borderWidth="@dimen/stroke_small"
+        android:src="@drawable/s_icon"
+        app:maxImageSize="@dimen/fab_icon"
         android:layout_marginVertical="@dimen/layout_margin_extra_large"
-        app:layout_constraintEnd_toStartOf="@+id/sunday"
+        android:contentDescription="@string/saturday"
+        app:layout_constraintEnd_toStartOf="@+id/add_sunday"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/friday"
+        app:layout_constraintStart_toEndOf="@+id/add_friday"
         app:layout_constraintTop_toBottomOf="@id/timepicker_card"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/sunday"
+        android:id="@+id/add_sunday"
         app:fabSize="mini"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -140,11 +158,14 @@
         android:backgroundTint="@color/teal_200"
         app:backgroundTint="@color/black"
         app:borderWidth="@dimen/stroke_small"
+        android:src="@drawable/s_icon"
+        app:maxImageSize="@dimen/fab_icon"
         android:layout_marginVertical="@dimen/layout_margin_extra_large"
         android:layout_marginEnd="@dimen/layout_margin_extra_large"
+        android:contentDescription="@string/sunday"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/saturday"
+        app:layout_constraintStart_toEndOf="@+id/add_saturday"
         app:layout_constraintTop_toBottomOf="@id/timepicker_card"/>
 
     <!--    alarm options   -->
@@ -157,7 +178,7 @@
         app:cardBackgroundColor="?android:colorPrimary"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:cardElevation="@dimen/elevation"
-        app:layout_constraintTop_toBottomOf="@+id/thursday"
+        app:layout_constraintTop_toBottomOf="@+id/add_thursday"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:strokeColor="@color/black"
@@ -285,6 +306,7 @@
         android:layout_marginBottom="@dimen/layout_margin_extra_large"
         android:text="@string/set_alarm"
         android:textColor="@color/black"
+        android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@+id/add_alarm_settings_cardview"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
