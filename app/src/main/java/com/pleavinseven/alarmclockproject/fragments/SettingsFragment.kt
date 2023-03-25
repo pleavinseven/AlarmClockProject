@@ -27,42 +27,34 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
-
         sharedPreferences = context?.getSharedPreferences("nightModePrefs", Context.MODE_PRIVATE)!!
-
-        setDarkMode()
+        val spDarkMode = findPreference<SwitchPreference>("sp_dark_mode")!!
+        setSwitch(spDarkMode)
+        setDarkMode(spDarkMode)
     }
 
-    private fun setDarkMode() {
-        val spDarkMode = findPreference<SwitchPreference>("sp_dark_mode")
-        spDarkMode!!.setOnPreferenceClickListener {
-            if (spDarkMode.isChecked) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                saveNightModeState(true)
-                setSwitch(spDarkMode, true)
-
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                saveNightModeState(false)
-                setSwitch(spDarkMode, false)
+    private fun setDarkMode(switchPref: SwitchPreference) {
+        switchPref.setOnPreferenceClickListener {
+            when (switchPref.isChecked) {
+                true -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                false -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
+            saveNightModeState(switchPref.isChecked)
+            setSwitch(switchPref)
             true
         }
     }
 
-    private fun saveNightModeState(Night: Boolean) {
+    private fun saveNightModeState(night: Boolean) {
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
-        if (Night){
-            editor.putBoolean("isNight", true)
-        } else {
-            editor.putBoolean("isNight", false)
-        }
+        editor.putBoolean("isNight", night)
         editor.apply()
     }
 
-    private fun setSwitch(switch: SwitchPreference, isChecked: Boolean) {
+    private fun setSwitch(switchPref: SwitchPreference) {
+        val isChecked = sharedPreferences.getBoolean("isNight", false)
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
-        editor.putBoolean(switch.key, isChecked)
+        editor.putBoolean(switchPref.key, isChecked)
         editor.apply()
     }
 }
