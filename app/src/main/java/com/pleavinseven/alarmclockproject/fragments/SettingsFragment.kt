@@ -2,7 +2,7 @@ package com.pleavinseven.alarmclockproject.fragments
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.os.*
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
