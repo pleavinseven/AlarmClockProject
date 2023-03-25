@@ -31,8 +31,8 @@ class UpdateFragment : Fragment() {
 
         val snoozeEntries = resources.getStringArray(R.array.snooze_entries)
         val snoozeValues = resources.getStringArray(R.array.snooze_values)
-
         val snoozeMap: Map<String, String> = snoozeEntries.zip(snoozeValues).toMap()
+        setCurrentAlarmPreferences()
 
         alarmViewModel = ViewModelProvider(this)[AlarmViewModel::class.java]
 
@@ -42,6 +42,18 @@ class UpdateFragment : Fragment() {
                 .navigate(R.id.action_updateFragment_to_homeFragment)
         }
         return binding.root
+    }
+
+    private fun setCurrentAlarmPreferences(){
+        val vibrateSwitch = binding.updateAlarmSwitchVibrate
+        val onceSwitch = binding.updateAlarmSwitchOnce
+        val shakeSwitch = binding.updateAlarmShake
+        vibrateSwitch.isChecked = args.currentAlarm.vibrate
+        onceSwitch.isChecked = args.currentAlarm.repeat
+        shakeSwitch.isChecked = args.currentAlarm.shake
+        val timePicker = binding.updateAlarmTimePicker
+        timePicker.hour = args.currentAlarm.hour
+        timePicker.minute = args.currentAlarm.minute
     }
 
     private fun updateDatabase(
