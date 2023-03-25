@@ -19,7 +19,7 @@ import java.util.*
 class SetNewAlarmFragment : Fragment() {
 
     private val timePickerUtil = TimePickerUtil()
-    lateinit var binding: FragmentSetNewAlarmBinding
+    private lateinit var binding: FragmentSetNewAlarmBinding
     private lateinit var alarmViewModel: AlarmViewModel
 
     override fun onCreateView(
@@ -49,12 +49,12 @@ class SetNewAlarmFragment : Fragment() {
         hour: Int,
         minute: Int,
         started: Boolean,
-        repeat: Boolean,
+        once: Boolean,
         vibrate: Boolean,
         shake: Boolean,
         snooze: Int
     ) {
-        val alarm = Alarm(0, hour, minute, started, repeat, vibrate, shake, snooze)
+        val alarm = Alarm(0, hour, minute, started, once, vibrate, shake, snooze)
         alarmViewModel.addAlarm(alarm)
     }
 
@@ -64,7 +64,7 @@ class SetNewAlarmFragment : Fragment() {
         val hour = timePickerUtil.getTimePickerHour(timePicker)
         val minute = timePickerUtil.getTimePickerMinute(timePicker)
         val started = true
-        val repeat = binding.addAlarmSwitchRecurring.isChecked
+        val once = binding.addAlarmSwitchOnce.isChecked
         val vibrate = binding.addAlarmSwitchVibrate.isChecked
         val shake = binding.addAlarmSwitchShake.isChecked
         val snooze = snoozeMap[binding.addAlarmSwitchSnooze.selectedItem]!!.toInt()
@@ -74,13 +74,13 @@ class SetNewAlarmFragment : Fragment() {
             hour,
             minute,
             true,
-            repeat,
+            once,
             vibrate,
             shake,
             snooze
         )
 
-        insertToDatabase(hour, minute, started, repeat, vibrate, shake, snooze)
+        insertToDatabase(hour, minute, started, once, vibrate, shake, snooze)
         alarmManager.schedule(requireContext())
     }
 }

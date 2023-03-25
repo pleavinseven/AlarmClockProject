@@ -14,7 +14,7 @@ class AlarmManager(
     private val hour: Int,
     private val minute: Int,
     var started: Boolean,
-    val recurring: Boolean,
+    val once: Boolean,
     val vibrate: Boolean,
     val shake: Boolean,
     val snooze: Int
@@ -23,7 +23,7 @@ class AlarmManager(
     fun schedule(context: Context) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java)
-        intent.putExtra("recurring", recurring)
+        intent.putExtra("once", once)
         intent.putExtra("vibrate", vibrate)
         intent.putExtra("shake", shake)
         intent.putExtra("snooze", snooze)
@@ -43,7 +43,7 @@ class AlarmManager(
         }
 
         val toastTime = formatTime()
-        if (!recurring) {
+        if (once) {
             Toast.makeText(
                 context,
                 "One Time Alarm set for $toastTime",

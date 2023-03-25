@@ -6,9 +6,15 @@
     <string name="toast_alarm_set2">"ზე "</string>
 
 
-    // set new alarm screen
-
-    // update alarm screen
+    // set/update new alarm screen
+    <string name="once">ერთხელ</string>
+    <string name="monday">ორშაბათი</string>
+    <string name="tuesday">სამშაბათი</string>
+    <string name="wednesday">ოთხშაბათი</string>
+    <string name="thursday">ხუთშაბათი</string>
+    <string name="friday">პარასკევი</string>
+    <string name="saturday">შაბათი</string>
+    <string name="sunday">შაბათი</string>
 
     // alarm ring screen
 
@@ -43,7 +49,6 @@
     <string name="toast_alarm_cancelled">"მაღვიძარა გაუქმებულია "</string>
     <string name="set_new_alarm">"ახალი მაღვიძარას დაყენება "</string>
     <string name="alarm_time">"მაღვიძარას დრო "</string>
-    <string name="recurring">ყოველდღე</string>
     <string name="set_alarm">"დააყენე მაღვიძარა "</string>
     <string name="update_alarm">"შენახვა "</string>
     <string name="plus">+</string>

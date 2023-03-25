@@ -17,8 +17,15 @@
 
     <string name="set_new_alarm">Neuen Wecker Stellen</string>
     <string name="alarm_time">Weckzeit</string>
-    <string name="recurring">Wiederholen</string>
+    <string name="once">Einmalig</string>
     <string name="set_alarm">Wecker Stellen</string>
+    <string name="monday">Montag</string>
+    <string name="tuesday">Dienstag</string>
+    <string name="wednesday">Mittwoch</string>
+    <string name="thursday">Donnerstag</string>
+    <string name="friday">Freitag</string>
+    <string name="saturday">Samstag</string>
+    <string name="sunday">Sonntag</string>
 
     // update alarm screen
 

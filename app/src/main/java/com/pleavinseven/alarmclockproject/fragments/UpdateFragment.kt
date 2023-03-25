@@ -64,7 +64,7 @@ class UpdateFragment : Fragment() {
         val hour = timePickerUtil.getTimePickerHour(timePicker)
         val minute = timePickerUtil.getTimePickerMinute(timePicker)
         val started = true
-        val repeat = binding.updateAlarmSwitchRecurring.isChecked
+        val repeat = binding.updateAlarmSwitchOnce.isChecked
         val vibrate = binding.updateAlarmSwitchVibrate.isChecked
         val shake = binding.updateAlarmShake.isChecked
         val snooze = snoozeMap[binding.updateAlarmSwitchSnooze.selectedItem]!!.toInt()
