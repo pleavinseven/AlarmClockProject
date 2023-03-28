@@ -20,13 +20,12 @@
         android:layout_height="210dp"
         android:layout_marginHorizontal="@dimen/layout_margin_large"
         android:layout_marginVertical="@dimen/layout_margin_extra_large"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="?attr/alarmBgColour"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:cardElevation="@dimen/elevation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/my_toolbar"
-        app:strokeColor="@color/black"
         app:strokeWidth="@dimen/stroke">
 
         <TimePicker
@@ -35,6 +34,7 @@
             android:layout_height="match_parent"
             android:layout_weight="0.6"
             android:elevation="31dp"
+            android:background="?attr/alarmBgColour"
             android:theme="@style/NumberPickerStyle"
             android:timePickerMode="spinner"/>
 
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:backgroundTint="@color/teal_200"
-        app:backgroundTint="@color/black"
+        app:backgroundTint="?attr/strokeColor"
         app:borderWidth="@dimen/stroke_small"
         android:src="@drawable/m_icon"
         app:maxImageSize="@dimen/fab_icon"
@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:backgroundTint="@color/teal_200"
-        app:backgroundTint="@color/black"
+        app:backgroundTint="?attr/strokeColor"
         app:borderWidth="@dimen/stroke_small"
         android:src="@drawable/t_icon"
         app:maxImageSize="@dimen/fab_icon"
@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:backgroundTint="@color/teal_200"
-        app:backgroundTint="@color/black"
+        app:backgroundTint="?attr/strokeColor"
         app:borderWidth="@dimen/stroke_small"
         android:src="@drawable/w_icon"
         app:maxImageSize="@dimen/fab_icon"
@@ -102,7 +102,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:backgroundTint="@color/teal_200"
-        app:backgroundTint="@color/black"
+        app:backgroundTint="?attr/strokeColor"
         app:borderWidth="@dimen/stroke_small"
         android:src="@drawable/t_icon"
         app:maxImageSize="@dimen/fab_icon"
@@ -120,7 +120,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:backgroundTint="@color/teal_200"
-        app:backgroundTint="@color/black"
+        app:backgroundTint="?attr/strokeColor"
         app:borderWidth="@dimen/stroke_small"
         android:src="@drawable/f_icon"
         app:maxImageSize="@dimen/fab_icon"
@@ -138,7 +138,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:backgroundTint="@color/teal_200"
-        app:backgroundTint="@color/black"
+        app:backgroundTint="?attr/strokeColor"
         app:borderWidth="@dimen/stroke_small"
         android:src="@drawable/s_icon"
         app:maxImageSize="@dimen/fab_icon"
@@ -156,7 +156,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:backgroundTint="@color/teal_200"
-        app:backgroundTint="@color/black"
+        app:backgroundTint="?attr/strokeColor"
         app:borderWidth="@dimen/stroke_small"
         android:src="@drawable/s_icon"
         app:maxImageSize="@dimen/fab_icon"
@@ -181,7 +181,6 @@
         app:layout_constraintTop_toBottomOf="@+id/update_thursday"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:strokeColor="@color/black"
         app:strokeWidth="@dimen/stroke_small">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -311,7 +310,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:strokeColor="@color/black"
         app:strokeWidth="@dimen/stroke_small"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
