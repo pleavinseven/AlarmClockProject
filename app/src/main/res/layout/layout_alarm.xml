@@ -2,18 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="120sp">
+    android:layout_height="126sp">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginVertical="@dimen/layout_margin_small"
-            android:layout_marginHorizontal="@dimen/layout_margin_medium"
-            app:cardBackgroundColor="@color/white"
+            android:layout_marginTop="@dimen/layout_margin_small"
+            android:layout_marginBottom="@dimen/layout_margin_medium"
+            android:layout_marginHorizontal="@dimen/layout_margin_small"
+            app:cardBackgroundColor="?attr/alarmBgColour"
             app:cardCornerRadius="@dimen/card_corner_radius"
             app:cardElevation="@dimen/elevation"
-            app:strokeColor="@color/black"
             app:strokeWidth="@dimen/stroke"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -22,8 +22,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/tv_alarm_time"
@@ -31,9 +30,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/layout_margin_medium"
                     android:layout_marginEnd="126dp"
-                    android:text="11:11"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-                    android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/tv_repeat_days"
                     app:layout_constraintEnd_toStartOf="@+id/switch_alarm"
@@ -50,7 +47,6 @@
                     android:layout_marginEnd="@dimen/layout_margin_small"
                     android:paddingBottom="2dp"
                     android:text="@string/daily_alarm"
-                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_alarm_time" />

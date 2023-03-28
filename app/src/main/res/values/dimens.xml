@@ -11,8 +11,9 @@
     <dimen name="layout_margin_medium">12dp</dimen>
     <dimen name="layout_margin_large">16dp</dimen>
     <dimen name="layout_margin_extra_large">24dp</dimen>
+    <dimen name="layout_margin_next_alarm">36dp</dimen>
 
-    <dimen name="elevation">12dp</dimen>
+    <dimen name="elevation">8dp</dimen>
 
     <dimen name="large_text">70sp</dimen>
 

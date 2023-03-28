@@ -9,34 +9,47 @@
     android:fitsSystemWindows="true"
     tools:context=".fragments.HomeFragment">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/my_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:elevation="@dimen/elevation"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:layout_constraintTop_toTopOf="parent"/>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/tv_next_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/layout_margin_extra_large"
+            android:shadowColor="@color/black"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"
+            android:text="@string/next_alarm"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tv_next_alarm_card"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/tv_next_alarm_card"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="@dimen/layout_margin_large"
+            android:layout_marginHorizontal="@dimen/layout_margin_next_alarm"
+            android:layout_marginVertical="@dimen/layout_margin_medium"
             app:cardBackgroundColor="?android:colorPrimary"
             app:cardCornerRadius="@dimen/card_corner_radius"
             app:cardElevation="@dimen/elevation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:strokeColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/tv_next_alarm"
             app:strokeWidth="@dimen/stroke">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -54,7 +67,6 @@
                     android:shadowDy="2"
                     android:shadowRadius="5"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-                    android:textColor="@color/white"
                     android:textSize="@dimen/large_text"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -69,6 +81,7 @@
             android:id="@+id/recycler_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_margin="@dimen/layout_margin_small"
             app:layout_constraintBottom_toTopOf="@+id/btn_add_alarm"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -78,9 +91,11 @@
             android:id="@+id/btn_add_alarm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/layout_margin_large"
+            android:layout_marginTop="@dimen/layout_margin_medium"
             android:backgroundTint="@color/teal_200"
             android:clickable="true"
-            app:backgroundTint="@color/black"
+            app:backgroundTint="?attr/strokeColor"
             app:borderWidth="@dimen/stroke_small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
