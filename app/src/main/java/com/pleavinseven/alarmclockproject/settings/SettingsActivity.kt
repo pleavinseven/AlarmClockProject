@@ -25,14 +25,14 @@ class SettingsActivity : AppCompatActivity() {
             .replace(R.id.settings_container, SettingsFragment())
             .commit()
 
-        // set action bar, status bar and nav to fit theme
-        backGroundColour()
+        // set action bar
+        setTheme()
     }
 
-    private fun backGroundColour() {
+    private fun setTheme() {
         val actionBar = supportActionBar
         actionBar?.title = ""
-        actionBar?.elevation = 0F
+        actionBar?.elevation = 20F
         WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.setDecorFitsSystemWindows(false)
@@ -43,22 +43,18 @@ class SettingsActivity : AppCompatActivity() {
                 Configuration.UI_MODE_NIGHT_MASK
         when (nightModeFlags) {
             Configuration.UI_MODE_NIGHT_YES -> {
-                window.setBackgroundDrawable(ColorDrawable(Color.parseColor("#56557B")))
-                window.statusBarColor = Color.parseColor("#F0EDFF")
-                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#56557B")))
-                window.navigationBarColor = Color.parseColor("#F0EDFF")
+                window.setBackgroundDrawable(ColorDrawable(baseContext.getColor(R.color.black)))
+                actionBar?.setBackgroundDrawable(ColorDrawable(baseContext.getColor(R.color.black)))
             }
+
             Configuration.UI_MODE_NIGHT_NO -> {
                 window.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
-                window.statusBarColor = Color.parseColor("#F0EDFF")
                 actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
-                window.navigationBarColor = Color.parseColor("#F0EDFF")
             }
+
             Configuration.UI_MODE_NIGHT_UNDEFINED -> {
                 window.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
-                window.statusBarColor = Color.parseColor("#F0EDFF")
                 actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
-                window.navigationBarColor = Color.parseColor("#F0EDFF")
             }
         }
     }

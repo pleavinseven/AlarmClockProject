@@ -6,7 +6,6 @@ import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
@@ -19,55 +18,32 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var sharedPreferences: SharedPreferences
+    private var nightModeFlags: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // set action bar, status bar and nav to fit theme
+        nightModeFlags = this.resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK
         setDayNight()
         actionBarColour()
-        backGroundColour()
-        navBarColour()
     }
 
     private fun actionBarColour() {
         val actionBar = supportActionBar
-        actionBar?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         actionBar?.title = ""
-        actionBar?.elevation = 0F
-    }
-
-    private fun backGroundColour() {
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = Color.parseColor("#F0EDFF")
-        window.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
-    }
-
-    private fun navBarColour() {
-        val actionBar = supportActionBar
-        actionBar?.title = ""
-        actionBar?.elevation = 0F
-        WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.setDecorFitsSystemWindows(false)
-        } else {
-            View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-        }
-        val nightModeFlags: Int = this.resources.configuration.uiMode and
-                Configuration.UI_MODE_NIGHT_MASK
+        actionBar?.elevation = 20F
         when (nightModeFlags) {
             Configuration.UI_MODE_NIGHT_YES -> {
-                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#56557B")))
-                window.navigationBarColor = Color.parseColor("#F0EDFF")
-
+                actionBar?.setBackgroundDrawable(ColorDrawable(baseContext.getColor(R.color.black)))
             }
             Configuration.UI_MODE_NIGHT_NO -> {
-                window.navigationBarColor = Color.parseColor("#F0EDFF")
+                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
             }
             Configuration.UI_MODE_NIGHT_UNDEFINED -> {
-                window.navigationBarColor = Color.parseColor("#F0EDFF")
+                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
             }
         }
     }
