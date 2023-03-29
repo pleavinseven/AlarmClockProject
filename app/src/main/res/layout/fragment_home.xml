@@ -28,7 +28,6 @@
             android:shadowRadius="5"
             android:text="@string/next_alarm"
             android:textAlignment="center"
-            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/tv_next_alarm_card"

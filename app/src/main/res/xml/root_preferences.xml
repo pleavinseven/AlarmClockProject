@@ -7,7 +7,6 @@
     <SwitchPreference
         android:key="sp_dark_mode"
         android:summary="@string/summary_dark_theme"
-        android:textColor="@color/white"
         android:title="@string/title_dark_theme" />
 
 </PreferenceScreen>
