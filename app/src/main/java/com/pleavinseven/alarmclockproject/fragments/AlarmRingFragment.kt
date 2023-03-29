@@ -3,7 +3,6 @@ package com.pleavinseven.alarmclockproject.fragments
 import android.app.KeyguardManager
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.*
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,9 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.preference.PreferenceManager
 import com.pleavinseven.alarmclockproject.R
 import com.pleavinseven.alarmclockproject.alarmmanager.AlarmManager
 import com.pleavinseven.alarmclockproject.databinding.FragmentAlarmRingBinding
@@ -67,31 +64,17 @@ class AlarmRingFragment : Fragment() {
     }
 
     private fun wakeScreen() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
-            activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-
-            activity?.setTurnScreenOn(true)
-            activity?.setShowWhenLocked(true)
-
-            (activity?.getSystemService(KeyguardManager::class.java) as KeyguardManager).requestDismissKeyguard(
-                requireActivity(),
-                object : KeyguardManager.KeyguardDismissCallback() {
-                    override fun onDismissCancelled() {}
-
-                    override fun onDismissError() {}
-
-                    override fun onDismissSucceeded() {}
-                }
-            )
-        } else {
-            activity?.window?.addFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-                        or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-                        or WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
-                        or WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
-                        or WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
-            )
-        }
+        activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        activity?.setTurnScreenOn(true)
+        activity?.setShowWhenLocked(true)
+        (activity?.getSystemService(KeyguardManager::class.java) as KeyguardManager).requestDismissKeyguard(
+            requireActivity(),
+            object : KeyguardManager.KeyguardDismissCallback() {
+                override fun onDismissCancelled() {}
+                override fun onDismissError() {}
+                override fun onDismissSucceeded() {}
+            }
+        )
     }
 
     private fun turnOffAlarm(vibe: Vibrator) {
