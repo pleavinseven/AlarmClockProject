@@ -3,5 +3,7 @@
 
     <!-- Other values-->
     <attr name="alarmBgColour" format="reference" />
+    <attr name="fab_background" format="reference" />
+    <attr name="fab_background_off" format="reference" />
 
 </resources>

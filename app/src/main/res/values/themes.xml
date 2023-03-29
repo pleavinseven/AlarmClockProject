@@ -6,19 +6,22 @@
 
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/blue_sky</item>
-        <item name="colorPrimaryVariant">@color/teal_200</item>
+        <item name="colorPrimaryVariant">@color/blue_sky</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondary">@color/fab_background</item>
         <item name="colorSecondaryVariant">@color/black</item>
-        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorOnSecondary">@color/light_mode_white</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:editTextColor">@color/black</item>
         <item name="strokeColor">@color/black</item>
         <item name="android:statusBarColor">@color/status_bar_light</item>
-        <item name="android:navigationBarColor">@color/status_bar_light</item>
+        <item name="android:navigationBarColor">@color/background_light</item>
 
         <!-- Other values-->
-        <item name="alarmBgColour">@color/white</item>
+        <item name="alarmBgColour">@color/light_mode_white</item>
+        <item name="fab_background">@color/fab_background</item>
+        <item name="fab_background_off">@color/background_light</item>
+
     </style>
 </resources>

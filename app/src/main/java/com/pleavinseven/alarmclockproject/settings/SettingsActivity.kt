@@ -3,7 +3,6 @@ package com.pleavinseven.alarmclockproject.settings
 import com.pleavinseven.alarmclockproject.fragments.SettingsFragment
 import android.content.Intent
 import android.content.res.Configuration
-import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.*
 import android.view.*
@@ -43,18 +42,18 @@ class SettingsActivity : AppCompatActivity() {
                 Configuration.UI_MODE_NIGHT_MASK
         when (nightModeFlags) {
             Configuration.UI_MODE_NIGHT_YES -> {
-                window.setBackgroundDrawable(ColorDrawable(baseContext.getColor(R.color.black)))
-                actionBar?.setBackgroundDrawable(ColorDrawable(baseContext.getColor(R.color.black)))
+                window.setBackgroundDrawable(ColorDrawable(baseContext.getColor(R.color.background_dark)))
+                actionBar?.setBackgroundDrawable(ColorDrawable(baseContext.getColor(R.color.background_dark)))
             }
 
             Configuration.UI_MODE_NIGHT_NO -> {
-                window.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
-                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
+                window.setBackgroundDrawable(ColorDrawable(baseContext.getColor(R.color.background_light)))
+                actionBar?.setBackgroundDrawable(ColorDrawable(baseContext.getColor(R.color.background_light)))
             }
 
             Configuration.UI_MODE_NIGHT_UNDEFINED -> {
-                window.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
-                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
+                window.setBackgroundDrawable(ColorDrawable(baseContext.getColor(R.color.background_light)))
+                actionBar?.setBackgroundDrawable(ColorDrawable(baseContext.getColor(R.color.background_light)))
             }
         }
     }

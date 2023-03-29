@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
-import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
@@ -37,13 +36,13 @@ class MainActivity : AppCompatActivity() {
         actionBar?.elevation = 20F
         when (nightModeFlags) {
             Configuration.UI_MODE_NIGHT_YES -> {
-                actionBar?.setBackgroundDrawable(ColorDrawable(baseContext.getColor(R.color.black)))
+                actionBar?.setBackgroundDrawable(ColorDrawable(baseContext.getColor(R.color.background_dark)))
             }
             Configuration.UI_MODE_NIGHT_NO -> {
-                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
+                actionBar?.setBackgroundDrawable(ColorDrawable(baseContext.getColor(R.color.background_light)))
             }
             Configuration.UI_MODE_NIGHT_UNDEFINED -> {
-                actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#CDCCF0")))
+                actionBar?.setBackgroundDrawable(ColorDrawable(baseContext.getColor(R.color.background_light)))
             }
         }
     }
