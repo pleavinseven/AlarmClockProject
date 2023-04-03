@@ -5,5 +5,8 @@
     <attr name="alarmBgColour" format="reference" />
     <attr name="fab_background" format="reference" />
     <attr name="fab_background_off" format="reference" />
+    <attr name="next_alarm_background" format="reference" />
+    <attr name="pop_up_menu_background" format="reference" />
+    <attr name="alarm_details_background" format="reference" />
 
 </resources>

@@ -5,7 +5,7 @@
         <item name="android:windowLightStatusBar">true</item>
 
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue_sky</item>
+        <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryVariant">@color/blue_sky</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
@@ -22,6 +22,9 @@
         <item name="alarmBgColour">@color/light_mode_white</item>
         <item name="fab_background">@color/fab_background</item>
         <item name="fab_background_off">@color/background_light</item>
+        <item name="next_alarm_background">@color/blue_sky</item>
+        <item name="pop_up_menu_background">@color/salmon</item>
+        <item name="alarm_details_background">@color/blue_sky</item>
 
     </style>
 </resources>

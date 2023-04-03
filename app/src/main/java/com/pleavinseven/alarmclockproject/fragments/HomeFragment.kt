@@ -74,7 +74,7 @@ class HomeFragment : Fragment() {
 
             // hold/ long click to delete alarm
             override fun onLongClick(alarm: Alarm) {
-                val deleteBuilder = AlertDialog.Builder(requireContext())
+                val deleteBuilder = AlertDialog.Builder(requireContext(), R.style.PopUpMenuStyle)
                 deleteBuilder.setPositiveButton(R.string.delete_builder_delete) { _, _ ->
                     alarmViewModel.delete(alarm)
                     Toast.makeText(

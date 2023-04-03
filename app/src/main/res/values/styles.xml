@@ -5,4 +5,18 @@
         <item name="android:textSize">24sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="PopUpMenuStyle" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="strokeWidth">@dimen/stroke_small</item>
+        <item name="strokeColor">?attr/strokeColor</item>
+        <item name="windowFixedHeightMajor">15%</item>
+        <item name="android:windowBackground">@drawable/dialog_bg</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.ShakeWake.Dialog.Rounded</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.ShakeWake.Dialog.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">30dp</item>
+    </style>
+
 </resources>

@@ -175,7 +175,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/layout_margin_extra_large"
         android:layout_marginHorizontal="@dimen/layout_margin_large"
-        app:cardBackgroundColor="?android:colorPrimary"
+        app:cardBackgroundColor="?attr/alarm_details_background"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:cardElevation="@dimen/elevation"
         app:layout_constraintTop_toBottomOf="@+id/add_thursday"
