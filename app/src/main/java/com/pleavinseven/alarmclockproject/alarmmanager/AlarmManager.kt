@@ -1,6 +1,7 @@
 package com.pleavinseven.alarmclockproject.alarmmanager
 
 import android.app.AlarmManager
+import android.app.AlarmManager.AlarmClockInfo
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -13,7 +14,7 @@ class AlarmManager(
     private val alarmId: Int,
     private val hour: Int,
     private val minute: Int,
-    var started: Boolean,
+    val started: Boolean,
     val once: Boolean,
     val vibrate: Boolean,
     val shake: Boolean,
@@ -42,6 +43,8 @@ class AlarmManager(
             calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + 1)
         }
 
+        val alarmInfo = AlarmClockInfo(calendar.timeInMillis, alarmPendingIntent)
+
         val toastTime = formatTime()
         if (once) {
             Toast.makeText(
@@ -49,11 +52,7 @@ class AlarmManager(
                 "One Time Alarm set for $toastTime",
                 Toast.LENGTH_LONG
             ).show()
-            alarmManager.setExact(
-                AlarmManager.RTC_WAKEUP,
-                calendar.timeInMillis,
-                alarmPendingIntent
-            )
+            alarmManager.setAlarmClock(alarmInfo, alarmPendingIntent)
         } else {
             Toast.makeText(context, "Alarm set daily for $toastTime", Toast.LENGTH_LONG)
                 .show()
@@ -65,7 +64,6 @@ class AlarmManager(
                 alarmPendingIntent
             )
         }
-        started = true
     }
 
     fun cancel(context: Context) {
@@ -77,7 +75,6 @@ class AlarmManager(
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
         alarmManager.cancel(alarmPendingIntent)
-        started = false
     }
 
     private fun formatTime(): String {
