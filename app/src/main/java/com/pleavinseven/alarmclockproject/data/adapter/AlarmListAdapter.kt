@@ -15,8 +15,6 @@ class AlarmListAdapter() :
     class MyViewHolder(binding: LayoutAlarmBinding) : RecyclerView.ViewHolder(binding.root)
 
     var alarmList = ArrayList<Alarm>()
-
-
     private var onItemClickListener: OnItemClickListener? = null
 
     interface OnItemClickListener {
@@ -51,7 +49,8 @@ class AlarmListAdapter() :
             } else
                 holder.itemView.context.getString(R.string.daily_alarm)
 
-
+        //set switch initial state
+        switch.isChecked = currentItem.started
 
         holder.itemView.setOnClickListener {
             if (onItemClickListener != null) {
