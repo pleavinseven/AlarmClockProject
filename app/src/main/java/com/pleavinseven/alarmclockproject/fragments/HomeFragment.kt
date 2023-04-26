@@ -104,6 +104,7 @@ class HomeFragment : Fragment() {
                     alarm.snooze
                 )
                 alarmManager.cancel(requireContext())
+                setStarted(alarm, true)
                 Toast.makeText(
                     context,
                     "${context?.getString(R.string.toast_alarm_set)} $toastTime",
@@ -128,9 +129,9 @@ class HomeFragment : Fragment() {
                     "${context?.getString(R.string.toast_alarm_cancelled)}",
                     Toast.LENGTH_SHORT
                 ).show()
+                setStarted(alarm, false)
             }
         })
-
         return binding.root
     }
 
@@ -165,7 +166,7 @@ class HomeFragment : Fragment() {
     }
 
     fun formatTime(alarm: Alarm): String {
-        // make sure time is formatted to 24 hour clock correctly.
+        // make sure time is formatted to 24-hour clock correctly.
         return if (alarm.minute <= 9 && alarm.hour <= 9) {
             "0${alarm.hour}:0${alarm.minute}"
         } else if (alarm.minute <= 9) {
@@ -175,6 +176,20 @@ class HomeFragment : Fragment() {
         } else {
             "${alarm.hour}:${alarm.minute}"
         }
+    }
+
+    private fun setStarted(alarm: Alarm, started: Boolean){
+        val updatedAlarm = Alarm(
+            alarm.id,
+            alarm.hour,
+            alarm.minute,
+            started,
+            alarm.repeat,
+            alarm.vibrate,
+            alarm.shake,
+            alarm.snooze
+        )
+        alarmViewModel.update(updatedAlarm)
     }
 }
 
