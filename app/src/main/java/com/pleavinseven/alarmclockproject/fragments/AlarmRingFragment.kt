@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.pleavinseven.alarmclockproject.R
 import com.pleavinseven.alarmclockproject.alarmmanager.AlarmManager
 import com.pleavinseven.alarmclockproject.databinding.FragmentAlarmRingBinding
 import com.pleavinseven.alarmclockproject.service.AlarmRingService
@@ -44,7 +43,6 @@ class AlarmRingFragment : Fragment() {
             }
 
         wakeScreen()
-        setBubble(true)
         setCurrentTimeText()
 
         binding.btnCancelAlarm.setOnClickListener {
@@ -94,7 +92,7 @@ class AlarmRingFragment : Fragment() {
             calendar.get(Calendar.HOUR_OF_DAY),
             calendar.get(Calendar.MINUTE),
             started = true,
-            recurring = false,
+            once = false,
             vibrate = true,
             snooze = 0,
             shake = false
@@ -107,13 +105,6 @@ class AlarmRingFragment : Fragment() {
         alarm.schedule(requireContext())
     }
 
-    private fun setBubble(
-        isLeftVisible: Boolean,
-    ) {
-        R.id.alarm_bubble.apply {
-            binding.alarmBubble.visibility = if (isLeftVisible) View.VISIBLE else View.GONE
-        }
-    }
 
     private fun setCurrentTimeText() {
         val current = LocalDateTime.now()
