@@ -13,11 +13,9 @@
         android:layout_height="0dp"
         android:layout_marginTop="52dp"
         app:layout_constraintBottom_toTopOf="@id/btn_snooze_alarm"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.497"
         app:lottie_autoPlay="true"
         app:lottie_fileName="pulsating-circle.json"
         app:lottie_loop="true"
@@ -31,35 +29,34 @@
         android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btn_snooze_alarm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
         android:layout_marginBottom="56dp"
-        android:background="@drawable/rounded_button"
         android:text="@string/snooze_alarm"
+        android:textAlignment="center"
+        android:backgroundTint="?attr/fab_background_off"
+        app:strokeWidth="@dimen/stroke_small"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.007"
+        app:layout_constraintEnd_toStartOf="@id/btn_cancel_alarm"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/alarm_bubble" />
 
-    <Button
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btn_cancel_alarm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
         android:layout_marginBottom="52dp"
-        android:background="@drawable/rounded_button"
         android:text="@string/cancel_alarm"
+        android:textAlignment="center"
+        android:backgroundTint="?attr/fab_background_off"
+        app:strokeWidth="@dimen/stroke_small"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_snooze_alarm"
         app:layout_constraintTop_toBottomOf="@+id/alarm_bubble" />
 </androidx.constraintlayout.widget.ConstraintLayout>
