@@ -11,6 +11,9 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission
+        android:name="${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        tools:node="remove" />
 
     <application
         android:allowBackup="true"
@@ -18,7 +21,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AlarmClockProject">
+        android:theme="@style/Theme.AlarmClockProject"
+        android:enableOnBackInvokedCallback="true" tools:targetApi="tiramisu">
         <service
             android:name=".service.RescheduleAlarmRingService"
             android:enabled="true"

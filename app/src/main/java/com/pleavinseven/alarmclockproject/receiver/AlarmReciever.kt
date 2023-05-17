@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import com.pleavinseven.alarmclockproject.service.AlarmRingService
 import com.pleavinseven.alarmclockproject.service.RescheduleAlarmRingService
-import kotlin.properties.Delegates
 
 
 class AlarmReceiver : BroadcastReceiver() {
@@ -31,12 +30,12 @@ class AlarmReceiver : BroadcastReceiver() {
         val intent = Intent(context, AlarmRingService::class.java)
         intent.putExtra("vibrate", vibrate)
         intent.putExtra("snooze", snooze)
-        context!!.startService(intent)
+        context!!.startForegroundService(intent)
     }
 
     private fun startRescheduleAlarmRingService(context: Context?) {
         val intent = Intent(context, RescheduleAlarmRingService::class.java)
-        context!!.startService(intent)
+        context!!.startForegroundService(intent)
     }
 
 
