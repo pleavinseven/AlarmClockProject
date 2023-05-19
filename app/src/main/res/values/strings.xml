@@ -52,6 +52,7 @@
     <string name="notification_title">Alarm</string>
     <string name="notification_content">Click here to open alarm </string>
     <string name="add_new_alarm">Add new alarm</string>
+    <string name="delete_alarm">Delete alarm</string>
     <string name="plus">+</string>
     <string name="toast_alarm_set2">" "</string>
     <string name="days" translatable="false">Days</string>

@@ -12,4 +12,5 @@
     <color name="status_bar_dark">#FF000000</color>
     <color name="background_light">#0D7680</color>
     <color name="background_dark">#FF000000</color>
+    <color name="delete">#de5262</color>
 </resources>

@@ -8,5 +8,6 @@
     <attr name="next_alarm_background" format="reference" />
     <attr name="pop_up_menu_background" format="reference" />
     <attr name="alarm_details_background" format="reference" />
+    <attr name="delete" format="reference" />
 
 </resources>

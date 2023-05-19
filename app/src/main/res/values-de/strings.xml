@@ -55,7 +55,8 @@
     <string name="notification_title">Wecker</string>
     <string name="notification_content">Klicken Sie hier, um den Alarm zu öffnen </string>
     <string name="plus">+</string>
-    <string name="add_new_alarm">Neue Wecker Setzen</string>
+    <string name="add_new_alarm">Neue Wecker setzen</string>
+    <string name="delete_alarm">Alarm löschen</string>
 
 
 </resources>
