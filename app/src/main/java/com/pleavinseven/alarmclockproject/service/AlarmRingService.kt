@@ -19,16 +19,7 @@ class AlarmRingService : Service() {
     override fun onCreate() {
         super.onCreate()
         createNotificationChannel()
-        mPlayer = MediaPlayer()
-        mPlayer?.setAudioAttributes(
-            AudioAttributes.Builder()
-                .setUsage(AudioAttributes.USAGE_ALARM)
-                .build()
-        )
-        mPlayer?.setDataSource(this, alarmUri)
-        mPlayer?.prepare()
-        mPlayer?.isLooping = true
-        mPlayer?.start()
+        startMediaPlayer()
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -43,7 +34,7 @@ class AlarmRingService : Service() {
         notificationIntent.putExtra("shake", shake)
         notificationIntent.putExtra("snooze", snooze)
 
-        val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0)
+        val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE)
 
         val builder = Notification.Builder(this, "my channel")
         val notification = builder.setOngoing(true)
@@ -78,6 +69,19 @@ class AlarmRingService : Service() {
 
     override fun onBind(intent: Intent): IBinder? {
         return null
+    }
+
+    private fun startMediaPlayer(){
+        mPlayer = MediaPlayer()
+        mPlayer?.setAudioAttributes(
+            AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_ALARM)
+                .build()
+        )
+        mPlayer?.setDataSource(this, alarmUri)
+        mPlayer?.prepare()
+        mPlayer?.isLooping = true
+        mPlayer?.start()
     }
 
     private fun createNotificationChannel() {
