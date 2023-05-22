@@ -3,30 +3,21 @@ package com.pleavinseven.alarmclockproject.fragments
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.pleavinseven.alarmclockproject.R
+import com.pleavinseven.alarmclockproject.Theme.ThemeViewModel
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
-
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var themeViewModel: ThemeViewModel
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
+        themeViewModel = ViewModelProvider(this)[ThemeViewModel::class.java]
         sharedPreferences = context?.getSharedPreferences("nightModePrefs", Context.MODE_PRIVATE)!!
         val spDarkMode = findPreference<SwitchPreference>("sp_dark_mode")!!
         setSwitch(spDarkMode)
@@ -36,8 +27,15 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private fun setDarkMode(switchPref: SwitchPreference) {
         switchPref.setOnPreferenceClickListener {
             when (switchPref.isChecked) {
-                true -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                false -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                true -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    themeViewModel.updateNightMode(true)
+                }
+
+                false -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    themeViewModel.updateNightMode(false)
+                }
             }
             saveNightModeState(switchPref.isChecked)
             setSwitch(switchPref)

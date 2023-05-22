@@ -1,19 +1,18 @@
 package com.pleavinseven.alarmclockproject.fragments
 
-import android.content.res.Configuration
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pleavinseven.alarmclockproject.R
+import com.pleavinseven.alarmclockproject.Theme.ThemeViewModel
 import com.pleavinseven.alarmclockproject.alarmmanager.AlarmManager
 import com.pleavinseven.alarmclockproject.data.adapter.AlarmListAdapter
 import com.pleavinseven.alarmclockproject.data.model.Alarm
@@ -25,8 +24,9 @@ import java.time.Instant
 
 class HomeFragment : Fragment() {
 
-    lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: FragmentHomeBinding
     private lateinit var alarmViewModel: AlarmViewModel
+    private lateinit var themeViewModel: ThemeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,19 +40,13 @@ class HomeFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-
-        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_YES -> container!!.background =
-                ColorDrawable(
-                    ContextCompat.getColor(requireContext(), R.color.background_dark)
-                )
-            Configuration.UI_MODE_NIGHT_NO -> container!!.background =
-                ColorDrawable(
-                    ContextCompat.getColor(requireContext(), R.color.background_light)
-                )
+        //ViewModels
+        themeViewModel = ViewModelProvider(this)[ThemeViewModel::class.java]
+        themeViewModel.nightMode.observe(viewLifecycleOwner) { isNightMode ->
+            val colorRes = if (isNightMode) R.color.background_dark else R.color.background_light
+            container?.background = ColorDrawable(ContextCompat.getColor(requireContext(), colorRes))
         }
 
-        //ViewModel
         alarmViewModel = ViewModelProvider(this)[AlarmViewModel::class.java]
         alarmViewModel.readAlarmData.observe(viewLifecycleOwner) { alarm ->
             adapter.setData(alarm)
@@ -68,27 +62,12 @@ class HomeFragment : Fragment() {
 
             // short click updates alarm
             override fun onClick(alarm: Alarm) {
-                Navigation.findNavController(requireView())
-                    .navigate(HomeFragmentDirections.actionHomeFragmentToUpdateFragment(alarm))
+                alarmViewModel.handleShortClick(requireView(), alarm)
             }
 
             // hold/ long click to delete alarm
             override fun onLongClick(alarm: Alarm) {
-                val deleteBuilder = AlertDialog.Builder(requireContext(), R.style.PopUpMenuStyle)
-                deleteBuilder.setPositiveButton(R.string.delete_builder_delete) { _, _ ->
-                    alarmViewModel.delete(alarm)
-                    Toast.makeText(
-                        context,
-                        "${context?.getString(R.string.delete_builder_alarm_deleted)}",
-                        Toast.LENGTH_SHORT
-                    )
-                        .show()
-                }
-                deleteBuilder.setNegativeButton(R.string.cancel_alarm) { _, _ ->
-                    // do nothing
-                }
-                deleteBuilder.setTitle(R.string.title_delete)
-                deleteBuilder.create().show()
+                alarmViewModel.handleLongClick(requireContext(), alarm)
             }
 
             override fun setSwitchOn(alarm: Alarm) {
@@ -178,7 +157,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setStarted(alarm: Alarm, started: Boolean){
+    private fun setStarted(alarm: Alarm, started: Boolean) {
         val updatedAlarm = Alarm(
             alarm.id,
             alarm.hour,
