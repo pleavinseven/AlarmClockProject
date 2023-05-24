@@ -4,11 +4,11 @@
     <color name="blue_sky">#abdbe3</color>
     <color name="salmon">#ea99a2</color>
 
-    <color name="white">#FFF9F5</color>
+    <color name="white">#FFFAF0</color>
     <color name="action_bar">#0D7680</color>
     <color name="fab_background">#ea99a2</color>
     <color name="fab_background_dark">#84BABD</color>
-    <color name="status_bar">#087e8a</color>
-    <color name="background">#0D7680</color>
+    <color name="status_bar">#FF000000</color>
+    <color name="background">#FF000000</color>
     <color name="delete">#de5262</color>
 </resources>

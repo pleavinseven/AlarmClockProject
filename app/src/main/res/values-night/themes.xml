@@ -5,23 +5,23 @@
         <item name="android:windowLightStatusBar">false</item>
 
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/dark_mode_white</item>
+        <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/blue_sky</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/blue_sky</item>
-        <item name="colorSecondaryVariant">@color/dark_mode_white</item>
-        <item name="colorOnSecondary">@color/dark_mode_white</item>
-        <item name="android:textColor">@color/dark_mode_white</item>
-        <item name="android:editTextColor">@color/dark_mode_white</item>
-        <item name="strokeColor">@color/dark_mode_white</item>
-        <item name="android:statusBarColor">@color/status_bar_dark</item>
-        <item name="android:navigationBarColor">@color/background_dark</item>
+        <item name="colorSecondaryVariant">@color/white</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:editTextColor">@color/white</item>
+        <item name="strokeColor">@color/white</item>
+        <item name="android:statusBarColor">@color/status_bar</item>
+        <item name="android:navigationBarColor">@color/background</item>
 
         <!-- Other values-->
         <item name="alarmBgColour">@color/black</item>
         <item name="fab_background">@color/fab_background_dark</item>
-        <item name="fab_background_off">@color/background_dark</item>
+        <item name="fab_background_off">@color/background</item>
         <item name="next_alarm_background">@color/salmon</item>
         <item name="pop_up_menu_background">@color/blue_sky</item>
         <item name="alarm_details_background">@color/salmon</item>

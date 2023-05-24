@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.AlarmClockProject" parent="Theme.MaterialComponents.DayNight">
+    <style name="Theme.AlarmClockProject" parent="AppTheme">
 
         <item name="android:windowLightStatusBar">true</item>
 
@@ -11,17 +11,18 @@
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/fab_background</item>
         <item name="colorSecondaryVariant">@color/black</item>
-        <item name="colorOnSecondary">@color/light_mode_white</item>
+        <item name="colorOnSecondary">@color/white</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:editTextColor">@color/black</item>
         <item name="strokeColor">@color/black</item>
-        <item name="android:statusBarColor">@color/status_bar_light</item>
-        <item name="android:navigationBarColor">@color/background_light</item>
+        <item name="android:statusBarColor">@color/status_bar</item>
+        <item name="android:navigationBarColor">@color/background</item>
 
         <!-- Other values-->
-        <item name="alarmBgColour">@color/light_mode_white</item>
+        <item name="alarmBgColour">@color/white</item>
+        <item name="actionBarColour">@color/action_bar</item>
         <item name="fab_background">@color/fab_background</item>
-        <item name="fab_background_off">@color/background_light</item>
+        <item name="fab_background_off">@color/background</item>
         <item name="next_alarm_background">@color/blue_sky</item>
         <item name="pop_up_menu_background">@color/salmon</item>
         <item name="alarm_details_background">@color/blue_sky</item>

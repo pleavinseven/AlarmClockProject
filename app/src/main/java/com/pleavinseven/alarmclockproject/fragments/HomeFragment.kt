@@ -1,18 +1,15 @@
 package com.pleavinseven.alarmclockproject.fragments
 
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pleavinseven.alarmclockproject.R
-import com.pleavinseven.alarmclockproject.Theme.ThemeViewModel
 import com.pleavinseven.alarmclockproject.alarmmanager.AlarmManager
 import com.pleavinseven.alarmclockproject.data.adapter.AlarmListAdapter
 import com.pleavinseven.alarmclockproject.data.model.Alarm
@@ -26,7 +23,6 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var alarmViewModel: AlarmViewModel
-    private lateinit var themeViewModel: ThemeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,13 +36,7 @@ class HomeFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        //ViewModels
-        themeViewModel = ViewModelProvider(this)[ThemeViewModel::class.java]
-        themeViewModel.nightMode.observe(viewLifecycleOwner) { isNightMode ->
-            val colorRes = if (isNightMode) R.color.background_dark else R.color.background_light
-            container?.background = ColorDrawable(ContextCompat.getColor(requireContext(), colorRes))
-        }
-
+        //ViewModel
         alarmViewModel = ViewModelProvider(this)[AlarmViewModel::class.java]
         alarmViewModel.readAlarmData.observe(viewLifecycleOwner) { alarm ->
             adapter.setData(alarm)

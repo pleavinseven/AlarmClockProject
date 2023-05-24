@@ -7,6 +7,7 @@ import android.content.res.Configuration
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.pleavinseven.alarmclockproject.databinding.ActivityMainBinding
@@ -27,25 +28,8 @@ class MainActivity : AppCompatActivity() {
         nightModeFlags = this.resources.configuration.uiMode and
                 Configuration.UI_MODE_NIGHT_MASK
         setDayNight()
-        actionBarColour()
     }
 
-    private fun actionBarColour() {
-        val actionBar = supportActionBar
-        actionBar?.title = ""
-        actionBar?.elevation = 20F
-        when (nightModeFlags) {
-            Configuration.UI_MODE_NIGHT_YES -> {
-                actionBar?.setBackgroundDrawable(ColorDrawable(baseContext.getColor(R.color.background_dark)))
-            }
-            Configuration.UI_MODE_NIGHT_NO -> {
-                actionBar?.setBackgroundDrawable(ColorDrawable(baseContext.getColor(R.color.background_light)))
-            }
-            Configuration.UI_MODE_NIGHT_UNDEFINED -> {
-                actionBar?.setBackgroundDrawable(ColorDrawable(baseContext.getColor(R.color.background_light)))
-            }
-        }
-    }
 
     private fun setDayNight() {
         sharedPreferences = getSharedPreferences("nightModePrefs", Context.MODE_PRIVATE)!!
